@@ -1,0 +1,15 @@
+C:\slweb\SLTest\SLTest\bin\SLTest.dll
+C:\slweb\SLTest\SLTest\bin\SLTest.pdb
+C:\slweb\SLTest\SLTest\obj\Debug\SLTest.dll
+C:\slweb\SLTest\SLTest\obj\Debug\SLTest.pdb
+C:\slweb\SLTest\SLTest\obj\Debug\SLTest.csprojResolveAssemblyReference.cache
+E:\Документы Галкин\VS\SLTest\SLTest\bin\SLTest.dll
+E:\Документы Галкин\VS\SLTest\SLTest\bin\SLTest.pdb
+E:\Документы Галкин\VS\SLTest\SLTest\obj\Debug\ResolveAssemblyReference.cache
+E:\Документы Галкин\VS\SLTest\SLTest\obj\Debug\SLTest.dll
+E:\Документы Галкин\VS\SLTest\SLTest\obj\Debug\SLTest.pdb
+C:\Work\Документы Галкин\VS\SLTest\SLTest\obj\Debug\SLTest.csprojResolveAssemblyReference.cache
+C:\Work\Документы Галкин\VS\SLTest\SLTest\obj\Debug\SLTest.dll
+C:\Work\Документы Галкин\VS\SLTest\SLTest\bin\SLTest.dll
+C:\Work\Документы Галкин\VS\SLTest\SLTest\bin\SLTest.pdb
+C:\Work\Документы Галкин\VS\SLTest\SLTest\obj\Debug\SLTest.pdb

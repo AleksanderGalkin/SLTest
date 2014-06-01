@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="coffeeModelStoreContainer">
+          <EntitySet Name="Options" EntityType="coffeeModel.Store.Options" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="coffeeModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderOptions" EntityType="coffeeModel.Store.OrderOptions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderRecipe" EntityType="coffeeModel.Store.OrderRecipe" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recipe" EntityType="coffeeModel.Store.Recipe" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Options_Recipe" Association="coffeeModel.Store.FK_Options_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Options" EntitySet="Options" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOptions_Options" Association="coffeeModel.Store.FK_OrderOptions_Options">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="OrderOptions" EntitySet="OrderOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOptions_Order" Association="coffeeModel.Store.FK_OrderOptions_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderOptions" EntitySet="OrderOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderRecipe_Order" Association="coffeeModel.Store.FK_OrderRecipe_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderRecipe" EntitySet="OrderRecipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderRecipe_Recipe" Association="coffeeModel.Store.FK_OrderRecipe_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="OrderRecipe" EntitySet="OrderRecipe" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="OptID" />
+          </Key>
+          <Property Name="OptID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RecID" Type="bigint" Nullable="false" />
+          <Property Name="OptionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="bigint" Nullable="false" />
+          <Property Name="NumTable" Type="int" Nullable="false" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderOptions">
+          <Key>
+            <PropertyRef Name="OrderOptID" />
+          </Key>
+          <Property Name="OrderOptID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="OptID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderRecipe">
+          <Key>
+            <PropertyRef Name="OrderRecID" />
+          </Key>
+          <Property Name="OrderRecID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="RecID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="RecID" />
+          </Key>
+          <Property Name="RecID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RecName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Describe" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Options_Recipe">
+          <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
+          <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="Options">
+              <PropertyRef Name="RecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOptions_Options">
+          <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="1" />
+          <End Role="OrderOptions" Type="coffeeModel.Store.OrderOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="OptID" />
+            </Principal>
+            <Dependent Role="OrderOptions">
+              <PropertyRef Name="OptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOptions_Order">
+          <End Role="Order" Type="coffeeModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderOptions" Type="coffeeModel.Store.OrderOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderOptions">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderRecipe_Order">
+          <End Role="Order" Type="coffeeModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderRecipe" Type="coffeeModel.Store.OrderRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderRecipe">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderRecipe_Recipe">
+          <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
+          <End Role="OrderRecipe" Type="coffeeModel.Store.OrderRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="OrderRecipe">
+              <PropertyRef Name="RecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="coffeeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="coffeeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Options" EntityType="coffeeModel.Options" />
+          <EntitySet Name="Order" EntityType="coffeeModel.Order" />
+          <EntitySet Name="OrderOptions" EntityType="coffeeModel.OrderOptions" />
+          <EntitySet Name="OrderRecipe" EntityType="coffeeModel.OrderRecipe" />
+          <EntitySet Name="Recipe" EntityType="coffeeModel.Recipe" />
+          <AssociationSet Name="FK_Options_Recipe" Association="coffeeModel.FK_Options_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="Options" EntitySet="Options" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOptions_Options" Association="coffeeModel.FK_OrderOptions_Options">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="OrderOptions" EntitySet="OrderOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOptions_Order" Association="coffeeModel.FK_OrderOptions_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderOptions" EntitySet="OrderOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderRecipe_Order" Association="coffeeModel.FK_OrderRecipe_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderRecipe" EntitySet="OrderRecipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderRecipe_Recipe" Association="coffeeModel.FK_OrderRecipe_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="OrderRecipe" EntitySet="OrderRecipe" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="OptID" />
+          </Key>
+          <Property Name="OptID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecID" Type="Int64" Nullable="false" />
+          <Property Name="OptionName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Recipe" Relationship="coffeeModel.FK_Options_Recipe" FromRole="Options" ToRole="Recipe" />
+          <NavigationProperty Name="OrderOptions" Relationship="coffeeModel.FK_OrderOptions_Options" FromRole="Options" ToRole="OrderOptions" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int64" Nullable="false" />
+          <Property Name="NumTable" Type="Int32" Nullable="false" />
+          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="OrderOptions" Relationship="coffeeModel.FK_OrderOptions_Order" FromRole="Order" ToRole="OrderOptions" />
+          <NavigationProperty Name="OrderRecipe" Relationship="coffeeModel.FK_OrderRecipe_Order" FromRole="Order" ToRole="OrderRecipe" />
+        </EntityType>
+        <EntityType Name="OrderOptions">
+          <Key>
+            <PropertyRef Name="OrderOptID" />
+          </Key>
+          <Property Name="OrderOptID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="OptID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Options" Relationship="coffeeModel.FK_OrderOptions_Options" FromRole="OrderOptions" ToRole="Options" />
+          <NavigationProperty Name="Order" Relationship="coffeeModel.FK_OrderOptions_Order" FromRole="OrderOptions" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="OrderRecipe">
+          <Key>
+            <PropertyRef Name="OrderRecID" />
+          </Key>
+          <Property Name="OrderRecID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="RecID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="coffeeModel.FK_OrderRecipe_Order" FromRole="OrderRecipe" ToRole="Order" />
+          <NavigationProperty Name="Recipe" Relationship="coffeeModel.FK_OrderRecipe_Recipe" FromRole="OrderRecipe" ToRole="Recipe" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="RecID" />
+          </Key>
+          <Property Name="RecID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Describe" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Options" Relationship="coffeeModel.FK_Options_Recipe" FromRole="Recipe" ToRole="Options" />
+          <NavigationProperty Name="OrderRecipe" Relationship="coffeeModel.FK_OrderRecipe_Recipe" FromRole="Recipe" ToRole="OrderRecipe" />
+        </EntityType>
+        <Association Name="FK_Options_Recipe">
+          <End Role="Recipe" Type="coffeeModel.Recipe" Multiplicity="1" />
+          <End Role="Options" Type="coffeeModel.Options" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="Options">
+              <PropertyRef Name="RecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOptions_Options">
+          <End Role="Options" Type="coffeeModel.Options" Multiplicity="1" />
+          <End Role="OrderOptions" Type="coffeeModel.OrderOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="OptID" />
+            </Principal>
+            <Dependent Role="OrderOptions">
+              <PropertyRef Name="OptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOptions_Order">
+          <End Role="Order" Type="coffeeModel.Order" Multiplicity="1" />
+          <End Role="OrderOptions" Type="coffeeModel.OrderOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderOptions">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderRecipe_Order">
+          <End Role="Order" Type="coffeeModel.Order" Multiplicity="1" />
+          <End Role="OrderRecipe" Type="coffeeModel.OrderRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderRecipe">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderRecipe_Recipe">
+          <End Role="Recipe" Type="coffeeModel.Recipe" Multiplicity="1" />
+          <End Role="OrderRecipe" Type="coffeeModel.OrderRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="OrderRecipe">
+              <PropertyRef Name="RecID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="coffeeModelStoreContainer" CdmEntityContainer="coffeeEntities">
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="coffeeModel.Options">
+              <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="OptID" ColumnName="OptID" />
+                <ScalarProperty Name="RecID" ColumnName="RecID" />
+                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="coffeeModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="NumTable" ColumnName="NumTable" />
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderOptions">
+            <EntityTypeMapping TypeName="coffeeModel.OrderOptions">
+              <MappingFragment StoreEntitySet="OrderOptions">
+                <ScalarProperty Name="OrderOptID" ColumnName="OrderOptID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OptID" ColumnName="OptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderRecipe">
+            <EntityTypeMapping TypeName="coffeeModel.OrderRecipe">
+              <MappingFragment StoreEntitySet="OrderRecipe">
+                <ScalarProperty Name="OrderRecID" ColumnName="OrderRecID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="RecID" ColumnName="RecID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipe">
+            <EntityTypeMapping TypeName="coffeeModel.Recipe">
+              <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="RecID" ColumnName="RecID" />
+                <ScalarProperty Name="RecName" ColumnName="RecName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="CoffeeModel">
+        <EntityTypeShape EntityType="coffeeModel.Options" Width="1.5" PointX="3" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="coffeeModel.Order" Width="1.5" PointX="0.75" PointY="6.875" Height="2.3648893229166648" IsExpanded="true" />
+        <EntityTypeShape EntityType="coffeeModel.OrderOptions" Width="1.5" PointX="5.25" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="coffeeModel.OrderRecipe" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="coffeeModel.Recipe" Width="1.5" PointX="0.75" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="coffeeModel.FK_Options_Recipe" ManuallyRouted="true">
+          <ConnectorPoint PointX="2.25" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="4.7112939453124989" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="3" PointY="4.7112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_OrderOptions_Options" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.7401432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="4.7401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_OrderOptions_Order" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.0574446614583319" />
+          <ConnectorPoint PointX="6" PointY="8.0574446614583319" />
+          <ConnectorPoint PointX="6" PointY="5.7302864583333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_OrderRecipe_Order" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.875" />
+          <ConnectorPoint PointX="2.625" PointY="6.5" />
+          <ConnectorPoint PointX="2.625" PointY="1.4111912825520827" />
+          <ConnectorPoint PointX="3" PointY="1.4111912825520827" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_OrderRecipe_Recipe" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="3.625" />
+          <ConnectorPoint PointX="1.5" PointY="2.1019913704427089" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.1019913704427085" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.1019913704427089" />
+          <ConnectorPoint PointX="3" PointY="2.1019913704427089" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
