@@ -8,9 +8,10 @@
 
     <h2>Администрирование</h2>
 
-    <%: Html.ActionLink("Справочник напитков","Index","Recipe")%> 
-    <br/>
-    <%: Html.ActionLink("Справочник добавок", "Index","Options")%> 
+    <ul id="popup">
+                    <li><%: Html.ActionLink("Справочник напитков", "Index", "Recipe")%></li> 
+                    <li><%: Html.ActionLink("Справочник добавок", "Index", "Options")%></li>              
+    </ul>
     
     <p>
     <%: Html.ActionLink("Назад в магазин","Index","Home") %>

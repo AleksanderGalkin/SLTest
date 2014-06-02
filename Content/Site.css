@@ -206,6 +206,60 @@ ul#menu li.selected a
     color: #000;
 }
 
+/* POPUP MENU   
+----------------------------------------------------------*/
+ul#popup
+{
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
+
+ul#popup li
+{
+    display: inline;
+    list-style: none;
+}
+
+ul#popup li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#popup li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #90EE90;  /*e8eef4*/
+    color: #442d25;
+}
+
+ul#popup li a:hover
+{
+    background-color: #9AFF9A;
+    text-decoration: none;
+}
+
+ul#popup li a:active
+{
+    background-color: #43CD80;
+    text-decoration: none;
+}
+
+ul#popup li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
