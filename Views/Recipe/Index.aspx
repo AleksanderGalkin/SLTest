@@ -52,5 +52,9 @@
         <%--<%: Html.Pager((int)Html.ViewData["PageNum"], (int)Html.ViewData["itemsPerPage"], (int)Html.ViewData["recordCount"])%>--%>
         <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Index",new{pageNum=x}))%>
     </p>
+    <div>
+        <%: Html.ActionLink("Назад в меню администрирования","Administration","Home") %>
+    </div>
+
 </asp:Content>
 

@@ -18,12 +18,16 @@ namespace SLTest.Models
 
         public IEnumerable<Options> GetSprOpt()
         {
-            var sprOpt = (from s in spr
+            var sprOpt = from s in spr
                          orderby s.OptionName
                          where s.Recipe.RecID == RecID
-                         select s);
-
-            return sprOpt;
+                         select s;
+            if (sprOpt.Count() == 0)
+            {
+                Options[] empty_Opt = { new Options{OptID=0, OptionName="--------------"}};
+                sprOpt = sprOpt.Union<Options>(empty_Opt);
+            }            
+             return sprOpt;
         }
         //public SelectList GetSprList(IEnumerable<Options> i)
         //{

@@ -6,10 +6,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Administration</h2>
+    <h2>Администрирование</h2>
 
     <%: Html.ActionLink("Справочник напитков","Index","Recipe")%> 
     <br/>
     <%: Html.ActionLink("Справочник добавок", "Index","Options")%> 
-
+    
+    <p>
+    <%: Html.ActionLink("Назад в магазин","Index","Home") %>
+    </p>
 </asp:Content>

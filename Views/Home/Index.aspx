@@ -12,7 +12,12 @@
         <%: Html.ValidationSummary(true) %>
         
 
-    <table>
+    <table class="single">
+    <col  class="s_col_small">
+    <col  class="s_col_middle">
+    <col  class="s_col_middle">
+    <col  class="s_col_middle">
+
         <tr>
             <th></th>   
 
@@ -45,7 +50,7 @@
                 <%: String.Format("{0:F}", item.Price) %>
             </td>
             <td>
-                 <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"))%>
+                 <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>
                  <%--<%: Html.DropDownListFor(p => item.OptID, (SelectList)ViewData["RecList"])%>--%>
             </td>
         </tr>
@@ -97,10 +102,6 @@
                 
    </p>
 
-   <p>
-                
-       <%: Html.ActionLink("Administration", "Administration")%> 
-                
-   </p>
+   
 </asp:Content>
 

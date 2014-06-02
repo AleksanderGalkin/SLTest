@@ -14,19 +14,12 @@
         <fieldset>
             <legend>Реквизиты</legend>
             
-<%--            <div class="editor-label">
-                <%: Html.LabelFor(model => model.OptID) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.OptID) %>
-                <%: Html.ValidationMessageFor(model => model.OptID) %>
-            </div>--%>
-            
+           
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.RecID) %>
             </div>
             <div class="editor-field">
-                <%: Html.DropDownListFor(model => model.RecID, (SelectList)ViewData["RecList"])%>
+                <%: Html.DropDownListFor(model => model.RecID, (SelectList)ViewData["RecList"], new { @class="sel_edit"})%>
                 <%: Html.ValidationMessageFor(model => model.RecID) %>
             </div>
             
