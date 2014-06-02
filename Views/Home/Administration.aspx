@@ -13,6 +13,9 @@
                     <li><%: Html.ActionLink("Справочник добавок", "Index", "Options")%></li>              
     </ul>
     
+    <%: Html.Action("PVIndex", "Recipe") %>
+
+
     <p>
     <%: Html.ActionLink("Назад в магазин","Index","Home") %>
     </p>

@@ -37,6 +37,18 @@ namespace SLTest.Controllers.Abstract
             vmmenu.items = Service.GetToPage(pageNum, itemsPerPage);
             return View(vmmenu);
         }
+        public virtual ActionResult PVIndex(int pageNum = 1)
+        {
+            vmmenu.paginginfo.CurrentPage = pageNum;
+            vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
+            vmmenu.paginginfo.ItemsToView = 3;
+            vmmenu.paginginfo.TotalItems = Service.Count();
+            //ViewData["PageNum"] = pageNum;
+            //ViewData["itemsPerPage"] = itemsPerPage;
+            //ViewData["recordCount"] = Service.Count();
+            vmmenu.items = Service.GetToPage(pageNum, itemsPerPage);
+            return View(vmmenu);
+        }
         public virtual ActionResult Create()
         {
             
