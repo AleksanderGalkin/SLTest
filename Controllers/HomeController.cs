@@ -87,8 +87,12 @@ namespace SLTest.Controllers
 
 
         [Authorize(Roles = "Administrators")]
-        public ActionResult Administration()
+        public ActionResult Administration(String modName="Recipe",int pageNum = 1)
         {
+            ViewBag.mn = modName;
+            
+            ViewBag.pn = pageNum;
+
             return View();
         }
 

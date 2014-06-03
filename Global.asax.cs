@@ -15,11 +15,11 @@ namespace SLTest
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute(
-                "", // Route name
-                "{controller}/{action}/Page/{id}", // URL with parameters
-                new { controller = "Home", action = "Index",  id = UrlParameter.Optional } // Parameter defaults
-);
+//            routes.MapRoute(
+//                "", // Route name
+//                "{controller}/{action}/Page/{id}", // URL with parameters
+//                new { controller = "Home", action = "Index",  id = UrlParameter.Optional } // Parameter defaults
+//);
             routes.MapRoute(
                 "", // Route name
                 "{controller}/{action}/Page{pageNum}/{id}", // URL with parameters

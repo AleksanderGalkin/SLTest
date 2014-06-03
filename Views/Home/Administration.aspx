@@ -13,10 +13,17 @@
                     <li><%: Html.ActionLink("Справочник добавок", "Index", "Options")%></li>              
     </ul>
     
-    <%: Html.Action("PVIndex", "Recipe") %>
+    <%
+        if (ViewBag.mn == "Recipe")
+        {%>
+            <%=Html.Action("PVIndex", "Recipe", new { pageNum = ViewBag.pn })%>
 
+     <%}
+        else
+        { %> <%=Html.Action("PVIndex", "Options", new { pageNum = ViewBag.pn })%>
+     <%} %>
 
     <p>
-    <%: Html.ActionLink("Назад в магазин","Index","Home") %>
+    <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
     </p>
 </asp:Content>

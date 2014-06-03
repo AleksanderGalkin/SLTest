@@ -46,6 +46,6 @@
     </p>
     <p>
         <%--<%: Html.Pager((int)Html.ViewData["PageNum"], (int)Html.ViewData["itemsPerPage"], (int)Html.ViewData["recordCount"])%>--%>
-        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("PVIndex",new{pageNum=x}))%>
+        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration","Home",new{pageNum=x}))%>
     </p>
 
