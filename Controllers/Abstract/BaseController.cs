@@ -27,7 +27,7 @@ namespace SLTest.Controllers.Abstract
 
         public virtual ActionResult Index(int pageNum = 1)
         {
-            vmmenu.paginginfo.CurrentPage = pageNum;
+                 vmmenu.paginginfo.CurrentPage = pageNum;
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 3;
             vmmenu.paginginfo.TotalItems = Service.Count();
@@ -39,6 +39,11 @@ namespace SLTest.Controllers.Abstract
         }
         public virtual ActionResult PVIndex(int pageNum = 1)
         {
+            if (Request.IsAjaxRequest())
+            {
+                vmmenu.paginginfo.ItemsToView = 2;
+            }
+
             vmmenu.paginginfo.CurrentPage = pageNum;
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 3;

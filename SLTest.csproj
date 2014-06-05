@@ -115,6 +115,7 @@
     <Content Include="Views\Options\Delete.aspx" />
     <Content Include="Views\Options\Edit.aspx" />
     <Content Include="Views\Options\Index.aspx" />
+    <Content Include="Views\Options\PVIndex.ascx" />
     <Content Include="Views\Recipe\PartIndex.aspx" />
     <Content Include="Views\Recipe\Create.aspx" />
     <Content Include="Views\Recipe\Delete.aspx" />

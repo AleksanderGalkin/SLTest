@@ -5,6 +5,13 @@
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+ 
+<%--   <script src="<%=Url.Content("~/Scripts/MicrosoftAjax.js")%>" type="text/javascript"></script>
+    <script src="<%=Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>" type="text/javascript"></script>--%>
+ 
+ <script src="<%=Url.Content("~/Scripts/jquery-1.4.4.min.js")%>" type="text/javascript"></script>
+    <script src="<%=Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")%>" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -23,7 +30,7 @@
             
                 <ul id="menu">
                     <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("Администрирование", "Administration", "Home")%></li>              
+                    <li><%: Html.ActionLink("Администрирование", "Administration", "Home", new { modName = "Recipe",pageNum=1 },null)%></li>              
                     <li><%: Html.ActionLink("About", "About", "Home")%></li>
                 </ul>
             

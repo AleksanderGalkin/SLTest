@@ -20,6 +20,12 @@ namespace SLTest
 //                "{controller}/{action}/Page/{id}", // URL with parameters
 //                new { controller = "Home", action = "Index",  id = UrlParameter.Optional } // Parameter defaults
 //);
+
+            routes.MapRoute(
+              "", // Route name
+              "Home/Administration/spr{modName}/{pageNum}", // URL with parameters
+              new { controller = "Home", action = "Administration", modName = UrlParameter.Optional, pageNum = UrlParameter.Optional } // Parameter defaults
+          );
             routes.MapRoute(
                 "", // Route name
                 "{controller}/{action}/Page{pageNum}/{id}", // URL with parameters

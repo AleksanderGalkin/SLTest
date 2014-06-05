@@ -45,9 +45,10 @@
     </p>
 
      <p>
+     <%:HtmlHelper.UnobtrusiveJavaScriptEnabled = true %>
         <%--<%: Html.Pager((int)Html.ViewData["PageNum"], (int)Html.ViewData["itemsPerPage"], (int)Html.ViewData["recordCount"])%>--%>
-        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Index",new{pageNum=x}))%>
-        
+       <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration","Home",new{pageNum=x}))%>
+       <%: Ajax.ActionLink("PVIndex", "PVIndex", "Options", new { pageNum = 2 }, new AjaxOptions { Confirm="sdas", UpdateTargetId = "aj", HttpMethod = "GET" })%>
     </p>
     <div>
         <%: Html.ActionLink("Назад в меню администрирования","Administration","Home") %>
