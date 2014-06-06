@@ -16,9 +16,13 @@
     <h2>Администрирование</h2>
 
     <ul id="popup">
-        <li><%: Ajax.ActionLink("PVIndex","PVIndex","Options", new { pageNum = 1 },new AjaxOptions{UpdateTargetId="aj"})%></li>
-        <li><%: Html.ActionLink("Справочник напитков", "Administration", "Home", new { modName = "Recipe", pageNum = 1 },null)%></li> 
-        <li><%: Html.ActionLink("Справочник добавок", "Administration", "Home", new { modName = "Options", pageNum = 1 },null)%></li>              
+        
+        <li><%: Ajax.ActionLink("Справочник напитков", "Administration", "Home",
+                    new { modName = "Recipe", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Recipe")})%></li> 
+        <li><%: Ajax.ActionLink("Справочник добавок", "Administration", "Home",
+                    new { modName = "Options", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Options")})%></li>              
     </ul>
     <div id="aj">
     <%

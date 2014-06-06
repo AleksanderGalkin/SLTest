@@ -22,7 +22,8 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.RecID }) %> |
+                <%: Ajax.ActionLink("Edit", "pvEdit", "Recipe", new { id = item.RecID },
+                new AjaxOptions { UpdateTargetId="aj",Url=Url.Action("Edit","Recipe",new { id = item.RecID })})%> |
                 <%: Html.ActionLink("Delete", "Delete", new { id=item.RecID })%>
             </td>
 
@@ -42,10 +43,12 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%: Ajax.ActionLink("Create New", "pvCreate", "Recipe", new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("pvCreate","Recipe") })%>
     </p>
     <p>
         <%--<%: Html.Pager((int)Html.ViewData["PageNum"], (int)Html.ViewData["itemsPerPage"], (int)Html.ViewData["recordCount"])%>--%>
-        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration","Home",new{pageNum=x}))%>
+        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Recipe", pageNum = x }),
+                                            x => Url.Action("PVIndex", "Recipe", new { pageNum = x }),
+                                            "aj")%>
     </p>
 

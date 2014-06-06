@@ -113,14 +113,12 @@
     <Content Include="Views\Home\Korzina.aspx" />
     <Content Include="Views\Options\Create.aspx" />
     <Content Include="Views\Options\Delete.aspx" />
-    <Content Include="Views\Options\Edit.aspx" />
-    <Content Include="Views\Options\Index.aspx" />
+    <Content Include="Views\Options\pvEdit.ascx" />
     <Content Include="Views\Options\PVIndex.ascx" />
-    <Content Include="Views\Recipe\PartIndex.aspx" />
     <Content Include="Views\Recipe\Create.aspx" />
     <Content Include="Views\Recipe\Delete.aspx" />
-    <Content Include="Views\Recipe\Edit.aspx" />
-    <Content Include="Views\Recipe\Index.aspx" />
+    <Content Include="Views\Recipe\pvCreate.ascx" />
+    <Content Include="Views\Recipe\pvEdit.ascx" />
     <Content Include="Views\Recipe\PVIndex.ascx" />
     <Content Include="Views\Test\Create.aspx" />
     <Content Include="Views\Test\Index.aspx" />

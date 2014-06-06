@@ -70,12 +70,20 @@ namespace SLTest.Controllers.Abstract
                 return RedirectToAction("Index");
             }
             else
+                if (Request.IsAjaxRequest())
+                {
+                    return View("pvCreate",FC);  
+                }
                 return View(FC);
         }
         public virtual ActionResult Edit(int id)
         {
             T obj = Service.Get(id);
-       
+
+            if (Request.IsAjaxRequest())
+            {
+                return View("pvEdit",obj);
+            }
             return View(obj);
         }
         [HttpPost]

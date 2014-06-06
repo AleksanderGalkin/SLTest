@@ -69,6 +69,10 @@ namespace SLTest.Controllers.Abstract
         {
             _T obj = Serv.Get(id);
             RecipeDropDownList();
+            if (Request.IsAjaxRequest())
+            {
+                return View("pvEdit", obj);
+            }
             return View(obj);
         }
         //[HttpPost]

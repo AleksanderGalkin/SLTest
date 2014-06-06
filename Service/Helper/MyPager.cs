@@ -11,9 +11,9 @@ namespace SLTest.Service.Helper
 {
     public static class MyPager
     {
-        
-        
-        public static MvcHtmlString PageLinks(this System.Web.Mvc.HtmlHelper HH,PagingInfo paginginfo,Func<int,  string> pageUrl)
+
+
+        public static MvcHtmlString PageLinks(this System.Web.Mvc.HtmlHelper HH, PagingInfo paginginfo, Func<int, string> pageUrl, Func<int, string> pageUrlAJAX=null, string idAJAX=null) 
         {
             bool flagDots = false;
             StringBuilder result = new StringBuilder();
@@ -31,6 +31,14 @@ namespace SLTest.Service.Helper
                         tag.AddCssClass("selected");
                     else
                         tag.AddCssClass("allowed");
+                    if (pageUrlAJAX != null)
+                    {
+                        tag.Attributes.Add("data-ajax", "true");
+                        tag.Attributes.Add("data-ajax-mode", "replace");
+                        tag.Attributes.Add("data-ajax-url", pageUrlAJAX(i));
+                    }
+                    if (idAJAX != null)
+                        tag.Attributes.Add("data-ajax-update", "#" + idAJAX);
                     result.Append(tag);
                     result.Append("&nbsp");
                     flagDots = false;

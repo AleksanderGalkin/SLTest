@@ -76,7 +76,7 @@
     </table>
     <p>
         
-        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Index",new{pageNum=x}))%>
+        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Index","Home",new{pageNum=x}))%>
        
     </p>
 

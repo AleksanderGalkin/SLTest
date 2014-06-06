@@ -1,14 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SLTest.Models.Options>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Options>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Редактировать добавку</h2>
-
-    <% using (Html.BeginForm()) {%>
+  <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
@@ -49,6 +41,3 @@
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>
     </div>
-
-</asp:Content>
-
