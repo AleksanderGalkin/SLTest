@@ -43,7 +43,9 @@
     </table>
 
     <p>
-        <%: Ajax.ActionLink("Create New", "Administration", "Home",new{metName="Create",modName="Recipe"}, new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Recipe") })%>
+        <%: Ajax.ActionLink("Create New", "Administration", "Home",
+                                    new{metName="Create",modName="Recipe"},
+                                    new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Recipe") })%>
     </p>
     <p>
         <%--<%: Html.Pager((int)Html.ViewData["PageNum"], (int)Html.ViewData["itemsPerPage"], (int)Html.ViewData["recordCount"])%>--%>

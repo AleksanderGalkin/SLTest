@@ -27,6 +27,9 @@
     <div id="aj">
 
             <%=Html.Action((string)ViewBag.mtn, (string)ViewBag.mn, new { pageNum = ViewBag.pn })%>
+
+            
+
      </div>
     <p>
     <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>

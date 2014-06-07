@@ -50,7 +50,7 @@ namespace SLTest.Controllers.Abstract
         public override ActionResult Create()
         {
             RecipeDropDownList();
-            return View();
+            return View("pvCreate");
         }
         //[HttpPost]
         //public virtual ActionResult Create(FormCollection FC)

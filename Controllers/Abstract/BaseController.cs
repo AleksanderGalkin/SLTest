@@ -62,7 +62,8 @@ namespace SLTest.Controllers.Abstract
                 T obj = new T();
                 UpdateModel(obj, FC);
                 Service.Create(obj);
-                return RedirectToAction("Administration", "Home", new { metName="PVIndex",modName="Recipe"});
+            
+                return RedirectToAction("Administration", "Home", new { metName="PVIndex",modName=obj.GetType().Name});
             }
             else
                  if (Request.IsAjaxRequest())

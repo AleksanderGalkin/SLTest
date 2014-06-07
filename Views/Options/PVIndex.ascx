@@ -23,7 +23,7 @@
             <td>
                  <%: Ajax.ActionLink("Edit", "pvEdit", "Options", new { id = item.OptID },
                 new AjaxOptions { UpdateTargetId="aj",Url=Url.Action("Edit","Options",new { id = item.OptID })})%> |
-               |
+              
                 <%: Html.ActionLink("Delete", "Delete", new { id=item.OptID })%>
             </td>
 
@@ -44,11 +44,13 @@
 
     <p>
         
-        <%: Ajax.ActionLink("Create New", "Administration", "Home",new{metName="Create",modName="Options"}, new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Options") })%>
+        <%: Ajax.ActionLink("Create New", "Administration", "Home",
+                                new{metName="Create",modName="Options"}, 
+                                new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Options") })%>
     </p>
 
      <p>
-     <%:HtmlHelper.UnobtrusiveJavaScriptEnabled = true %>
+     
        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new {modName="Options", pageNum = x }),
                                             x => Url.Action("PVIndex", "Options", new { pageNum = x }),
                                             "aj")%>
