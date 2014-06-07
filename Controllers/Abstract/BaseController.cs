@@ -27,13 +27,10 @@ namespace SLTest.Controllers.Abstract
 
         public virtual ActionResult Index(int pageNum = 1)
         {
-                 vmmenu.paginginfo.CurrentPage = pageNum;
+            vmmenu.paginginfo.CurrentPage = pageNum;
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 3;
             vmmenu.paginginfo.TotalItems = Service.Count();
-            //ViewData["PageNum"] = pageNum;
-            //ViewData["itemsPerPage"] = itemsPerPage;
-            //ViewData["recordCount"] = Service.Count();
             vmmenu.items = Service.GetToPage(pageNum, itemsPerPage);
             return View(vmmenu);
         }
@@ -48,16 +45,14 @@ namespace SLTest.Controllers.Abstract
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 3;
             vmmenu.paginginfo.TotalItems = Service.Count();
-            //ViewData["PageNum"] = pageNum;
-            //ViewData["itemsPerPage"] = itemsPerPage;
-            //ViewData["recordCount"] = Service.Count();
+
             vmmenu.items = Service.GetToPage(pageNum, itemsPerPage);
             return View(vmmenu);
         }
         public virtual ActionResult Create()
         {
-            
-            return View();
+          return View("pvCreate");
+
         }
         [HttpPost]
         public virtual ActionResult Create(FormCollection FC)
@@ -67,14 +62,14 @@ namespace SLTest.Controllers.Abstract
                 T obj = new T();
                 UpdateModel(obj, FC);
                 Service.Create(obj);
-                return RedirectToAction("Index");
+                return RedirectToAction("Administration", "Home", new { metName="PVIndex",modName="Recipe"});
             }
             else
-                if (Request.IsAjaxRequest())
-                {
-                    return View("pvCreate",FC);  
-                }
-                return View(FC);
+                 if (Request.IsAjaxRequest())
+                    return View("pvCreate", FC);
+                 else
+                    return View(FC);
+      
         }
         public virtual ActionResult Edit(int id)
         {

@@ -87,10 +87,10 @@ namespace SLTest.Controllers
 
 
         [Authorize(Roles = "Administrators")]
-        public ActionResult Administration(string modName="Recipe",int pageNum = 1)
+        public ActionResult Administration(string modName = "Recipe", string metName = "PVIndex", int pageNum = 1)
         {
             ViewBag.mn = modName;
-            
+            ViewBag.mtn = metName;
             ViewBag.pn = pageNum;
 
             return View();

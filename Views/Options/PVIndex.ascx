@@ -43,7 +43,8 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        
+        <%: Ajax.ActionLink("Create New", "Administration", "Home",new{metName="Create",modName="Options"}, new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Options") })%>
     </p>
 
      <p>
