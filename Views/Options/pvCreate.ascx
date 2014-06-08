@@ -52,5 +52,8 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+            <%: Ajax.ActionLink("Back to List", "Administration", "Home",
+                    new { metName = "PVIndex",modName = "Options", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Options")},
+                    new { @class = "btBody btToList" })%>
     </div>

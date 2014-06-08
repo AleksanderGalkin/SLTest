@@ -62,8 +62,10 @@ namespace SLTest.Controllers.Abstract
                 T obj = new T();
                 UpdateModel(obj, FC);
                 Service.Create(obj);
-            
-                return RedirectToAction("Administration", "Home", new { metName="PVIndex",modName=obj.GetType().Name});
+                if (Request.IsAjaxRequest())
+                    return RedirectToAction("PVIndex");
+                else
+                    return RedirectToAction("Administration", "Home", new { metName = "PVIndex", modName = obj.GetType().Name });
             }
             else
                  if (Request.IsAjaxRequest())
@@ -80,7 +82,7 @@ namespace SLTest.Controllers.Abstract
             {
                 return View("pvEdit",obj);
             }
-            return View(obj);
+            return View("pvEdit",obj);
         }
         [HttpPost]
         public virtual ActionResult Edit(int id,FormCollection FC)
@@ -88,13 +90,33 @@ namespace SLTest.Controllers.Abstract
             T obj = Service.Get(id);
             UpdateModel(obj, FC);
             Service.Edit(obj);
-            return RedirectToAction("Index");
+
+            if (Request.IsAjaxRequest())
+                return RedirectToAction("PVIndex");
+            else
+                return RedirectToAction("Administration", "Home", new { metName = "PVIndex", modName = obj.GetType().Name });
+
+            
         }
+
+        public virtual ActionResult Delete(int id)
+        {
+            var obj = Service.Get(id);
+            
+            
+                return View("pvDelete",obj);
+            
+        }
+         [HttpPost]
         public virtual ActionResult Delete(int id,FormCollection FC)
         {
             var obj = Service.Get(id);
             Service.Delete(obj);
-            return RedirectToAction("Index");
+            if (Request.IsAjaxRequest())
+                return RedirectToAction("PVIndex");
+            else
+                return RedirectToAction("Administration", "Home", new { metName = "PVIndex", modName = obj.GetType().Name });
+      
         }
 
 

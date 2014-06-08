@@ -9,14 +9,7 @@
 
         <fieldset>
             <legend>Fields</legend>
-            
- <%--           <div class="editor-label">
-                <%: Html.LabelFor(model => model.RecID) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.RecID) %>
-                <%: Html.ValidationMessageFor(model => model.RecID) %>
-            </div>--%>
+
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.RecName)%>
@@ -50,5 +43,8 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+         <%: Ajax.ActionLink("Back to List", "Administration", "Home",
+                    new { metName = "PVIndex", modName = "Recipe", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Recipe") },
+                    new {@class="btBody btToList" })%>
     </div>

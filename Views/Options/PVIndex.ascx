@@ -20,11 +20,20 @@
     <% foreach (var item in Model.items) { %>
     
         <tr>
-            <td>
-                 <%: Ajax.ActionLink("Edit", "pvEdit", "Options", new { id = item.OptID },
-                new AjaxOptions { UpdateTargetId="aj",Url=Url.Action("Edit","Options",new { id = item.OptID })})%> |
+            <td class="btTd">
+                 <%: Ajax.ActionLink("E", "Administration", "Home", new { metName = "Edit", modName = "Options", id = item.OptID },
+                                              new AjaxOptions { UpdateTargetId = "aj",
+                                                                Url = Url.Action("Edit", "Options", new { id = item.OptID })
+                                              }, new { @class = "btRecords btEdit" })%>
+ |
               
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.OptID })%>
+                <%: Ajax.ActionLink("D","Administration", "Home", new {metName="Delete",modName="Options", id = item.OptID },
+                            new AjaxOptions { UpdateTargetId = "aj",
+                                                Url = Url.Action("Delete", "Options", new { id = item.OptID }),
+                                                Confirm="Вы действительно хотите удалить эту запись?",
+                                              HttpMethod = "Post"
+                            }, new { @class = "btRecords btDelete" })%>
+
             </td>
 
             <td>
@@ -45,8 +54,9 @@
     <p>
         
         <%: Ajax.ActionLink("Create New", "Administration", "Home",
-                                new{metName="Create",modName="Options"}, 
-                                new AjaxOptions {UpdateTargetId="aj",Url=Url.Action("Create","Options") })%>
+                                new{metName="Create",modName="Options"},
+                                            new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("Create", "Options") },
+                                            new { @class = "btBody btInsert" })%>
     </p>
 
      <p>

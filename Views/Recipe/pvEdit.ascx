@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Recipe>" %>
 
-    <% using (Html.BeginForm()) {%>
+     <% using (Ajax.BeginForm("Edit","Recipe", new{id=Model.RecID},new AjaxOptions { UpdateTargetId = "aj" })) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
@@ -38,5 +38,8 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+         <%: Ajax.ActionLink("Back to List", "Administration", "Home",
+                    new { metName = "PVIndex", modName = "Recipe", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Recipe") },
+                    new { @class = "btBody btToList" })%>
     </div>

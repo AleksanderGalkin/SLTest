@@ -28,7 +28,9 @@
     <% using (Html.BeginForm()) { %>
         <p>
 		    <input type="submit" value="Delete" /> |
-		    <%: Html.ActionLink("Back to List", "Index") %>
+		    <%: Ajax.ActionLink("Back to List", "Administration", "Home",
+                    new { metName = "PVIndex",modName = "Recipe", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Recipe")})%>
         </p>
     <% } %>
 

@@ -73,7 +73,7 @@ namespace SLTest.Controllers.Abstract
             {
                 return View("pvEdit", obj);
             }
-            return View(obj);
+            return View("pvEdit",obj);
         }
         //[HttpPost]
         //public virtual ActionResult Edit(int id,FormCollection FC)

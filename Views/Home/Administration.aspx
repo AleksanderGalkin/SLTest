@@ -26,12 +26,12 @@
     </ul>
     <div id="aj">
 
-            <%=Html.Action((string)ViewBag.mtn, (string)ViewBag.mn, new { pageNum = ViewBag.pn })%>
+            <%=Html.Action((string)ViewBag.mtn, (string)ViewBag.mn, new { pageNum = ViewBag.pn,id=ViewBag.id })%>
 
             
 
      </div>
     <p>
-    <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
+    <%: Html.ActionLink("Назад в магазин", "Index", "Home", new { @class="btBody btToShop"})%>
     </p>
 </asp:Content>
