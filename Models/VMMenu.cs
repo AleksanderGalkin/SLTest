@@ -12,6 +12,7 @@ namespace SLTest.Models
         public bool cb { get; set; }
         public Int64 RecID { get; set; }
         public string RecName { get; set; }
+        public string Sort { get; set; }
         public Decimal Price { get; set; }
         public Int64 OptID { get; set; }
         public static IEnumerable<Options> spr;

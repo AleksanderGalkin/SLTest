@@ -63,11 +63,22 @@ namespace SLTest.Models
     public class Navigator<T>
     where T : class, new()
     {
-        List<SearchTerm<T>> list;
+        public string test{get;set;}
+        public List<SearchTerm<T>> list;
+        public Navigator()
+        {
+            list = new List<SearchTerm<T>>();
+        }
 
         public void Add(SearchTerm<T> st)
         {
             list.Add(st);
+            
+        }
+        public void Add(NaviModel<T> m, string f, string d)
+        {
+
+            list.Add(new SearchTerm<T> ( m ,f,d));
 
         }
 

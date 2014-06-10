@@ -42,14 +42,8 @@ namespace SLTest.Controllers
                               select sprOpt;
             vmmenu.items = recipes;
 
-            NaviModel<VMMenuItems> nm = new NaviModel<VMMenuItems>();
-            nm.items = recipes;
-            SearchTerm<VMMenuItems> search = new SearchTerm<VMMenuItems>(nm, "RecName", "Тратата");
-
-            Navigator<VMMenuItems> nav = new Navigator<VMMenuItems>();
-            nav.Add(search);
-            var r = search.GetFiltered();
-             var l = search.GetContent();
+            
+            
             return View(vmmenu);
 
           
