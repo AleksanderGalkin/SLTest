@@ -75,6 +75,7 @@
     <Compile Include="Controllers\Abstract\BaseController1DL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NavigatorController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PageHelper.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
@@ -112,6 +113,7 @@
     <Content Include="Views\Home\Administration.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Korzina.aspx" />
+    <Content Include="Views\Navigator\Index.aspx" />
     <Content Include="Views\Options\Delete.aspx" />
     <Content Include="Views\Options\pvCreate.ascx" />
     <Content Include="Views\Options\pvDelete.ascx" />

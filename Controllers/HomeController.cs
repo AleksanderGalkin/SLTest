@@ -13,7 +13,7 @@ namespace SLTest.Controllers
     public class HomeController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
-        private int itemsPerPage = 3;
+        private int itemsPerPage = 15;
         VMMenu<VMMenuItems> vmmenu=new VMMenu<VMMenuItems>();
         
         public ActionResult Index(int pageNum=1)
@@ -41,6 +41,15 @@ namespace SLTest.Controllers
             VMMenuItems.spr = from sprOpt in db.Options
                               select sprOpt;
             vmmenu.items = recipes;
+
+            NaviModel<VMMenuItems> nm = new NaviModel<VMMenuItems>();
+            nm.items = recipes;
+            SearchTerm<VMMenuItems> search = new SearchTerm<VMMenuItems>(nm, "RecName", "Тратата");
+
+            Navigator<VMMenuItems> nav = new Navigator<VMMenuItems>();
+            nav.Add(search);
+            var r = search.GetFiltered();
+             var l = search.GetContent();
             return View(vmmenu);
 
           

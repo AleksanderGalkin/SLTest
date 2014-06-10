@@ -36,10 +36,10 @@ namespace SLTest.Models
         //}
    
     }
-    public class VMMenu<T>
-        where T:class,new()
+    public class VMMenu<K>
+        where K:class,new()
     {
-        public IEnumerable<T> items;
+        public IEnumerable<K> items;
 
         public PagingInfo paginginfo;
 

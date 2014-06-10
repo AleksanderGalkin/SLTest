@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -156,7 +155,6 @@ namespace SLTest.Models
         private ObjectSet<Recipe> _Recipe;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -200,11 +198,11 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -235,7 +233,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -338,7 +335,6 @@ namespace SLTest.Models
         partial void OnPriceChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -403,7 +399,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -436,7 +431,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -563,7 +557,6 @@ namespace SLTest.Models
         partial void OnCommentChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -612,7 +605,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -641,7 +633,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -720,7 +711,6 @@ namespace SLTest.Models
         partial void OnOptIDChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -801,7 +791,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -830,7 +819,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -909,7 +897,6 @@ namespace SLTest.Models
         partial void OnRecIDChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -990,7 +977,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1021,7 +1007,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1122,9 +1107,32 @@ namespace SLTest.Models
         private global::System.String _Describe;
         partial void OnDescribeChanging(global::System.String value);
         partial void OnDescribeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.String _Sort;
+        partial void OnSortChanging(global::System.String value);
+        partial void OnSortChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1173,10 +1181,8 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }

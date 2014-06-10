@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="coffeeModelStoreContainer">
           <EntitySet Name="Options" EntityType="coffeeModel.Store.Options" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="coffeeModel.Store.Order" store:Type="Tables" Schema="dbo" />
@@ -75,6 +75,7 @@
           <Property Name="RecName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="Describe" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Sort" Type="nchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Options_Recipe">
           <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
@@ -136,8 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="coffeeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -221,6 +221,7 @@
           <Property Name="Describe" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Options" Relationship="coffeeModel.FK_Options_Recipe" FromRole="Recipe" ToRole="Options" />
           <NavigationProperty Name="OrderRecipe" Relationship="coffeeModel.FK_OrderRecipe_Recipe" FromRole="Recipe" ToRole="OrderRecipe" />
+          <Property Type="String" Name="Sort" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Options_Recipe">
           <End Role="Recipe" Type="coffeeModel.Recipe" Multiplicity="1" />
@@ -330,6 +331,7 @@
           <EntitySetMapping Name="Recipe">
             <EntityTypeMapping TypeName="coffeeModel.Recipe">
               <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="RecID" ColumnName="RecID" />
                 <ScalarProperty Name="RecName" ColumnName="RecName" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

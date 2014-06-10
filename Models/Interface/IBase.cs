@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace SLTest.Models.Interface
 {
@@ -10,4 +11,6 @@ namespace SLTest.Models.Interface
        // int id { get; set; }
            bool CanBeDeleted();
     }
+
+
 }
