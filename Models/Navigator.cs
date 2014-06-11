@@ -9,14 +9,9 @@ namespace SLTest.Models
 {
 
 
-    public class NaviModel<K>
-        where K : class,new()
-    {
-        public IEnumerable<K> items;
 
-    }
 
-    public class SearchTerm<T>
+    public class SearchTerm<T> //Критерии фильтрации для одной модели
         where T : class, new()
         
     {
@@ -41,7 +36,7 @@ namespace SLTest.Models
                 
             
         }
-        public List<stItemStru> GetContent()
+        public List<stItemStru> GetContent()  //полностью список критериев по модели
         {
             var r = (from a in stList
                     select a).ToList();
@@ -49,7 +44,7 @@ namespace SLTest.Models
         }
         
 
-        public IEnumerable<T> GetFiltered()
+        public IEnumerable<T> GetFiltered() // модель отфильтрованная по всем критериям
         {
             var r = from a in model 
                   join it in stList

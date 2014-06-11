@@ -10,13 +10,13 @@ namespace SLTest.Controllers
     public class NavigatorController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
-        private Navigator<VMMenuItems> nav;
-        private NaviModel<VMMenuItems> nm ;
+        public Navigator<VMMenuItems> nav;
+        public IEnumerable<VMMenuItems> model;
 
         public NavigatorController()
         {
               nav = new Navigator<VMMenuItems>();
-              nm = new NaviModel<VMMenuItems>();
+          
         
         }
 
@@ -24,21 +24,20 @@ namespace SLTest.Controllers
         public ActionResult Index()
         {
             OptionsDropDownList();
-            var recipes = from recipe in db.Recipe
-                          orderby recipe.RecName
-                          select new VMMenuItems
-                          {
-                              cb = false,
-                              RecID = recipe.RecID,
-                              RecName = recipe.RecName,
-                              Sort=recipe.Sort,
-                              Price = recipe.Price,
-                              OptID = 0
-                          };
-
             
-            nm.items = recipes;
-            nav.Add(nm, "Sort", "Тратата");
+             model = from recipe in db.Recipe
+                           orderby recipe.RecName
+                           select new VMMenuItems
+                           {
+                               cb = false,
+                               RecID = recipe.RecID,
+                               RecName = recipe.RecName,
+                               Sort = recipe.Sort,
+                               Price = recipe.Price,
+                               OptID = 0
+                           };
+
+             nav.Add(model, "Sort", "Тратата");
             nav.test = "dsdsds";
             //SearchTerm<VMMenuItems> search = new SearchTerm<VMMenuItems>(nm, "Sort", "Тратата");
 
@@ -51,6 +50,9 @@ namespace SLTest.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection fc,Navigator<VMMenuItems> model)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 //var t=new List<bool>();
