@@ -10,23 +10,34 @@
 
         <% using (Html.BeginForm())
            {%>
-       <%-- <%: Html.ValidationSummary(true)%>
+        <%: Html.ValidationSummary(true)%>
 <%foreach (var i in Model.list)
   { %>
       <h3><%:i.stDescr%> </h3>
       <%foreach (var j in i.GetContent())
         {%>
     <p>
-         <%=Html.CheckBox(""+j.cbItem)%> 
-         <%:j.nmItem%>
+         <%=Html.CheckBox(j.nmItem)%> <%:j.nmItem%>
    </p>
-        <%}--%> <%=Model.test = "sddddddd"%>
+        <% }
+  }%>
+
+            
   
   
-            <p>
+  
+<%--           <%foreach (string tl in Model.tl)
+              { %>
+            <p><%:Html.CheckBox(tl) %> <%:tl %></p>
+
+         <%}
+            %>--%>
+             <p>
                 <input type="submit" value="Поместить в заказ" />
             </p>
-          <% }  %>
+            <%
+           }
+               %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 

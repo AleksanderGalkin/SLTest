@@ -49,10 +49,24 @@ namespace SLTest.Controllers
             return View(nav);
         }
         [HttpPost]
-        public ActionResult Index(Navigator<VMMenuItems> fc)
+        public ActionResult Index(FormCollection fc,Navigator<VMMenuItems> model)
         {
             if (ModelState.IsValid)
             {
+                //var t=new List<bool>();
+                //t.Add(false);
+                //t.Add(true);
+                //t.Add(false);
+
+                int count=0;
+                foreach (var i in model.list)
+                {
+                    foreach(var j in i.GetContent())
+                        if (fc[j.nmItem].ToString().Contains("true"))
+                            count++;
+                }
+
+
 
                 UpdateModel(nav);
                 var r = nav.list.ElementAt(0).GetFiltered();
