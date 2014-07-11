@@ -10,16 +10,16 @@
       <%foreach (var j in i.GetContent())
         {%>
     <p>
-         <%=Html.CheckBox(j.nmItem,j.cbItem)%> <%:j.nmItem%>
+         <%=Html.CheckBox(j.nmItem, j.cbItem, new { @class = "cbNavigator" })%> <%:j.nmItem%>
    </p>
         <% }
   }%>
 
-
+  
              <p>
                 <input type="submit" value="Найти" />
-                <%Html. %>
-                <input type="button" value="Сбросить" />
+             
+                <input type="button" value="Сбросить" onclick="checkAll();" />
             </p>
             <%
            }
@@ -27,3 +27,14 @@
 
 
 <%--<%= Html.Action("PVIndex", "Home", new { pageNum = ViewBag.pn })%>--%>
+
+<script>
+    function checkAll() {
+        var all = document.getElementsByClassName('cbNavigator');
+       
+        for (var i = 0; i < all.length; i++) {
+            if (all.item(i).type && all.item(i).type=="checkbox")
+                all.item(i).checked = false;
+        } 
+} 
+</script>
