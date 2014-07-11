@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SLTest.Models.Navigator<SLTest.Models.VMMenuItems>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SLTest.Models.Navigator<SLTest.Models.VMMenuItem>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Index
@@ -17,7 +17,7 @@
       <%foreach (var j in i.GetContent())
         {%>
     <p>
-         <%=Html.CheckBox(j.nmItem)%> <%:j.nmItem%>
+         <%=Html.CheckBox(j.nmItem,j.cbItem)%> <%:j.nmItem%>
    </p>
         <% }
   }%>
@@ -33,7 +33,7 @@
          <%}
             %>--%>
              <p>
-                <input type="submit" value="Поместить в заказ" />
+                <input type="submit" value="Найти" />
             </p>
             <%
            }
@@ -41,6 +41,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-<%--<%= Html.Action("Administration", "Home", new { modName = "Recipe",pageNum=1 })%>--%>
+<%= Html.Action("PVIndex", "Home", new { pageNum = ViewBag.pn })%>
 
 </asp:Content>

@@ -15,21 +15,22 @@ namespace SLTest.Models
         where T : class, new()
         
     {
-        public struct stItemStru { public bool cbItem; public string nmItem; }// структура с критерием 
+        public class stItemStru { public bool cbItem; public string nmItem; }// структура с критерием 
         public List<stItemStru> stList;// список критериев для данной модели
         public IEnumerable<T> model; //модель
     
         public string stDescr;
         public string stField;
 
-        public SearchTerm(IEnumerable<T> m, string f, string d)
+        public SearchTerm( IEnumerable<T> m, string f, string d)
         {
+
             model = m;
             stField = f;
             stDescr = d;
             stList = new List<stItemStru>();
-            var stL = from l in model    
-                     group l by l.GetType().GetProperty(stField).GetValue(l,null).ToString();
+            var stL = from l in model
+                      group l by (l.GetType().GetProperty(stField).GetValue(l, null) ?? "Пусто").ToString();
             foreach (var i in stL)
                 stList.Add(new stItemStru { cbItem = false,
                                             nmItem = i.Key.ToString() });
@@ -48,8 +49,8 @@ namespace SLTest.Models
         {
             var r = from a in model 
                   join it in stList
-                  on a.GetType().GetProperty(stField).GetValue(a,null).ToString() equals it.nmItem.ToString()
-                  where !it.cbItem
+                  on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString() 
+                  where it.cbItem
                   select a;
             return r;
         }
@@ -75,10 +76,9 @@ namespace SLTest.Models
             list.Add(st);
             
         }
-        public void Add(IEnumerable<T> m, string f, string d)
+        public void Add( IEnumerable<T> m, string f, string d)
         {
-
-            list.Add(new SearchTerm<T> ( m ,f,d));
+            list.Add(new SearchTerm<T> (  m ,f,d));
 
         }
 

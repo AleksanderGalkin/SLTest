@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SLTest.Models
 {
-    public class VMMenuItems
+    public class VMMenuItem
     {
         public bool cb { get; set; }
         public Int64 RecID { get; set; }
@@ -16,6 +16,10 @@ namespace SLTest.Models
         public Decimal Price { get; set; }
         public Int64 OptID { get; set; }
         public static IEnumerable<Options> spr;
+
+        private coffeeEntities db = new coffeeEntities();
+
+      
 
         public IEnumerable<Options> GetSprOpt()
         {
@@ -46,6 +50,7 @@ namespace SLTest.Models
 
          public  VMMenu()
         {
+             
             paginginfo = new PagingInfo();
             
         }

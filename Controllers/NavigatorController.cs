@@ -10,71 +10,46 @@ namespace SLTest.Controllers
     public class NavigatorController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
-        public Navigator<VMMenuItems> nav;
-        public IEnumerable<VMMenuItems> model;
+        public Navigator<VMMenuItem> nav;
+        public Navigator<VMMenuItem> navSes;
 
         public NavigatorController()
         {
-              nav = new Navigator<VMMenuItems>();
-          
-        
+            nav= new Navigator<VMMenuItem>();
+            nav.Add(GetModel(), "Sort", "Тратата");
         }
 
         
-        public ActionResult Index()
+        public ActionResult PVIndex(int pageNum=1)
         {
             OptionsDropDownList();
-            
-             model = from recipe in db.Recipe
-                           orderby recipe.RecName
-                           select new VMMenuItems
-                           {
-                               cb = false,
-                               RecID = recipe.RecID,
-                               RecName = recipe.RecName,
-                               Sort = recipe.Sort,
-                               Price = recipe.Price,
-                               OptID = 0
-                           };
 
-             nav.Add(model, "Sort", "Тратата");
-            nav.test = "dsdsds";
-            //SearchTerm<VMMenuItems> search = new SearchTerm<VMMenuItems>(nm, "Sort", "Тратата");
+            navSes = Session["SFModel"] as Navigator<VMMenuItem>;
+            if (navSes != null)
+            nav = navSes;
 
-            
-           // nav.Add(search);
-
-
-            return View(nav);
+           // ViewBag.pn = pageNum;
+                 return View(nav);
         }
         [HttpPost]
-        public ActionResult Index(FormCollection fc,Navigator<VMMenuItems> model)
+        public ActionResult PVIndex(FormCollection fc)
         {
 
 
 
-            if (ModelState.IsValid)
+            foreach (var i in nav.list)
             {
-                //var t=new List<bool>();
-                //t.Add(false);
-                //t.Add(true);
-                //t.Add(false);
-
-                int count=0;
-                foreach (var i in model.list)
-                {
-                    foreach(var j in i.GetContent())
-                        if (fc[j.nmItem].ToString().Contains("true"))
-                            count++;
-                }
-
-
-
-                UpdateModel(nav);
-                var r = nav.list.ElementAt(0).GetFiltered();
-                return View(fc);
+                foreach (var j in i.GetContent())
+                    if (fc[j.nmItem].ToString().Contains("true"))
+                        j.cbItem = true;
             }
-            return View(fc);
+
+            // UpdateModel(nav);
+            var r = nav.list.ElementAt(0).GetFiltered();
+            Session["SFModel"] = nav;
+        
+            //return View(nav);
+                return RedirectToAction("Index", "Home");
         }
 
         private void OptionsDropDownList(object selectedoptions = null)
@@ -83,6 +58,21 @@ namespace SLTest.Controllers
                               orderby d.OptionName
                               select d;
             ViewData["RecList"] = new SelectList(recipeQuery, "OptID", "OptionName", selectedoptions);
+        }
+
+        private IEnumerable<VMMenuItem> GetModel()
+        {
+            return  from recipe in db.Recipe
+                      orderby recipe.RecName
+                      select new VMMenuItem
+                      {
+                          cb = false,
+                          RecID = recipe.RecID,
+                          RecName = recipe.RecName,
+                          Sort = recipe.Sort,
+                          Price = recipe.Price,
+                          OptID = 0
+                      };
         }
 
     }

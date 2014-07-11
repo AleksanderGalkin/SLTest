@@ -113,7 +113,9 @@
     <Content Include="Views\Home\Administration.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Korzina.aspx" />
+    <Content Include="Views\Home\PVIndex.ascx" />
     <Content Include="Views\Navigator\Index.aspx" />
+    <Content Include="Views\Navigator\PVIndex.ascx" />
     <Content Include="Views\Options\Delete.aspx" />
     <Content Include="Views\Options\pvCreate.ascx" />
     <Content Include="Views\Options\pvDelete.ascx" />
