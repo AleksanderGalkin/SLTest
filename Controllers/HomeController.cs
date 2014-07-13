@@ -15,7 +15,8 @@ namespace SLTest.Controllers
         private coffeeEntities db = new coffeeEntities();
         private int itemsPerPage = 10;
         VMMenu<VMMenuItem> vmmenu=new VMMenu<VMMenuItem>();
-        
+        struct zakaz { int drink; int opt;}
+
         public ActionResult Index(int pageNum=1)
         {
             
@@ -85,14 +86,16 @@ namespace SLTest.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        Dictionary<int, int> sKorzina = Session["sKorzina"] as Dictionary<int, int>;
-                        if (sKorzina == null) sKorzina = new Dictionary<int, int>();
+                        Dictionary<zakaz, int> sKorzina = Session["sKorzina"] as Dictionary<zakaz,int>;
+                        if (sKorzina == null) sKorzina = new Dictionary<zakaz, int>();
                         Session["sKorzina"] = sKorzina;
                         for (int i = 0; i < menu.Count; i++)
                         {   
                             var v = menu[i].Split(new char[] { ',' })[0];
+                            
                             if (v == "true")
                             {
+                                var o = menu["item.OptID"][i];
                                 var intI = Convert.ToInt32(menu.AllKeys[i]);
                                 if (sKorzina.ContainsKey(intI)) sKorzina[intI] = sKorzina[intI] + 1;
                                 else sKorzina[intI] = 1;

@@ -47,12 +47,28 @@ namespace SLTest.Models
 
         public IEnumerable<T> GetFiltered() // модель отфильтрованная по всем критериям
         {
-            var r = from a in model 
-                  join it in stList
-                  on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString() 
-                  where it.cbItem
-                  select a;
-            return r;
+            var cntSel = (from it in stList
+                          where it.cbItem
+                          select it).Count();
+
+            if (cntSel > 0)
+            {
+                var r = from a in model
+                        join it in stList
+                        on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                        where it.cbItem
+                        select a;
+                return r;
+            }
+            else
+            {
+                var r = from a in model
+                        join it in stList
+                        on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                        select a;
+                return r;
+            }
+            
         }
 
     }

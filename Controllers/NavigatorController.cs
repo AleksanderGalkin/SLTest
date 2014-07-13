@@ -16,7 +16,7 @@ namespace SLTest.Controllers
         public NavigatorController()
         {
             nav= new Navigator<VMMenuItem>();
-            nav.Add(GetModel(), "Sort", "Тратата");
+            nav.Add(GetModel(), "Sort", "напитки");
         }
 
         
@@ -36,14 +36,17 @@ namespace SLTest.Controllers
         {
 
 
-
+            
             foreach (var i in nav.list)
             {
                 foreach (var j in i.GetContent())
                     if (fc[j.nmItem].ToString().Contains("true"))
+                    {
                         j.cbItem = true;
+                        
+                    }
             }
-
+           
             // UpdateModel(nav);
             var r = nav.list.ElementAt(0).GetFiltered();
             Session["SFModel"] = nav;

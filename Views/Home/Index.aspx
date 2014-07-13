@@ -87,6 +87,7 @@
      <% } %>
 
      <%  var count = 0;
+         struct zakaz { int drink; int opt;}
          var ses=Session["sKorzina"] as Dictionary<int, int>;
          if (ses != null)
              foreach (var key in ses.Keys)
