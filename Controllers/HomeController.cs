@@ -15,7 +15,12 @@ namespace SLTest.Controllers
         private coffeeEntities db = new coffeeEntities();
         private int itemsPerPage = 10;
         VMMenu<VMMenuItem> vmmenu=new VMMenu<VMMenuItem>();
-        struct zakaz { int drink; int opt;}
+        public struct zakaz { int drink; int opt;
+        public zakaz(int d, int o)
+            {
+                drink = d; opt = o;
+            }
+        }
 
         public ActionResult Index(int pageNum=1)
         {
@@ -95,10 +100,11 @@ namespace SLTest.Controllers
                             
                             if (v == "true")
                             {
-                                var o = menu["item.OptID"][i];
-                                var intI = Convert.ToInt32(menu.AllKeys[i]);
-                                if (sKorzina.ContainsKey(intI)) sKorzina[intI] = sKorzina[intI] + 1;
-                                else sKorzina[intI] = 1;
+                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i]);
+                                var d = Convert.ToInt32(menu.AllKeys[i]);
+                                zakaz s = new zakaz(o,d);
+                                if (sKorzina.ContainsKey(s))  sKorzina[s] = sKorzina[s] + 1;
+                                else sKorzina[s] = 1;
                             }
 
                         }

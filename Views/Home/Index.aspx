@@ -87,8 +87,8 @@
      <% } %>
 
      <%  var count = 0;
-         struct zakaz { int drink; int opt;}
-         var ses=Session["sKorzina"] as Dictionary<int, int>;
+       
+         var ses=Session["sKorzina"] as Dictionary<SLTest.Controllers.HomeController.zakaz, int>;
          if (ses != null)
              foreach (var key in ses.Keys)
             {
