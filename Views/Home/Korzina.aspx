@@ -29,9 +29,29 @@ else
     foreach (var key in Model.Keys)
     {%>
 
+     <th>
+        <td>
+            №
+        </td>
+        <td>
+            позиция
+        </td>
+        <td>
+            цена
+        </td>
+        <td>
+            стоимость
+        </td>
+     </th>
       <tr>
             <td>
-               <%: key %>
+                1
+            </td>
+            <td>
+               <%: key.drink %>, <%: key.opt %>
+            </td>
+            <td>
+               
            </td>
     
             <td>

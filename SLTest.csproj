@@ -90,6 +90,7 @@
       <DependentUpon>CoffeeModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Interface\IBase.cs" />
+    <Compile Include="Models\korzina.cs" />
     <Compile Include="Models\Navigator.cs" />
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\PageInfo.cs" />

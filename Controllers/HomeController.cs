@@ -15,13 +15,13 @@ namespace SLTest.Controllers
         private coffeeEntities db = new coffeeEntities();
         private int itemsPerPage = 10;
         VMMenu<VMMenuItem> vmmenu=new VMMenu<VMMenuItem>();
-        public struct zakaz { int drink; int opt;
+      /*  public struct zakaz {public int drink; public int opt;
         public zakaz(int d, int o)
             {
                 drink = d; opt = o;
             }
         }
-
+        */
         public ActionResult Index(int pageNum=1)
         {
             
@@ -91,8 +91,8 @@ namespace SLTest.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        Dictionary<zakaz, int> sKorzina = Session["sKorzina"] as Dictionary<zakaz,int>;
-                        if (sKorzina == null) sKorzina = new Dictionary<zakaz, int>();
+                        Dictionary<korzina.zakaz, int> sKorzina = Session["sKorzina"] as Dictionary<korzina.zakaz, int>;
+                        if (sKorzina == null) sKorzina = new Dictionary<korzina.zakaz, int>();
                         Session["sKorzina"] = sKorzina;
                         for (int i = 0; i < menu.Count; i++)
                         {   
@@ -100,11 +100,11 @@ namespace SLTest.Controllers
                             
                             if (v == "true")
                             {
-                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i]);
+                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i-1]);
                                 var d = Convert.ToInt32(menu.AllKeys[i]);
-                                zakaz s = new zakaz(o,d);
+                                korzina.zakaz s = new korzina.zakaz(d,o);
                                 if (sKorzina.ContainsKey(s))  sKorzina[s] = sKorzina[s] + 1;
-                                else sKorzina[s] = 1;
+                                    else sKorzina[s] = 1;
                             }
 
                         }
@@ -186,7 +186,7 @@ namespace SLTest.Controllers
         public ActionResult Korzina()
         {
 
-            return View(Session["sKorzina"] as Dictionary<int,int>);
+            return View(Session["sKorzina"] as Dictionary<korzina.zakaz,int>);
         }
 
         public ActionResult About()
