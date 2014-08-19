@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -155,6 +156,7 @@ namespace SLTest.Models
         private ObjectSet<Recipe> _Recipe;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -198,11 +200,11 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -233,6 +235,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -335,6 +338,7 @@ namespace SLTest.Models
         partial void OnPriceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -399,6 +403,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -431,6 +436,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -557,6 +563,7 @@ namespace SLTest.Models
         partial void OnCommentChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -605,6 +612,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -633,6 +641,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -711,6 +720,7 @@ namespace SLTest.Models
         partial void OnOptIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -791,6 +801,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -819,6 +830,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -897,6 +909,7 @@ namespace SLTest.Models
         partial void OnRecIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -977,6 +990,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1007,6 +1021,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1133,6 +1148,7 @@ namespace SLTest.Models
         partial void OnSortChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1181,8 +1197,10 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

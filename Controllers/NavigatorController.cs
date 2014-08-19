@@ -40,11 +40,12 @@ namespace SLTest.Controllers
             foreach (var i in nav.list)
             {
                 foreach (var j in i.GetContent())
-                    if (fc[j.nmItem].ToString().Contains("true"))
-                    {
-                        j.cbItem = true;
+                //    if (fc[j.nmItem]!=null )
+                        if (fc[j.nmItem].ToString().Contains("true"))
+                        {
+                            j.cbItem = true;
                         
-                    }
+                        }
             }
            
             // UpdateModel(nav);

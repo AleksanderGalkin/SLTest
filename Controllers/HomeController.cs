@@ -100,7 +100,7 @@ namespace SLTest.Controllers
                             
                             if (v == "true")
                             {
-                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i-1]);
+                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i]);
                                 var d = Convert.ToInt32(menu.AllKeys[i]);
                                 korzina.zakaz s = new korzina.zakaz(d,o);
                                 if (sKorzina.ContainsKey(s))  sKorzina[s] = sKorzina[s] + 1;
