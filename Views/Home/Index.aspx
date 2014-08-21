@@ -88,7 +88,7 @@
 
      <%  var count = 0;
        
-         var ses=Session["sKorzina"] as Dictionary<SLTest.Models.korzina.zakaz, int>;
+         var ses=Session["sKorzina"] as Dictionary<SLTest.Models.itCart, int>;
          if (ses != null)
              foreach (var key in ses.Keys)
             {

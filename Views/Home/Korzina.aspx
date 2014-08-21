@@ -14,38 +14,32 @@
 <%}
 else
 {
-    decimal price = 0;
+    //decimal price = 0;
     %>
     <table>
-    <tr>
-        <td>
-            Напиток
-        </td>
-        <td>
-            Количество
-        </td>
-    </tr>
+        <tr>
+            <th>
+                №
+            </th>
+            <th>
+                позиция
+            </th>
+            <th>
+                цена
+            </th>
+            <th>
+                стоимость
+            </th>
+        </tr>
     <% 
+    int i = 1;
     foreach (var key in Model.Keys)
     {%>
 
-     <th>
-        <td>
-            №
-        </td>
-        <td>
-            позиция
-        </td>
-        <td>
-            цена
-        </td>
-        <td>
-            стоимость
-        </td>
-     </th>
+    
       <tr>
             <td>
-                1
+              <%i++;%>
             </td>
             <td>
                <%: key.drink %>, <%: key.opt %>
@@ -56,7 +50,7 @@ else
     
             <td>
                <%: Model[key] %>
-                </td>
+            </td>
      </tr>
 
         
