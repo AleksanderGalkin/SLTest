@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Navigator<SLTest.Models.VMMenuItem>>" %>
 <h2>категории</h2>
 
-        <% using (Html.BeginForm("PVIndex", "Navigator",FormMethod.Post, new { id = "NavForm" }))
+        <% using (Html.BeginForm("PVIndexPost", "Navigator",FormMethod.Post, new { id = "NavForm" }))
            {%>
         <%: Html.ValidationSummary(true)%>
 <%foreach (var i in Model.list)

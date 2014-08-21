@@ -32,7 +32,7 @@ namespace SLTest.Controllers
                  return View(nav);
         }
         [HttpPost]
-        public ActionResult PVIndex(FormCollection fc)
+        public ActionResult PVIndexPost(FormCollection fc)
         {
 
 
@@ -40,20 +40,19 @@ namespace SLTest.Controllers
             foreach (var i in nav.list)
             {
                 foreach (var j in i.GetContent())
-                //    if (fc[j.nmItem]!=null )
+                {
                         if (fc[j.nmItem].ToString().Contains("true"))
                         {
                             j.cbItem = true;
-                        
+
                         }
+                }
             }
-           
-            // UpdateModel(nav);
+
             var r = nav.list.ElementAt(0).GetFiltered();
             Session["SFModel"] = nav;
         
-            //return View(nav);
-                return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         private void OptionsDropDownList(object selectedoptions = null)
