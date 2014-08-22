@@ -573,3 +573,44 @@ div#title
 {
     width: 6em;
 }
+
+/* Styles for Cart
+----------------------------------------------------------*/
+
+input.tbItCartCount
+{
+    width: 5em;
+}
+
+
+a.btCart
+{
+    background-color: #DCDCDC; 
+    color:#000;
+    text-decoration: none; /* отмена подчеркивания */
+    padding: 0.3em 1.5em; /* внутренние отступы ссылок */
+    text-align: center; /* центровка текста */
+    font-size:1em;
+    display:inline-block;
+    border:1px solid #696969
+
+  
+}
+
+ a.btReCalc:hover
+{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+ 
+}
+
+a.btReCalc:active
+{
+ background-color: #34B4E3;
+    /*background-image:url('/Content/btEdit.png'); */
+
+}
+*/
+
+
+

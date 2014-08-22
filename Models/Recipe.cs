@@ -12,20 +12,7 @@ namespace SLTest.Models
     [MetadataType(typeof(RecipeValidation))]
     public partial class Recipe:IBase
     {
-        //public String fID
-        //{
-        //    get
-        //    {
-        //        return "RecID";
-        //    }
-        //}
-        //public String fName
-        //{
-        //    get
-        //    {
-        //        return "RecName";
-        //    }
-        //}
+       
 
         [Bind(Exclude = "RecID")]
         public class RecipeValidation

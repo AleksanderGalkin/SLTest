@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Dictionary<SLTest.Models.itCart,int>>" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Korzina
@@ -16,48 +16,40 @@ else
 {
     //decimal price = 0;
     %>
-    <table>
-        <tr>
-            <th>
-                №
-            </th>
-            <th>
-                позиция
-            </th>
-            <th>
-                цена
-            </th>
-            <th>
-                стоимость
-            </th>
-        </tr>
-    <% 
-    int i = 1;
-    foreach (var key in Model.Keys)
-    {%>
+<% using (Ajax.BeginForm("Korzina","Home",new AjaxOptions
+   {
+       UpdateTargetId = "aj",
+       Url = Url.Action(""),
+       HttpMethod = "Post"
+   }
+   ))
+   {%>
+<%: Html.ValidationSummary(true)%>
+   
+    <div id="aj">
 
-    
-      <tr>
-            <td>
-              <%i++;%>
-            </td>
-            <td>
-               <%: key.drink %>, <%: key.opt %>
-            </td>
-            <td>
-               
-           </td>
-    
-            <td>
-               <%: Model[key] %>
-            </td>
-     </tr>
+<%=Html.Action("pvKorzina", "Home")%>
 
+    </div>
+    <p></p>
+   <%-- <%: Ajax.ActionLink ("Пересчитать","Korzina", "Home", new {name="sendCard" },
+                            new AjaxOptions { UpdateTargetId = "aj",
+                                                Url = Url.Action("pvKorzina", "Home"),
+                                              HttpMethod = "Post"
+                            }, new { @class = "btCart btReCalc" }) %>--%>
         
-    <%}
-    %>
-    </table>
-<%     
-}
+        <input type="submit" name="sendCart" value="f1" />
+        <input type="submit" name="sendCart" value="f2" />
+    
+<% 
+   }//form    
+}//if (Model == null || Model.Count == 0)
+
 %>
+
+<SCRIPT>
+    function fRecalcCost() {
+        alert("oops");
+    }
+</SCRIPT>
 </asp:Content>

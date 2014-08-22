@@ -15,7 +15,7 @@ namespace SLTest.Controllers.Abstract
 
     {
         protected S Service;
-        private int itemsPerPage = 3;
+        private int itemsPerPage = 10;
         VMMenu<T> vmmenu = new VMMenu<T>();
 
         public BaseController(S _Service)

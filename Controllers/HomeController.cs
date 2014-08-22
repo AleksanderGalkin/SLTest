@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SLTest.Models;
+using System.Reflection;
 
 namespace SLTest.Controllers
 {
@@ -92,15 +93,22 @@ namespace SLTest.Controllers
                     if (ModelState.IsValid)
                     {
                         Dictionary<itCart, int> sKorzina = Session["sKorzina"] as Dictionary<itCart, int>;
-                        if (sKorzina == null) sKorzina = new Dictionary<itCart, int>();
+                        if (sKorzina == null) sKorzina = new Dictionary<itCart, int>(new itCart.itCartComparer());
                         Session["sKorzina"] = sKorzina;
+                        menu.Remove("empty");
+                        int cntFC = menu.Count;
+                        string[] arOptID=new string[cntFC-1];
+                        for (int i = 0; i < cntFC - 1; i++)
+                            arOptID[i] = menu["item.OptID"].Split(new char[] { ',' })[i];
+                        menu.Remove("item.OptID");
+
                         for (int i = 0; i < menu.Count; i++)
                         {   
                             var v = menu[i].Split(new char[] { ',' })[0];
-                            
+                           
                             if (v == "true")
                             {
-                                var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i-1]);
+                                var o = Convert.ToInt32(arOptID[i]);
                                 var d = Convert.ToInt32(menu.AllKeys[i]);
                                 itCart s = new itCart(d,o);
                                 if (sKorzina.ContainsKey(s))  sKorzina[s] = sKorzina[s] + 1;
@@ -212,7 +220,25 @@ namespace SLTest.Controllers
 
             return View(Session["sKorzina"] as Dictionary<itCart,int>);
         }
+        public ActionResult pvKorzina()
+        {
 
+            return View("pvKorzina", Session["sKorzina"] as Dictionary<itCart, int>);
+        }
+        [HttpPost]
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "f1")]
+        public ActionResult f1()
+        {
+
+            return View("pvKorzina", Session["sKorzina"] as Dictionary<itCart, int>);
+        }
+        [HttpPost]
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "f2")]
+        public ActionResult f2()
+        {
+
+            return View("sds");
+        }
         public ActionResult About()
         {
             return View();
@@ -235,5 +261,19 @@ namespace SLTest.Controllers
         //{
         //    return View(
         //};
+    }
+
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class MultiButtonAttribute : ActionNameSelectorAttribute
+    {
+        public string MatchFormKey { get; set; }
+        public string MatchFormValue { get; set; }
+        public override bool IsValidName(ControllerContext controllerContext, string actionName, MethodInfo methodInfo)
+        {
+            bool x= controllerContext.HttpContext.Request[MatchFormKey] != null &&
+                controllerContext.HttpContext.Request[MatchFormKey] == MatchFormValue;
+
+            return x;
+        }
     }
 }
