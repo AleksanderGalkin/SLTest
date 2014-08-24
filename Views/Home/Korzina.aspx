@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Dictionary<SLTest.Models.itCart,int>>" %> 
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<KeyValuePair<SLTest.Models.itCart, int>>>" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Korzina
@@ -16,10 +16,10 @@ else
 {
     //decimal price = 0;
     %>
-<% using (Ajax.BeginForm("Korzina","Home",new AjaxOptions
+<% using (Ajax.BeginForm(new AjaxOptions
    {
        UpdateTargetId = "aj",
-       Url = Url.Action(""),
+       Url = Url.Action("CartSubmit","Home"),
        HttpMethod = "Post"
    }
    ))
@@ -38,8 +38,8 @@ else
                                               HttpMethod = "Post"
                             }, new { @class = "btCart btReCalc" }) %>--%>
         
-        <input type="submit" name="sendCart" value="f1" />
-        <input type="submit" name="sendCart" value="f2" />
+        <input type="submit" name="sendCart" value="Пересчитать" />
+        <input type="submit" name="sendCart" value="Оплатить" />
     
 <% 
    }//form    

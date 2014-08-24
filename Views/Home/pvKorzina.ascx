@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Dictionary<SLTest.Models.itCart,int>>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<KeyValuePair<SLTest.Models.itCart, int>>>" %>
 
 
  <table>
@@ -21,26 +21,28 @@
         </tr>
 
   <% 
-                   int i = 1;
-                   foreach (var key in Model.Keys)
+                   int n = 1;
+                   for (int i = 0; i < Model.Count;i++ )
                    {%>
 
     
         <tr>
+             <td>
+              <%: n++%>
+              <%: Html.HiddenFor(m => m[i].Key.drink)%> 
+              <%: Html.HiddenFor(m => m[i].Key.opt)%> 
+             </td>
             <td>
-              <%:i++%>
+                <%: Model[i].Key.drinkName() + (Model[i].Key.opt != 0 ? " и " : "") + (Model[i].Key.opt != 0 ? Model[i].Key.optName() : "")%>
             </td>
             <td>
-               <%: key.drinkName() +(key.opt!=0?" и ":"")+ (key.opt!=0?key.optName():"")%>
+               <%: string.Format("{0:F2}", Model[i].Key.drinkPrice() + Model[i].Key.optPrice())%>
             </td>
             <td>
-               <%: string.Format("{0:F2}", key.drinkPrice() + key.optPrice())%>
-           </td>
-            <td>
-               <%:Html.TextBoxFor(p => Model[key], new {@class="tbItCartCount" })%>
+               <%:Html.EditorFor(p => Model[i].Value)%>
             </td>
             <td >
-               <%: string.Format("{0:F2}", Model[key] * (key.drinkPrice() + key.optPrice()))%>
+               <%: string.Format("{0:F2}", Model[i].Value * (Model[i].Key.drinkPrice() + Model[i].Key.optPrice()))%>
             </td>
          </tr>
                

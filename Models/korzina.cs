@@ -9,10 +9,16 @@ namespace SLTest.Models
 {
     public class itCart
     {
-            public int drink;
-            public int opt;
-            RecipeEntityService rs;
-            OptionsEntityService os;
+            public int drink{get;set;}
+            public int opt {get; set;}
+            private RecipeEntityService rs;
+            private OptionsEntityService os;
+            public itCart()
+            {
+                drink = 0; opt = 0;
+                rs = (RecipeEntityService)RecipeServiceFactory.Create();
+                os = (OptionsEntityService)OptionsServiceFactory.Create();
+            }
             public itCart(int d, int o)
             {
                 drink = d; opt = o;

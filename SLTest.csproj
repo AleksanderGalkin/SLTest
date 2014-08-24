@@ -95,6 +95,7 @@
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\VMMenu.cs" />
     <Compile Include="Models\VMOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +117,7 @@
     <Content Include="Views\Home\Korzina.aspx" />
     <Content Include="Views\Home\PVIndex.ascx" />
     <Content Include="Views\Home\pvKorzina.ascx" />
+    <Content Include="Views\Home\Test.aspx" />
     <Content Include="Views\Navigator\Index.aspx" />
     <Content Include="Views\Navigator\PVIndex.ascx" />
     <Content Include="Views\Options\Delete.aspx" />

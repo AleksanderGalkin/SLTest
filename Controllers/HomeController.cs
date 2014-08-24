@@ -217,37 +217,86 @@ namespace SLTest.Controllers
 
         public ActionResult Korzina()
         {
+            List<KeyValuePair<SLTest.Models.itCart, int>> a;
+            a = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
+            return View(a);
+            //Dictionary<itCart, int> a = new Dictionary<itCart, int>();
+            //a.Add(new itCart(1,3), 1);
+            //a.Add(new itCart(2,5), 3);
 
-            return View(Session["sKorzina"] as Dictionary<itCart,int>);
+
+            //List<KeyValuePair<itCart, int>> b = a.ToList();
+            //int s=b[0].Value;
+            //return View("Test",a.ToList());
         }
+        //[HttpPost]
+        //public ActionResult Korzina(FormCollection s)
+        //{
+        //    Dictionary<itCart, int> a = new Dictionary<itCart, int>();
+        //    a.Add(new itCart(1, 3), 1);
+        //    a.Add(new itCart(2, 5), 3);
+
+        //    Dictionary<itCart, int> b = new Dictionary<itCart, int>();
+            
+        //    UpdateModel(b);
+        //    return View(b);
+        //}
+
         public ActionResult pvKorzina()
         {
-
-            return View("pvKorzina", Session["sKorzina"] as Dictionary<itCart, int>);
+            List<KeyValuePair<SLTest.Models.itCart, int>> a;
+            a = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
+            return View(a);
         }
         [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "f1")]
-        public ActionResult f1()
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Пересчитать")]
+        public ActionResult CartSubmit(int? a)
         {
+            Dictionary<itCart, int> par = new Dictionary<itCart, int>();
+          //  UpdateModel(par);
+            if (Request.IsAjaxRequest())
+            {
 
-            return View("pvKorzina", Session["sKorzina"] as Dictionary<itCart, int>);
+                Dictionary<itCart, int> t=Session["sKorzina"] as Dictionary<itCart, int>;
+                //foreach (var el in par)
+                //{
+                //    if (t.ContainsKey(el.Key))
+                //        t[el.Key] = el.Value+1;
+               // }
+             //   Session["sKorzina"] = t;
+                TryUpdateModel(par);
+                List<KeyValuePair<SLTest.Models.itCart, int>> x;
+
+                par[par.ElementAt(0).Key] = par[par.ElementAt(0).Key] + 1;
+                
+
+                Session["sKorzina"] = par;
+                x = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
+                
+                return View("pvKorzina", x);
+            }
+            else
+                return RedirectToAction("Korzina");
         }
+        
         [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "f2")]
-        public ActionResult f2()
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оплатить")]
+        public ActionResult CartSubmit(FormCollection fc, int? a, int? b)
         {
-
-            return View("sds");
+            if (Request.IsAjaxRequest())
+                return View("sds");
+            else
+                return RedirectToAction("Korzina");
         }
         public ActionResult About()
         {
             return View();
         }
 
-        public ActionResult About3()
-        {
-            return View();
-        }
+        //public ActionResult About3()
+        //{
+        //    return View();
+        //}
 
         private void OptionsDropDownList(object selectedoptions = null)
         {
@@ -257,10 +306,7 @@ namespace SLTest.Controllers
             ViewData["RecList"] = new SelectList(recipeQuery, "OptID", "OptionName", selectedoptions);
         }
 
-        //ActionResult PVIndex()
-        //{
-        //    return View(
-        //};
+
     }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
