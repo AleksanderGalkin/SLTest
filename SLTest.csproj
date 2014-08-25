@@ -79,6 +79,7 @@
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PageHelper.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\ShippingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,6 +131,9 @@
     <Content Include="Views\Recipe\pvDelete.ascx" />
     <Content Include="Views\Recipe\pvEdit.ascx" />
     <Content Include="Views\Recipe\PVIndex.ascx" />
+    <Content Include="Views\Shipping\Index.aspx" />
+    <Content Include="Views\Shipping\pvCashOrCart.ascx" />
+    <Content Include="Views\Shipping\pvIndex.ascx" />
     <Content Include="Views\Test\Create.aspx" />
     <Content Include="Views\Test\Index.aspx" />
     <Content Include="Web.config">

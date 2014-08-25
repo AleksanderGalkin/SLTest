@@ -607,10 +607,12 @@ a.btCart
 a.btReCalc:active
 {
  background-color: #34B4E3;
-    /*background-image:url('/Content/btEdit.png'); */
-
 }
-*/
+
+.stImpInfo
+{
+    font: bold 100% Verdana;
+}
 
 
 

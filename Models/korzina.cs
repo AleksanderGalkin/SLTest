@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using SLTest.Service;
 using SLTest.Service.Factory;
+using System.ComponentModel.DataAnnotations;
 
 namespace SLTest.Models
 {
@@ -61,7 +62,32 @@ namespace SLTest.Models
         }
     }
 
-
+    
+    public class shipTo // оформление заказа
+    {
+        public enum tPay { Наличные, Карта } ;
+        [Display(Name="Номер столика",Prompt = "Посмотрте на табличке", Description = "Номер столика за которым сидите")]
+        [Required(ErrorMessage="Надо заполнить, а не то заказ уйдёт на другой столик")]
+        [Range(1, 12, ErrorMessage = "Надо правильно заполнить, а не то заказ уйдёт на другой столик")]
+        public int table { get; set; }
+        public DateTime OrderDataTime { get; set; }
+        [Display(Name="Дополнительный компонент")]
+        [Required(ErrorMessage = "Это обязательное поле")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [StringLength(50)]
+        public string Comment { get; set; }
+        [Display(Name = "Способ оплаты")]
+        public tPay typeOfPay { get; set; }
+        public Dictionary<itCart, int> Cart;
+        [Display(Name = "Счёт сразу")]
+        public bool flImmediateBill{ get; set; }
+        public shipTo( Dictionary<itCart, int> pCart)
+        {
+            Cart = pCart;
+            typeOfPay = tPay.Наличные;
+            flImmediateBill = false;
+        }
+    }
 
         
 }

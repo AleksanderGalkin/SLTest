@@ -253,50 +253,43 @@ namespace SLTest.Controllers
         public ActionResult CartSubmit(int? a)
         {
             Dictionary<itCart, int> par = new Dictionary<itCart, int>();
-          //  UpdateModel(par);
+            UpdateModel(par);
+            Session["sKorzina"] = par;
             if (Request.IsAjaxRequest())
             {
 
-                Dictionary<itCart, int> t=Session["sKorzina"] as Dictionary<itCart, int>;
-                //foreach (var el in par)
-                //{
-                //    if (t.ContainsKey(el.Key))
-                //        t[el.Key] = el.Value+1;
-               // }
-             //   Session["sKorzina"] = t;
-                TryUpdateModel(par);
-                List<KeyValuePair<SLTest.Models.itCart, int>> x;
-
-                par[par.ElementAt(0).Key] = par[par.ElementAt(0).Key] + 1;
-                
-
-                Session["sKorzina"] = par;
-                x = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
-                
-                return View("pvKorzina", x);
+                return RedirectToAction("pvKorzina");
             }
             else
                 return RedirectToAction("Korzina");
         }
         
         [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оплатить")]
-        public ActionResult CartSubmit(FormCollection fc, int? a, int? b)
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оформить заказ")]
+        public ActionResult CartSubmit(int? a, int? b)
         {
-            if (Request.IsAjaxRequest())
-                return View("sds");
-            else
-                return RedirectToAction("Korzina");
+            Dictionary<itCart, int> par = new Dictionary<itCart, int>();
+            UpdateModel(par);
+            Session["sKorzina"] = par;
+            return RedirectToAction("pvIndex","Shipping");
         }
+
+        [HttpPost]
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оплатить")]
+        public ActionResult CartSubmit(int? a, int? b, int? с)
+        {
+            shipTo par = new shipTo(Session["sKorzina"] as Dictionary<itCart,int>);
+            UpdateModel(par);
+            Session["sKorzina"] = par;
+            return RedirectToAction("pvCashOrCart", "Shipping");
+        }
+
         public ActionResult About()
         {
             return View();
         }
 
-        //public ActionResult About3()
-        //{
-        //    return View();
-        //}
+
 
         private void OptionsDropDownList(object selectedoptions = null)
         {
