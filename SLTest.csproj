@@ -117,7 +117,7 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Korzina.aspx" />
     <Content Include="Views\Home\PVIndex.ascx" />
-    <Content Include="Views\Home\pvKorzina.ascx" />
+    <Content Include="Views\Shipping\pvKorzina.ascx" />
     <Content Include="Views\Home\Test.aspx" />
     <Content Include="Views\Navigator\Index.aspx" />
     <Content Include="Views\Navigator\PVIndex.ascx" />

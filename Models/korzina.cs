@@ -69,10 +69,9 @@ namespace SLTest.Models
         [Display(Name="Номер столика",Prompt = "Посмотрте на табличке", Description = "Номер столика за которым сидите")]
         [Required(ErrorMessage="Надо заполнить, а не то заказ уйдёт на другой столик")]
         [Range(1, 12, ErrorMessage = "Надо правильно заполнить, а не то заказ уйдёт на другой столик")]
-        public int table { get; set; }
+        public int? table { get; set; }
         public DateTime OrderDataTime { get; set; }
-        [Display(Name="Дополнительный компонент")]
-        [Required(ErrorMessage = "Это обязательное поле")]
+        [Display(Name="Комментарий")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(50)]
         public string Comment { get; set; }
@@ -89,5 +88,10 @@ namespace SLTest.Models
         }
     }
 
-        
+    public class MyAdditionalViewData
+    {
+        public string @class { get; set; }
+
+        public string Sound { get; set; }
+    }     
 }

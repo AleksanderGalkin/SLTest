@@ -41,6 +41,7 @@
             </td>
             <td >
                <%:Html.TextBoxFor(p => Model[i].Value, new { @class = "tbItCartCount" })%>
+      
             </td>
             <td align="right" >
                <%: string.Format("{0:F2}", Model[i].Value * (Model[i].Key.drinkPrice() + Model[i].Key.optPrice()))%>

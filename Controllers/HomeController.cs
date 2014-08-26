@@ -16,13 +16,7 @@ namespace SLTest.Controllers
         private coffeeEntities db = new coffeeEntities();
         private int itemsPerPage = 10;
         VMMenu<VMMenuItem> vmmenu=new VMMenu<VMMenuItem>();
-      /*  public struct zakaz {public int drink; public int opt;
-        public zakaz(int d, int o)
-            {
-                drink = d; opt = o;
-            }
-        }
-        */
+
         public ActionResult Index(int pageNum=1)
         {
             
@@ -218,71 +212,16 @@ namespace SLTest.Controllers
         public ActionResult Korzina()
         {
             List<KeyValuePair<SLTest.Models.itCart, int>> a;
-            a = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
-            return View(a);
-            //Dictionary<itCart, int> a = new Dictionary<itCart, int>();
-            //a.Add(new itCart(1,3), 1);
-            //a.Add(new itCart(2,5), 3);
-
-
-            //List<KeyValuePair<itCart, int>> b = a.ToList();
-            //int s=b[0].Value;
-            //return View("Test",a.ToList());
-        }
-        //[HttpPost]
-        //public ActionResult Korzina(FormCollection s)
-        //{
-        //    Dictionary<itCart, int> a = new Dictionary<itCart, int>();
-        //    a.Add(new itCart(1, 3), 1);
-        //    a.Add(new itCart(2, 5), 3);
-
-        //    Dictionary<itCart, int> b = new Dictionary<itCart, int>();
-            
-        //    UpdateModel(b);
-        //    return View(b);
-        //}
-
-        public ActionResult pvKorzina()
-        {
-            List<KeyValuePair<SLTest.Models.itCart, int>> a;
-            a = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
-            return View(a);
-        }
-        [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Пересчитать")]
-        public ActionResult CartSubmit(int? a)
-        {
-            Dictionary<itCart, int> par = new Dictionary<itCart, int>();
-            UpdateModel(par);
-            Session["sKorzina"] = par;
-            if (Request.IsAjaxRequest())
-            {
-
-                return RedirectToAction("pvKorzina");
-            }
+            if ((Session["sKorzina"] as Dictionary<itCart, int>) == null)
+                return View();
             else
-                return RedirectToAction("Korzina");
-        }
-        
-        [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оформить заказ")]
-        public ActionResult CartSubmit(int? a, int? b)
-        {
-            Dictionary<itCart, int> par = new Dictionary<itCart, int>();
-            UpdateModel(par);
-            Session["sKorzina"] = par;
-            return RedirectToAction("pvIndex","Shipping");
-        }
+            {
+                a = (Session["sKorzina"] as Dictionary<itCart, int>).ToList();
+                return View(a);
+            }
 
-        [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оплатить")]
-        public ActionResult CartSubmit(int? a, int? b, int? с)
-        {
-            shipTo par = new shipTo(Session["sKorzina"] as Dictionary<itCart,int>);
-            UpdateModel(par);
-            Session["sKorzina"] = par;
-            return RedirectToAction("pvCashOrCart", "Shipping");
         }
+    
 
         public ActionResult About()
         {
@@ -302,17 +241,5 @@ namespace SLTest.Controllers
 
     }
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class MultiButtonAttribute : ActionNameSelectorAttribute
-    {
-        public string MatchFormKey { get; set; }
-        public string MatchFormValue { get; set; }
-        public override bool IsValidName(ControllerContext controllerContext, string actionName, MethodInfo methodInfo)
-        {
-            bool x= controllerContext.HttpContext.Request[MatchFormKey] != null &&
-                controllerContext.HttpContext.Request[MatchFormKey] == MatchFormValue;
-
-            return x;
-        }
-    }
+  
 }

@@ -19,7 +19,7 @@ else
 <% using (Ajax.BeginForm(new AjaxOptions
    {
        UpdateTargetId = "aj",
-       Url = Url.Action("CartSubmit","Home"),
+       Url = Url.Action("CartSubmit","Shipping"),
        HttpMethod = "Post"
    }
    ))
@@ -28,7 +28,7 @@ else
    
     <div id="aj">
 
-<%=Html.Action("pvKorzina", "Home")%>
+<%=Html.Action("pvKorzina", "Shipping")%>
 
     </div>
 <% 
