@@ -10,10 +10,15 @@ namespace SLTest.Models
 {
     public class itCart
     {
+            public int ID { get; set;}
+            public int shipToID { get; set; }
+            
             public int drink{get;set;}
             public int opt {get; set;}
             private RecipeEntityService rs;
             private OptionsEntityService os;
+
+            public virtual shipTo ShipTo { get; set; }
             public itCart()
             {
                 drink = 0; opt = 0;
@@ -65,6 +70,7 @@ namespace SLTest.Models
     
     public class shipTo // оформление заказа
     {
+        public int ID { get; set; }
         public enum tPay { Наличные, Карта } ;
         [Display(Name="Номер столика",Prompt = "Посмотрте на табличке", Description = "Номер столика за которым сидите")]
         [Required(ErrorMessage="Надо заполнить, а не то заказ уйдёт на другой столик")]
@@ -88,10 +94,5 @@ namespace SLTest.Models
         }
     }
 
-    public class MyAdditionalViewData
-    {
-        public string @class { get; set; }
-
-        public string Sound { get; set; }
-    }     
+  
 }
