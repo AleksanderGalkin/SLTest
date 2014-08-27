@@ -6,11 +6,25 @@
     <edmx:StorageModels>
     <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="coffeeModelStoreContainer">
+          <EntitySet Name="itCart" EntityType="coffeeModel.Store.itCart" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Options" EntityType="coffeeModel.Store.Options" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="coffeeModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderOptions" EntityType="coffeeModel.Store.OrderOptions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderRecipe" EntityType="coffeeModel.Store.OrderRecipe" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recipe" EntityType="coffeeModel.Store.Recipe" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="shipTo" EntityType="coffeeModel.Store.shipTo" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_itCart_Options" Association="coffeeModel.Store.FK_itCart_Options">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itCart_Recipe" Association="coffeeModel.Store.FK_itCart_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itCart_shipTo" Association="coffeeModel.Store.FK_itCart_shipTo">
+            <End Role="shipTo" EntitySet="shipTo" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
           <AssociationSet Name="FK_Options_Recipe" Association="coffeeModel.Store.FK_Options_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="Options" EntitySet="Options" />
@@ -32,6 +46,16 @@
             <End Role="OrderRecipe" EntitySet="OrderRecipe" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="itCart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="drink" Type="bigint" Nullable="false" />
+          <Property Name="opt" Type="bigint" Nullable="false" />
+          <Property Name="num" Type="smallint" Nullable="false" />
+          <Property Name="shipToID" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Options">
           <Key>
             <PropertyRef Name="OptID" />
@@ -77,6 +101,53 @@
           <Property Name="Describe" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Sort" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="shipTo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="tableNum" Type="smallint" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
+          <Property Name="typeOfPay" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nchar" MaxLength="50" />
+          <Property Name="flImmediateBill" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_itCart_Options">
+          <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="1" />
+          <End Role="itCart" Type="coffeeModel.Store.itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="OptID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="opt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itCart_Recipe">
+          <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
+          <End Role="itCart" Type="coffeeModel.Store.itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="drink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itCart_shipTo">
+          <End Role="shipTo" Type="coffeeModel.Store.shipTo" Multiplicity="1" />
+          <End Role="itCart" Type="coffeeModel.Store.itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shipTo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="shipToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Options_Recipe">
           <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
           <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="*" />
@@ -167,6 +238,20 @@
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="OrderRecipe" EntitySet="OrderRecipe" />
           </AssociationSet>
+          <EntitySet Name="itCart" EntityType="coffeeModel.itCart" />
+          <EntitySet Name="shipTo" EntityType="coffeeModel.shipTo" />
+          <AssociationSet Name="FK_itCart_Options" Association="coffeeModel.FK_itCart_Options">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itCart_Recipe" Association="coffeeModel.FK_itCart_Recipe">
+            <End Role="Recipe" EntitySet="Recipe" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itCart_shipTo" Association="coffeeModel.FK_itCart_shipTo">
+            <End Role="shipTo" EntitySet="shipTo" />
+            <End Role="itCart" EntitySet="itCart" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Options">
           <Key>
@@ -178,6 +263,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="Recipe" Relationship="coffeeModel.FK_Options_Recipe" FromRole="Options" ToRole="Recipe" />
           <NavigationProperty Name="OrderOptions" Relationship="coffeeModel.FK_OrderOptions_Options" FromRole="Options" ToRole="OrderOptions" />
+          <NavigationProperty Name="itCart" Relationship="coffeeModel.FK_itCart_Options" FromRole="Options" ToRole="itCart" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -222,6 +308,7 @@
           <NavigationProperty Name="Options" Relationship="coffeeModel.FK_Options_Recipe" FromRole="Recipe" ToRole="Options" />
           <NavigationProperty Name="OrderRecipe" Relationship="coffeeModel.FK_OrderRecipe_Recipe" FromRole="Recipe" ToRole="OrderRecipe" />
           <Property Type="String" Name="Sort" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="itCart" Relationship="coffeeModel.FK_itCart_Recipe" FromRole="Recipe" ToRole="itCart" />
         </EntityType>
         <Association Name="FK_Options_Recipe">
           <End Role="Recipe" Type="coffeeModel.Recipe" Multiplicity="1" />
@@ -283,6 +370,67 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="itCart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="drink" Nullable="false" />
+          <Property Type="Int64" Name="opt" Nullable="false" />
+          <Property Type="Int16" Name="num" Nullable="false" />
+          <Property Type="Int64" Name="shipToID" Nullable="false" />
+          <NavigationProperty Name="Options" Relationship="coffeeModel.FK_itCart_Options" FromRole="itCart" ToRole="Options" />
+          <NavigationProperty Name="Recipe" Relationship="coffeeModel.FK_itCart_Recipe" FromRole="itCart" ToRole="Recipe" />
+          <NavigationProperty Name="shipTo" Relationship="coffeeModel.FK_itCart_shipTo" FromRole="itCart" ToRole="shipTo" />
+        </EntityType>
+        <EntityType Name="shipTo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int16" Name="tableNum" />
+          <Property Type="DateTime" Name="OrderDateTime" Nullable="false" />
+          <Property Type="String" Name="comment" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="Boolean" Name="flImmediateBill" Nullable="false" />
+          <NavigationProperty Name="itCart" Relationship="coffeeModel.FK_itCart_shipTo" FromRole="shipTo" ToRole="itCart" />
+          <Property Type="Int32" Name="typeOfPay" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_itCart_Options">
+          <End Type="coffeeModel.Options" Role="Options" Multiplicity="1" />
+          <End Type="coffeeModel.itCart" Role="itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="OptID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="opt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itCart_Recipe">
+          <End Type="coffeeModel.Recipe" Role="Recipe" Multiplicity="1" />
+          <End Type="coffeeModel.itCart" Role="itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="RecID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="drink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itCart_shipTo">
+          <End Type="coffeeModel.shipTo" Role="shipTo" Multiplicity="1" />
+          <End Type="coffeeModel.itCart" Role="itCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shipTo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="itCart">
+              <PropertyRef Name="shipToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -339,6 +487,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="itCart">
+            <EntityTypeMapping TypeName="coffeeModel.itCart">
+              <MappingFragment StoreEntitySet="itCart">
+                <ScalarProperty Name="shipToID" ColumnName="shipToID" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="opt" ColumnName="opt" />
+                <ScalarProperty Name="drink" ColumnName="drink" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shipTo">
+            <EntityTypeMapping TypeName="coffeeModel.shipTo">
+              <MappingFragment StoreEntitySet="shipTo">
+                <ScalarProperty Name="typeOfPay" ColumnName="typeOfPay" />
+                <ScalarProperty Name="flImmediateBill" ColumnName="flImmediateBill" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="tableNum" ColumnName="tableNum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -366,32 +537,56 @@
         <EntityTypeShape EntityType="coffeeModel.OrderRecipe" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="coffeeModel.Recipe" Width="1.5" PointX="0.75" PointY="3.625" Height="2.1725878906249996" IsExpanded="true" />
         <AssociationConnector Association="coffeeModel.FK_Options_Recipe" ManuallyRouted="true">
-          <ConnectorPoint PointX="2.25" PointY="4.7112939453125" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="4.7112939453124989" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="4.7112939453125" />
-          <ConnectorPoint PointX="3" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="2.25" PointY="4.9035953776041659" />
+          <ConnectorPoint PointX="2.625" PointY="4.9035953776041659" />
+          <ConnectorPoint PointX="2.625" PointY="4.8074446614583337" />
+          <ConnectorPoint PointX="3" PointY="4.8074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderOptions_Options" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="4.7401432291666659" />
           <ConnectorPoint PointX="5.25" PointY="4.7401432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderOptions_Order" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.0574446614583319" />
-          <ConnectorPoint PointX="6" PointY="8.0574446614583319" />
-          <ConnectorPoint PointX="6" PointY="5.7302864583333317" />
+          <ConnectorPoint PointX="2.25" PointY="7.5390625" />
+          <ConnectorPoint PointX="6.59375" PointY="7.5390625" />
+          <ConnectorPoint PointX="6.59375" PointY="5.7302864583333317" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderRecipe_Order" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.875" />
-          <ConnectorPoint PointX="2.625" PointY="6.5" />
-          <ConnectorPoint PointX="2.625" PointY="1.4111912825520827" />
-          <ConnectorPoint PointX="3" PointY="1.4111912825520827" />
+          <ConnectorPoint PointX="2.2257692307692305" PointY="6.875" />
+          <ConnectorPoint PointX="2.6875" PointY="6.4132692307692309" />
+          <ConnectorPoint PointX="2.6875" PointY="1.3947436852213535" />
+          <ConnectorPoint PointX="3" PointY="1.3947436852213535" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderRecipe_Recipe" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="3.625" />
-          <ConnectorPoint PointX="1.5" PointY="2.1019913704427089" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="2.1019913704427085" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="2.1019913704427089" />
-          <ConnectorPoint PointX="3" PointY="2.1019913704427089" />
+          <ConnectorPoint PointX="1.5" PointY="2.0937675717773443" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="2.0937675717773438" />
+          <ConnectorPoint PointX="2.7708333333333335" PointY="2.0937675717773443" />
+          <ConnectorPoint PointX="3" PointY="2.0937675717773443" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="coffeeModel.itCart" Width="1.5" PointX="7.125" PointY="6.875" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="coffeeModel.shipTo" Width="1.5" PointX="4.875" PointY="8" Height="2.3648893229166656" />
+        <AssociationConnector Association="coffeeModel.FK_itCart_Options" >
+          <ConnectorPoint PointX="3.75" PointY="5.9898893229166665" />
+          <ConnectorPoint PointX="3.75" PointY="7.140625" />
+          <ConnectorPoint PointX="6.510416666666667" PointY="7.1406249999999991" />
+          <ConnectorPoint PointX="6.677083333333333" PointY="7.140625" />
+          <ConnectorPoint PointX="7.125" PointY="7.140625" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_itCart_Recipe" >
+          <ConnectorPoint PointX="2.25" PointY="6.1172900390625" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="6.1172900390624987" />
+          <ConnectorPoint PointX="2.7708333333333335" PointY="6.1172900390625" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="6.1172900390624987" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="6.1172900390625" />
+          <ConnectorPoint PointX="6.510416666666667" PointY="6.1172900390624987" />
+          <ConnectorPoint PointX="6.677083333333333" PointY="6.1172900390625" />
+          <ConnectorPoint PointX="7.875" PointY="6.1172900390625" />
+          <ConnectorPoint PointX="7.875" PointY="6.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_itCart_shipTo" >
+          <ConnectorPoint PointX="6.375" PointY="8.7160953776041659" />
+          <ConnectorPoint PointX="7.125" PointY="8.7160953776041659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -5,18 +5,24 @@ using System.Web;
 using System.Web.Mvc;
 using SLTest.Models;
 using System.Reflection;
+using System.Data.Objects.DataClasses;
 
 namespace SLTest.Controllers
 {
+    
     public class ShippingController : Controller
     {
         //
         // GET: /Shipping/
+        coffeeEntities db = new coffeeEntities();
 
         public ActionResult pvIndex()
         {
             
-            shipTo st = new shipTo(Session["sKorzina"] as Dictionary<itCart,int>);
+            
+            shipTo st = new shipTo();
+            //st.itCart = (EntityCollection<itCart>)(Session["sKorzina"] as Dictionary<itCart, int>).Keys.AsEnumerable();
+
             return View(st);
         }
        
@@ -67,14 +73,18 @@ namespace SLTest.Controllers
         }
 
         [HttpPost]
-        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оплатить")]
+        [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оправить")]
+        
         public ActionResult CartSubmit(int? a, int? b, int? с)
         {
-            shipTo par = new shipTo(Session["sKorzina"] as Dictionary<itCart, int>);
+            //shipTo par = new shipTo(Session["sKorzina"] as Dictionary<itCart, int>);
+            shipTo par = new shipTo();
             TryUpdateModel(par);
             if (ModelState.IsValid)
             {
                 Session["sKorzina"] = par;
+                db.AddToshipTo(par);
+                db.SaveChanges();
                 return RedirectToAction("pvCashOrCart", "Shipping");
             }
             else

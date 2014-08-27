@@ -5,19 +5,19 @@
         <legend>Оформление заказа</legend>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.table) %>
+            <%: Html.LabelFor(model => model.tableNum) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.table) %>
-            <%: Html.ValidationMessageFor(model => model.table) %>
+            <%: Html.EditorFor(model => model.tableNum) %>
+            <%: Html.ValidationMessageFor(model => model.tableNum) %>
         </div>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.typeOfPay) %>
         </div>
         <div class="editor-field">
-         <%: Html.DropDownListFor(model => model.typeOfPay, new SelectList(Model.typeOfPay.GetType().GetEnumNames()) )%>
-         <%: Html.ValidationMessageFor(model => model.typeOfPay) %>
+         <%: Html.DropDownListFor(model => model.typeOfPay,new SelectList(new int[]{0,1}))%>
+         <%: Html.ValidationMessageFor(model => model.typeOfPay)%>
         </div>
         
         <div class="editor-label">
@@ -28,14 +28,14 @@
             <%: Html.ValidationMessageFor(model => model.flImmediateBill) %>
         </div>
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.Comment) %>
+            <%: Html.LabelFor(model => model.comment) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Comment)%>
-            <%: Html.ValidationMessageFor(model => model.Comment)%>
+            <%: Html.EditorFor(model => model.comment)%>
+            <%: Html.ValidationMessageFor(model => model.comment)%>
         </div>
         <p>
-            <input type="submit" name="sendCart" value="Оплатить" />
+            <input type="submit" name="sendCart" value="Оправить" />
         </p>
     </fieldset>
 

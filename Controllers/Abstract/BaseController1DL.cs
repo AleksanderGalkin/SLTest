@@ -18,7 +18,7 @@ namespace SLTest.Controllers.Abstract
     {
         protected _S Serv;
         protected dlS dlServ;
-        private int itemsPerPage = 3;
+       // private int itemsPerPage = 3;
         VMMenu<VMMenuItem> vmmenu = new VMMenu<VMMenuItem>();
 
         public BaseController1DL(_S _Service):base(_Service)
