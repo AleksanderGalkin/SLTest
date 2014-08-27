@@ -82,9 +82,19 @@ namespace SLTest.Controllers
             TryUpdateModel(par);
             if (ModelState.IsValid)
             {
-                Session["sKorzina"] = par;
+                
                 db.AddToshipTo(par);
                 db.SaveChanges();
+
+                Dictionary<itCart, int> itCarts = Session["sKorzina"] as Dictionary<itCart, int>;
+                foreach (var i in itCarts)
+                {
+                    i.Key.num = (short)i.Value;
+                    i.Key.shipToID = par.ID;
+                    db.AddToitCart(i.Key);
+                    db.SaveChanges();
+                }
+                
                 return RedirectToAction("pvCashOrCart", "Shipping");
             }
             else
