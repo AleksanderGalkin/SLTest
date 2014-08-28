@@ -19,13 +19,10 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_Options_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Options), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderOptions_Options", "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Options), "OrderOptions", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderOptions), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderOptions_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Order), "OrderOptions", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderOptions), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderRecipe_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Order), "OrderRecipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderRecipe), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderRecipe_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "OrderRecipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderRecipe), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Options", "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Options), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Options", "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Options), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 
 #endregion
 
@@ -96,54 +93,6 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Order> Order
-        {
-            get
-            {
-                if ((_Order == null))
-                {
-                    _Order = base.CreateObjectSet<Order>("Order");
-                }
-                return _Order;
-            }
-        }
-        private ObjectSet<Order> _Order;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<OrderOptions> OrderOptions
-        {
-            get
-            {
-                if ((_OrderOptions == null))
-                {
-                    _OrderOptions = base.CreateObjectSet<OrderOptions>("OrderOptions");
-                }
-                return _OrderOptions;
-            }
-        }
-        private ObjectSet<OrderOptions> _OrderOptions;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<OrderRecipe> OrderRecipe
-        {
-            get
-            {
-                if ((_OrderRecipe == null))
-                {
-                    _OrderRecipe = base.CreateObjectSet<OrderRecipe>("OrderRecipe");
-                }
-                return _OrderRecipe;
-            }
-        }
-        private ObjectSet<OrderRecipe> _OrderRecipe;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Recipe> Recipe
         {
             get
@@ -188,6 +137,22 @@ namespace SLTest.Models
             }
         }
         private ObjectSet<shipTo> _shipTo;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<formOfP> formOfP
+        {
+            get
+            {
+                if ((_formOfP == null))
+                {
+                    _formOfP = base.CreateObjectSet<formOfP>("formOfP");
+                }
+                return _formOfP;
+            }
+        }
+        private ObjectSet<formOfP> _formOfP;
 
         #endregion
         #region AddTo Methods
@@ -198,30 +163,6 @@ namespace SLTest.Models
         public void AddToOptions(Options options)
         {
             base.AddObject("Options", options);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Order EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToOrder(Order order)
-        {
-            base.AddObject("Order", order);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the OrderOptions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToOrderOptions(OrderOptions orderOptions)
-        {
-            base.AddObject("OrderOptions", orderOptions);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the OrderRecipe EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToOrderRecipe(OrderRecipe orderRecipe)
-        {
-            base.AddObject("OrderRecipe", orderRecipe);
         }
     
         /// <summary>
@@ -247,6 +188,14 @@ namespace SLTest.Models
         {
             base.AddObject("shipTo", shipTo);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the formOfP EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToformOfP(formOfP formOfP)
+        {
+            base.AddObject("formOfP", formOfP);
+        }
 
         #endregion
     }
@@ -255,6 +204,112 @@ namespace SLTest.Models
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="formOfP")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class formOfP : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new formOfP object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="descr">Initial value of the Descr property.</param>
+        public static formOfP CreateformOfP(global::System.Int32 id, global::System.String descr)
+        {
+            formOfP formOfP = new formOfP();
+            formOfP.ID = id;
+            formOfP.Descr = descr;
+            return formOfP;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descr
+        {
+            get
+            {
+                return _Descr;
+            }
+            set
+            {
+                OnDescrChanging(value);
+                ReportPropertyChanging("Descr");
+                _Descr = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Descr");
+                OnDescrChanged();
+            }
+        }
+        private global::System.String _Descr;
+        partial void OnDescrChanging(global::System.String value);
+        partial void OnDescrChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_formOfP_shipTo", "shipTo")]
+        public EntityCollection<shipTo> shipTo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<shipTo>("coffeeModel.FK_formOfP_shipTo", "shipTo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<shipTo>("coffeeModel.FK_formOfP_shipTo", "shipTo", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -271,15 +326,13 @@ namespace SLTest.Models
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="drink">Initial value of the drink property.</param>
-        /// <param name="opt">Initial value of the opt property.</param>
         /// <param name="num">Initial value of the num property.</param>
         /// <param name="shipToID">Initial value of the shipToID property.</param>
-        public static itCart CreateitCart(global::System.Int64 id, global::System.Int64 drink, global::System.Int64 opt, global::System.Int16 num, global::System.Int64 shipToID)
+        public static itCart CreateitCart(global::System.Int64 id, global::System.Int64 drink, global::System.Int16 num, global::System.Int64 shipToID)
         {
             itCart itCart = new itCart();
             itCart.ID = id;
             itCart.drink = drink;
-            itCart.opt = opt;
             itCart.num = num;
             itCart.shipToID = shipToID;
             return itCart;
@@ -342,9 +395,9 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int64 opt
+        public Nullable<global::System.Int64> opt
         {
             get
             {
@@ -359,8 +412,8 @@ namespace SLTest.Models
                 OnoptChanged();
             }
         }
-        private global::System.Int64 _opt;
-        partial void OnoptChanging(global::System.Int64 value);
+        private Nullable<global::System.Int64> _opt;
+        partial void OnoptChanging(Nullable<global::System.Int64> value);
         partial void OnoptChanged();
     
         /// <summary>
@@ -709,28 +762,6 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderOptions_Options", "OrderOptions")]
-        public EntityCollection<OrderOptions> OrderOptions
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderOptions>("coffeeModel.FK_OrderOptions_Options", "OrderOptions");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderOptions>("coffeeModel.FK_OrderOptions_Options", "OrderOptions", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_itCart_Options", "itCart")]
         public EntityCollection<itCart> itCart
         {
@@ -743,584 +774,6 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<itCart>("coffeeModel.FK_itCart_Options", "itCart", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Order")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Order : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Order object.
-        /// </summary>
-        /// <param name="orderID">Initial value of the OrderID property.</param>
-        /// <param name="clientID">Initial value of the ClientID property.</param>
-        /// <param name="numTable">Initial value of the NumTable property.</param>
-        /// <param name="orderDateTime">Initial value of the OrderDateTime property.</param>
-        /// <param name="comment">Initial value of the Comment property.</param>
-        public static Order CreateOrder(global::System.Int64 orderID, global::System.Int64 clientID, global::System.Int32 numTable, global::System.DateTime orderDateTime, global::System.String comment)
-        {
-            Order order = new Order();
-            order.OrderID = orderID;
-            order.ClientID = clientID;
-            order.NumTable = numTable;
-            order.OrderDateTime = orderDateTime;
-            order.Comment = comment;
-            return order;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OrderID
-        {
-            get
-            {
-                return _OrderID;
-            }
-            set
-            {
-                if (_OrderID != value)
-                {
-                    OnOrderIDChanging(value);
-                    ReportPropertyChanging("OrderID");
-                    _OrderID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("OrderID");
-                    OnOrderIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _OrderID;
-        partial void OnOrderIDChanging(global::System.Int64 value);
-        partial void OnOrderIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 ClientID
-        {
-            get
-            {
-                return _ClientID;
-            }
-            set
-            {
-                OnClientIDChanging(value);
-                ReportPropertyChanging("ClientID");
-                _ClientID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ClientID");
-                OnClientIDChanged();
-            }
-        }
-        private global::System.Int64 _ClientID;
-        partial void OnClientIDChanging(global::System.Int64 value);
-        partial void OnClientIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 NumTable
-        {
-            get
-            {
-                return _NumTable;
-            }
-            set
-            {
-                OnNumTableChanging(value);
-                ReportPropertyChanging("NumTable");
-                _NumTable = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NumTable");
-                OnNumTableChanged();
-            }
-        }
-        private global::System.Int32 _NumTable;
-        partial void OnNumTableChanging(global::System.Int32 value);
-        partial void OnNumTableChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime OrderDateTime
-        {
-            get
-            {
-                return _OrderDateTime;
-            }
-            set
-            {
-                OnOrderDateTimeChanging(value);
-                ReportPropertyChanging("OrderDateTime");
-                _OrderDateTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("OrderDateTime");
-                OnOrderDateTimeChanged();
-            }
-        }
-        private global::System.DateTime _OrderDateTime;
-        partial void OnOrderDateTimeChanging(global::System.DateTime value);
-        partial void OnOrderDateTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Comment
-        {
-            get
-            {
-                return _Comment;
-            }
-            set
-            {
-                OnCommentChanging(value);
-                ReportPropertyChanging("Comment");
-                _Comment = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Comment");
-                OnCommentChanged();
-            }
-        }
-        private global::System.String _Comment;
-        partial void OnCommentChanging(global::System.String value);
-        partial void OnCommentChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderOptions_Order", "OrderOptions")]
-        public EntityCollection<OrderOptions> OrderOptions
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderOptions>("coffeeModel.FK_OrderOptions_Order", "OrderOptions");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderOptions>("coffeeModel.FK_OrderOptions_Order", "OrderOptions", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderRecipe_Order", "OrderRecipe")]
-        public EntityCollection<OrderRecipe> OrderRecipe
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderRecipe>("coffeeModel.FK_OrderRecipe_Order", "OrderRecipe");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderRecipe>("coffeeModel.FK_OrderRecipe_Order", "OrderRecipe", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="OrderOptions")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class OrderOptions : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new OrderOptions object.
-        /// </summary>
-        /// <param name="orderOptID">Initial value of the OrderOptID property.</param>
-        /// <param name="orderID">Initial value of the OrderID property.</param>
-        /// <param name="optID">Initial value of the OptID property.</param>
-        public static OrderOptions CreateOrderOptions(global::System.Int64 orderOptID, global::System.Int64 orderID, global::System.Int64 optID)
-        {
-            OrderOptions orderOptions = new OrderOptions();
-            orderOptions.OrderOptID = orderOptID;
-            orderOptions.OrderID = orderID;
-            orderOptions.OptID = optID;
-            return orderOptions;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OrderOptID
-        {
-            get
-            {
-                return _OrderOptID;
-            }
-            set
-            {
-                if (_OrderOptID != value)
-                {
-                    OnOrderOptIDChanging(value);
-                    ReportPropertyChanging("OrderOptID");
-                    _OrderOptID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("OrderOptID");
-                    OnOrderOptIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _OrderOptID;
-        partial void OnOrderOptIDChanging(global::System.Int64 value);
-        partial void OnOrderOptIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OrderID
-        {
-            get
-            {
-                return _OrderID;
-            }
-            set
-            {
-                OnOrderIDChanging(value);
-                ReportPropertyChanging("OrderID");
-                _OrderID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("OrderID");
-                OnOrderIDChanged();
-            }
-        }
-        private global::System.Int64 _OrderID;
-        partial void OnOrderIDChanging(global::System.Int64 value);
-        partial void OnOrderIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OptID
-        {
-            get
-            {
-                return _OptID;
-            }
-            set
-            {
-                OnOptIDChanging(value);
-                ReportPropertyChanging("OptID");
-                _OptID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("OptID");
-                OnOptIDChanged();
-            }
-        }
-        private global::System.Int64 _OptID;
-        partial void OnOptIDChanging(global::System.Int64 value);
-        partial void OnOptIDChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderOptions_Options", "Options")]
-        public Options Options
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Options>("coffeeModel.FK_OrderOptions_Options", "Options").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Options>("coffeeModel.FK_OrderOptions_Options", "Options").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Options> OptionsReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Options>("coffeeModel.FK_OrderOptions_Options", "Options");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Options>("coffeeModel.FK_OrderOptions_Options", "Options", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderOptions_Order", "Order")]
-        public Order Order
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderOptions_Order", "Order").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderOptions_Order", "Order").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Order> OrderReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderOptions_Order", "Order");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Order>("coffeeModel.FK_OrderOptions_Order", "Order", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="OrderRecipe")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class OrderRecipe : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new OrderRecipe object.
-        /// </summary>
-        /// <param name="orderRecID">Initial value of the OrderRecID property.</param>
-        /// <param name="orderID">Initial value of the OrderID property.</param>
-        /// <param name="recID">Initial value of the RecID property.</param>
-        public static OrderRecipe CreateOrderRecipe(global::System.Int64 orderRecID, global::System.Int64 orderID, global::System.Int64 recID)
-        {
-            OrderRecipe orderRecipe = new OrderRecipe();
-            orderRecipe.OrderRecID = orderRecID;
-            orderRecipe.OrderID = orderID;
-            orderRecipe.RecID = recID;
-            return orderRecipe;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OrderRecID
-        {
-            get
-            {
-                return _OrderRecID;
-            }
-            set
-            {
-                if (_OrderRecID != value)
-                {
-                    OnOrderRecIDChanging(value);
-                    ReportPropertyChanging("OrderRecID");
-                    _OrderRecID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("OrderRecID");
-                    OnOrderRecIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _OrderRecID;
-        partial void OnOrderRecIDChanging(global::System.Int64 value);
-        partial void OnOrderRecIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 OrderID
-        {
-            get
-            {
-                return _OrderID;
-            }
-            set
-            {
-                OnOrderIDChanging(value);
-                ReportPropertyChanging("OrderID");
-                _OrderID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("OrderID");
-                OnOrderIDChanged();
-            }
-        }
-        private global::System.Int64 _OrderID;
-        partial void OnOrderIDChanging(global::System.Int64 value);
-        partial void OnOrderIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 RecID
-        {
-            get
-            {
-                return _RecID;
-            }
-            set
-            {
-                OnRecIDChanging(value);
-                ReportPropertyChanging("RecID");
-                _RecID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("RecID");
-                OnRecIDChanged();
-            }
-        }
-        private global::System.Int64 _RecID;
-        partial void OnRecIDChanging(global::System.Int64 value);
-        partial void OnRecIDChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderRecipe_Order", "Order")]
-        public Order Order
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderRecipe_Order", "Order").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderRecipe_Order", "Order").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Order> OrderReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Order>("coffeeModel.FK_OrderRecipe_Order", "Order");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Order>("coffeeModel.FK_OrderRecipe_Order", "Order", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderRecipe_Recipe", "Recipe")]
-        public Recipe Recipe
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recipe>("coffeeModel.FK_OrderRecipe_Recipe", "Recipe").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recipe>("coffeeModel.FK_OrderRecipe_Recipe", "Recipe").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Recipe> RecipeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recipe>("coffeeModel.FK_OrderRecipe_Recipe", "Recipe");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Recipe>("coffeeModel.FK_OrderRecipe_Recipe", "Recipe", value);
                 }
             }
         }
@@ -1513,28 +966,6 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderRecipe_Recipe", "OrderRecipe")]
-        public EntityCollection<OrderRecipe> OrderRecipe
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderRecipe>("coffeeModel.FK_OrderRecipe_Recipe", "OrderRecipe");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderRecipe>("coffeeModel.FK_OrderRecipe_Recipe", "OrderRecipe", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_itCart_Recipe", "itCart")]
         public EntityCollection<itCart> itCart
         {
@@ -1570,14 +1001,14 @@ namespace SLTest.Models
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="orderDateTime">Initial value of the OrderDateTime property.</param>
         /// <param name="flImmediateBill">Initial value of the flImmediateBill property.</param>
-        /// <param name="typeOfPay">Initial value of the typeOfPay property.</param>
-        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 typeOfPay)
+        /// <param name="formOfP">Initial value of the formOfP property.</param>
+        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP)
         {
             shipTo shipTo = new shipTo();
             shipTo.ID = id;
             shipTo.OrderDateTime = orderDateTime;
             shipTo.flImmediateBill = flImmediateBill;
-            shipTo.typeOfPay = typeOfPay;
+            shipTo.formOfP = formOfP;
             return shipTo;
         }
 
@@ -1712,24 +1143,24 @@ namespace SLTest.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 typeOfPay
+        public global::System.Int32 formOfP
         {
             get
             {
-                return _typeOfPay;
+                return _formOfP;
             }
             set
             {
-                OntypeOfPayChanging(value);
-                ReportPropertyChanging("typeOfPay");
-                _typeOfPay = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("typeOfPay");
-                OntypeOfPayChanged();
+                OnformOfPChanging(value);
+                ReportPropertyChanging("formOfP");
+                _formOfP = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("formOfP");
+                OnformOfPChanged();
             }
         }
-        private global::System.Int32 _typeOfPay;
-        partial void OntypeOfPayChanging(global::System.Int32 value);
-        partial void OntypeOfPayChanged();
+        private global::System.Int32 _formOfP;
+        partial void OnformOfPChanging(global::System.Int32 value);
+        partial void OnformOfPChanged();
 
         #endregion
     
@@ -1753,6 +1184,44 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<itCart>("coffeeModel.FK_itCart_shipTo", "itCart", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP")]
+        public formOfP formOfP1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<formOfP> formOfP1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP", value);
                 }
             }
         }

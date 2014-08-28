@@ -22,11 +22,11 @@ namespace SLTest.Models
             //public virtual shipTo ShipTo { get; set; }
         public itCart()
         {
-            drink = 0; opt = 0;
+            drink = 0; opt = null;
             rs = (RecipeEntityService)RecipeServiceFactory.Create();
             os = (OptionsEntityService)OptionsServiceFactory.Create();
         }
-        public itCart(int d, int o)
+        public itCart(int d, int? o)
         {
             drink = d; opt = o;
             rs = (RecipeEntityService)RecipeServiceFactory.Create();
@@ -39,7 +39,7 @@ namespace SLTest.Models
             }
             public string optName()
             {
-                if (opt != 0)
+                if (opt != null)
                     return os.Get((int)opt).OptionName;
                 else
                     return "";
@@ -50,7 +50,7 @@ namespace SLTest.Models
             }
             public decimal optPrice()
             {
-                if (opt != 0)
+                if (opt != null)
                     return os.Get((int)opt).Price;
                 else
                     return  0;
@@ -64,7 +64,7 @@ namespace SLTest.Models
                     return x.drink == y.drink && x.opt == y.opt;
                 }
                 public int GetHashCode(itCart x)
-                { return (int)(x.drink ^ x.opt); }
+                { return (int)(x.drink ^ (x.opt==null?0:x.opt)); }
             }
     }
 
@@ -90,7 +90,7 @@ namespace SLTest.Models
                 [StringLength(50)]
                 public string comment { get; set; }
                 [Display(Name = "Способ оплаты")]
-                public int typeOfPay { get; set; }
+                public int formOfP { get; set; }
                // public Dictionary<itCart, int> Cart;
                 [Display(Name = "Счёт сразу")]
                 public bool flImmediateBill{ get; set; }
@@ -98,7 +98,7 @@ namespace SLTest.Models
             }
             public shipTo()
             {
-                typeOfPay = 0;
+                formOfP = 1;
                 flImmediateBill = false;
                 OrderDateTime = DateTime.Now;
             }

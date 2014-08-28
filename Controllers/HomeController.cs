@@ -102,9 +102,15 @@ namespace SLTest.Controllers
                            
                             if (v == "true")
                             {
+                                itCart s=new itCart();
                                 var o = Convert.ToInt32(arOptID[i]);
                                 var d = Convert.ToInt32(menu.AllKeys[i]);
-                                itCart s = new itCart(d,o);
+                                s.drink=d;
+                                if (o==0)
+                                    s.opt=null;
+                                else
+                                    s.opt=o;
+	
                                 if (sKorzina.ContainsKey(s))  sKorzina[s] = sKorzina[s] + 1;
                                     else sKorzina[s] = 1;
                             }

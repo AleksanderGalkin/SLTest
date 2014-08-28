@@ -21,7 +21,8 @@ namespace SLTest.Controllers
             
             
             shipTo st = new shipTo();
-            //st.itCart = (EntityCollection<itCart>)(Session["sKorzina"] as Dictionary<itCart, int>).Keys.AsEnumerable();
+            var t=(from i in db.formOfP select i).ToList() ;
+            ViewBag.stList = t;
 
             return View(st);
         }

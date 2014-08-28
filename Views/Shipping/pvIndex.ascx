@@ -13,11 +13,11 @@
         </div>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.typeOfPay) %>
+            <%: Html.LabelFor(model => model.formOfP) %>
         </div>
         <div class="editor-field">
-         <%: Html.DropDownListFor(model => model.typeOfPay,new SelectList(new int[]{0,1}))%>
-         <%: Html.ValidationMessageFor(model => model.typeOfPay)%>
+         <%: Html.DropDownListFor(model => model.formOfP, new SelectList(ViewBag.stList, "ID", "Descr", 1))%>
+         <%: Html.ValidationMessageFor(model => model.formOfP)%>
         </div>
         
         <div class="editor-label">
