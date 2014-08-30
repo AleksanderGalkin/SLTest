@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SLTest.Models;
 using System.Reflection;
 using System.Data.Objects.DataClasses;
+using System.Web.UI;
 
 namespace SLTest.Controllers
 {
@@ -74,13 +75,16 @@ namespace SLTest.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [MultiButton(MatchFormKey = "sendCart", MatchFormValue = "Оправить")]
-        
-        public ActionResult CartSubmit(int? a, int? b, int? с)
+
+
+        public ActionResult CartSubmit([Bind(Exclude = "flPaid,dtPaid,WaiterID")]int? a, int? b, int? с, FormCollection fc)
         {
             //shipTo par = new shipTo(Session["sKorzina"] as Dictionary<itCart, int>);
             shipTo par = new shipTo();
             TryUpdateModel(par);
+            
             if (ModelState.IsValid)
             {
                 

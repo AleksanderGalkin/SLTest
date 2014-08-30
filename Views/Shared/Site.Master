@@ -27,6 +27,17 @@
             <div id="menucontainer">
             
                 <ul id="menu">
+                <%  %>
+                    <% 
+                    //    if () //SLTest.Models.btOrder.active)
+//{
+                    //      string text = SLTest.Models.btOrder.userName + ", у Вас не оплаченные заказы:\n " +
+                    //          SLTest.Models.btOrder.notPaidOrdNum + ".";
+                                %>
+                    <li><%: Html.ActionLink("", "Index", "Home")%></li>
+                    <% //} %>
+
+
                     <li><%: Html.ActionLink("начало", "Index", "Home")%></li>
                     <li><%: Html.ActionLink("администрирование", "Administration", "Home", new { modName = "Recipe",pageNum=1 },null)%></li>              
                     <li><%: Html.ActionLink("о нас", "About", "Home")%></li>

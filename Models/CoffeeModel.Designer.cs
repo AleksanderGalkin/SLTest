@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -23,6 +24,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 
 #endregion
 
@@ -153,8 +155,25 @@ namespace SLTest.Models
             }
         }
         private ObjectSet<formOfP> _formOfP;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Waiters> Waiters
+        {
+            get
+            {
+                if ((_Waiters == null))
+                {
+                    _Waiters = base.CreateObjectSet<Waiters>("Waiters");
+                }
+                return _Waiters;
+            }
+        }
+        private ObjectSet<Waiters> _Waiters;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -196,13 +215,21 @@ namespace SLTest.Models
         {
             base.AddObject("formOfP", formOfP);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Waiters EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToWaiters(Waiters waiters)
+        {
+            base.AddObject("Waiters", waiters);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -229,6 +256,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -283,6 +311,7 @@ namespace SLTest.Models
         partial void OnDescrChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -309,6 +338,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -339,6 +369,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -465,6 +496,7 @@ namespace SLTest.Models
         partial void OnshipToIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -583,6 +615,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -613,6 +646,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -715,6 +749,7 @@ namespace SLTest.Models
         partial void OnPriceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -779,6 +814,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -809,6 +845,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -935,6 +972,7 @@ namespace SLTest.Models
         partial void OnSortChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -983,6 +1021,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1002,17 +1041,20 @@ namespace SLTest.Models
         /// <param name="orderDateTime">Initial value of the OrderDateTime property.</param>
         /// <param name="flImmediateBill">Initial value of the flImmediateBill property.</param>
         /// <param name="formOfP">Initial value of the formOfP property.</param>
-        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP)
+        /// <param name="flPaid">Initial value of the flPaid property.</param>
+        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP, global::System.Boolean flPaid)
         {
             shipTo shipTo = new shipTo();
             shipTo.ID = id;
             shipTo.OrderDateTime = orderDateTime;
             shipTo.flImmediateBill = flImmediateBill;
             shipTo.formOfP = formOfP;
+            shipTo.flPaid = flPaid;
             return shipTo;
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1161,8 +1203,105 @@ namespace SLTest.Models
         private global::System.Int32 _formOfP;
         partial void OnformOfPChanging(global::System.Int32 value);
         partial void OnformOfPChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String userName
+        {
+            get
+            {
+                return _userName;
+            }
+            set
+            {
+                OnuserNameChanging(value);
+                ReportPropertyChanging("userName");
+                _userName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("userName");
+                OnuserNameChanged();
+            }
+        }
+        private global::System.String _userName;
+        partial void OnuserNameChanging(global::System.String value);
+        partial void OnuserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean flPaid
+        {
+            get
+            {
+                return _flPaid;
+            }
+            set
+            {
+                OnflPaidChanging(value);
+                ReportPropertyChanging("flPaid");
+                _flPaid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("flPaid");
+                OnflPaidChanged();
+            }
+        }
+        private global::System.Boolean _flPaid;
+        partial void OnflPaidChanging(global::System.Boolean value);
+        partial void OnflPaidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> dtPaid
+        {
+            get
+            {
+                return _dtPaid;
+            }
+            set
+            {
+                OndtPaidChanging(value);
+                ReportPropertyChanging("dtPaid");
+                _dtPaid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("dtPaid");
+                OndtPaidChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _dtPaid;
+        partial void OndtPaidChanging(Nullable<global::System.DateTime> value);
+        partial void OndtPaidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> waiterID
+        {
+            get
+            {
+                return _waiterID;
+            }
+            set
+            {
+                OnwaiterIDChanging(value);
+                ReportPropertyChanging("waiterID");
+                _waiterID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("waiterID");
+                OnwaiterIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _waiterID;
+        partial void OnwaiterIDChanging(Nullable<global::System.Int32> value);
+        partial void OnwaiterIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1225,10 +1364,159 @@ namespace SLTest.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters")]
+        public Waiters Waiters
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Waiters> WaitersReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters", value);
+                }
+            }
+        }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Waiters")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Waiters : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Waiters object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Waiters CreateWaiters(global::System.Int32 id, global::System.String name)
+        {
+            Waiters waiters = new Waiters();
+            waiters.ID = id;
+            waiters.Name = name;
+            return waiters;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_Waiters", "shipTo")]
+        public EntityCollection<shipTo> shipTo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<shipTo>("coffeeModel.FK_shipTo_Waiters", "shipTo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<shipTo>("coffeeModel.FK_shipTo_Waiters", "shipTo", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
     #endregion
+
     
 }

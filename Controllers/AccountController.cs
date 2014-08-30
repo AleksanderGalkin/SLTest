@@ -43,6 +43,7 @@ namespace SLTest.Controllers
             {
                 if (MembershipService.ValidateUser(model.UserName, model.Password))
                 {
+                    
                     FormsService.SignIn(model.UserName, model.RememberMe);
                     if (!String.IsNullOrEmpty(returnUrl))
                     {

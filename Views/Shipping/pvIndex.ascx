@@ -34,6 +34,9 @@
             <%: Html.EditorFor(model => model.comment)%>
             <%: Html.ValidationMessageFor(model => model.comment)%>
         </div>
+        <div class="editor-field">
+            <%: Html.Hidden("userName",Page.User.Identity.Name)%>
+        </div>
         <p>
             <input type="submit" name="sendCart" value="Оправить" />
         </p>

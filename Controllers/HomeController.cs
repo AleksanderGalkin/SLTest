@@ -13,13 +13,15 @@ namespace SLTest.Controllers
     [HandleError]
     public class HomeController : Controller
     {
+
         private coffeeEntities db = new coffeeEntities();
         private int itemsPerPage = 10;
         VMMenu<VMMenuItem> vmmenu=new VMMenu<VMMenuItem>();
-
+       
         public ActionResult Index(int pageNum=1)
         {
-            
+
+         //   btOrder.("alec");
             vmmenu.paginginfo.CurrentPage = pageNum;
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 4;
@@ -214,7 +216,7 @@ namespace SLTest.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult Korzina()
         {
             List<KeyValuePair<SLTest.Models.itCart, int>> a;
