@@ -614,5 +614,65 @@ a.btReCalc:active
     font: bold 100% Verdana;
 }
 
+/* Styles for Orders
+----------------------------------------------------------*/
 
+a.btOrders
+{
+    background-color: #DCDCDC; 
+    color:#000;
+    text-decoration: none; /* отмена подчеркивания */
+    padding: 0.0em 0.5em; /* внутренние отступы ссылок */
+    text-align: center; /* центровка текста */
+    font-size:1em;
+    display:inline-block;
+    border:1px solid #696969
 
+  
+}
+
+ a.btToPay:hover
+{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+ 
+}
+
+a.btToPay:active
+{
+ background-color: #34B4E3;
+}
+tr.rowOrders:hover
+{
+    background-color: #A6F4FF;
+    cursor:pointer
+}
+
+.section{
+border-left:solid 1px #999;
+border-bottom:solid 1px #999;
+float:left;
+height:58px;
+margin-left:10px;
+min-width:98px;
+text-align:center;
+display:block;
+}
+.section .display-field
+{
+    font: bold 100% Verdana;
+}
+
+#wrapper div:first-child{margin-left:0px;}
+
+.orderDetails
+{
+    margin-top:10px;
+    display:inline-block;
+    width:100%;
+    
+}
+ div table td.trNoBorder 
+{
+    border-color:transparent;
+}    

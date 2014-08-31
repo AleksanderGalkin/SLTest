@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="SLTest.Models" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -27,15 +27,15 @@
             <div id="menucontainer">
             
                 <ul id="menu">
-                <%  %>
-                    <% 
-                    //    if () //SLTest.Models.btOrder.active)
-//{
-                    //      string text = SLTest.Models.btOrder.userName + ", у Вас не оплаченные заказы:\n " +
-                    //          SLTest.Models.btOrder.notPaidOrdNum + ".";
+                
+                    <% getOrderInfo.btOrderStru info= this.getOrder();
+                       if (info.active) 
+{
+                          string text = info.userName + ", у Вас не оплаченные заказы:\n " +
+                              info.notPaidOrdNum;
                                 %>
-                    <li><%: Html.ActionLink("", "Index", "Home")%></li>
-                    <% //} %>
+                    <li><%: Html.ActionLink(text, "Index", "Order", new { parUser = info.userName },null)%></li>
+                    <% } %>
 
 
                     <li><%: Html.ActionLink("начало", "Index", "Home")%></li>

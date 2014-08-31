@@ -9,28 +9,31 @@ using System.Web.UI;
 
 namespace SLTest.Models
 {
-    public static class btOrder
+
+
+
+    
+    public static class getOrderInfo
     {
         private static coffeeEntities db = new coffeeEntities();
-        public static int? totOrdNum;
-        public static int? notPaidOrdNum;
-        public static bool active;
-        public static string userName;
 
-          static btOrder()
+        public struct btOrderStru
         {
-            totOrdNum = null;
-            notPaidOrdNum = null;
-            active = false;
-            userName = null;
+            public int? totOrdNum;
+            public int? notPaidOrdNum;
+            public bool active;
+            public string userName;
+
         }
 
-         public static string Refresh(this System.Web.Mvc.ViewMasterPage parPage)
+        public static btOrderStru getOrder(this System.Web.Mvc.ViewMasterPage parPage)
         {
             string parUser = parPage.Page.User.Identity.Name;//.User.Identity.Name;
-            
+            //btOrderStru ret=new btOrderStru();
+            btOrderStru ret = new btOrderStru();
             if (parUser != null && parUser.Length > 0)
             {
+               
                 var result = from i in db.shipTo
                              where i.userName == parUser
                              group i by i.flPaid
@@ -38,7 +41,7 @@ namespace SLTest.Models
                              //where iGr.Key==true
                              //select iGr.Count()
                              ;
-                totOrdNum = (from i in db.shipTo
+              ret.totOrdNum = (from i in db.shipTo
                              where i.userName == parUser
                              select i).Count();
                              //into iGr
@@ -46,7 +49,7 @@ namespace SLTest.Models
                              //select iGr.Count()
                              ;
 
-                notPaidOrdNum = (from i in db.shipTo
+                ret.notPaidOrdNum = (from i in db.shipTo
                                 where i.userName == parUser
                                 group i by i.flPaid
                                     into iGr
@@ -54,18 +57,18 @@ namespace SLTest.Models
                                     select iGr.Count()).FirstOrDefault();
                    
                 
-                active = true;
-                userName = parUser;
+                ret.active = true;
+                ret.userName = parUser;
             }
             else
             {
-                totOrdNum = null;
-                notPaidOrdNum = null;
-                active = false;
-                userName = null;
+                ret.totOrdNum = null;
+                ret.notPaidOrdNum = null;
+                ret.active = false;
+                ret.userName = null;
             }
 
-            return "";
+            return ret;
         }
 
     }

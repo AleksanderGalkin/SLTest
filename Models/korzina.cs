@@ -11,11 +11,7 @@ namespace SLTest.Models
 {
     public partial class itCart
     {
-            //public int ID { get; set;}
-            //public int shipToID { get; set; }
-            
-            //public int drink{get;set;}
-            //public int opt {get; set;}
+
         private RecipeEntityService rs;
         private OptionsEntityService os;
 
@@ -73,8 +69,8 @@ namespace SLTest.Models
         [MetadataType(typeof(shipToValidation))]
            public partial class shipTo // оформление заказа
     {
-           // public enum tPay{ Наличные, Карта } ;
-           // public tPay typeOfPay { get; set; }
+                      
+            public string PSystem  { get; set; }
             [Bind(Exclude = "ID")]
             public class shipToValidation
             {
@@ -86,6 +82,7 @@ namespace SLTest.Models
                 public int? tableNum { get; set; }
                 public DateTime OrderDateTime { get; set; }
                 [Display(Name="Комментарий")]
+                [UIHint("MultilineText")]
                 [DisplayFormat(ConvertEmptyStringToNull = false)]
                 [StringLength(50)]
                 public string comment { get; set; }
@@ -102,7 +99,11 @@ namespace SLTest.Models
                 flImmediateBill = false;
                 OrderDateTime = DateTime.Now;
             }
-
+            public  List<string> getListPSystems()
+            {
+                string[] t = { "Visa", "MasterCard", "Pro100", "UnionCard" };
+                return t.ToList();
+            }
             
     }
 

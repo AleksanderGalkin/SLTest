@@ -122,30 +122,7 @@ namespace SLTest.Controllers
                         return RedirectToAction("Index");
                     }
 
-                    #region OldCode
-                    //if (ModelState.IsValid)
-                    //{
-                    //    Dictionary<korzina.zakaz, int> sKorzina = Session["sKorzina"] as Dictionary<korzina.zakaz, int>;
-                    //    if (sKorzina == null) sKorzina = new Dictionary<korzina.zakaz, int>();
-                    //    Session["sKorzina"] = sKorzina;
-                    //    for (int i = 0; i < menu.Count; i++)
-                    //    {
-                    //        var v = menu[i].Split(new char[] { ',' })[0];
 
-                    //        if (v == "true")
-                    //        {
-                    //            var o = Convert.ToInt32(menu["item.OptID"].Split(new char[] { ',' })[i - 1]);
-                    //            var d = Convert.ToInt32(menu.AllKeys[i]);
-                    //            korzina.zakaz s = new korzina.zakaz(d, o);
-                    //            if (sKorzina.ContainsKey(s)) sKorzina[s] = sKorzina[s] + 1;
-                    //            else sKorzina[s] = 1;
-                    //        }
-
-                    //    }
-                    //    Session["sKorzina"] = sKorzina;
-                    //    return RedirectToAction("Index");
-                    //}
-                    #endregion
 
                 }
                 catch (Exception ex)

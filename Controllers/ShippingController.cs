@@ -104,6 +104,8 @@ namespace SLTest.Controllers
             }
             else
             {
+                var t = (from i in db.formOfP select i).ToList();
+                ViewBag.stList = t;
                 return View("pvIndex",par);
             }
         }
