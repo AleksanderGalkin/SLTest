@@ -15,7 +15,7 @@
             <div class="display-label">Столик</div>
             <div class="display-field"><%: Model.tableNum %></div>
     </div>
-    <div class="section">
+    <div class="section comment">
             <div class="display-label">Комментарий</div>
             <div class="display-field"><%: Model.comment %></div>
     </div>
@@ -109,7 +109,8 @@
     </tr>
     <tr  class="trNoBorder" >
         <td colspan="5" align="right" class="trNoBorder">
-        <%: Html.ActionLink("Оплатить", "Payment", new { id = Model.ID }, new { @class = "btOrders btToPay" })%>
+        <% if(!Model.flPaid) %>
+         <%: Html.ActionLink("Оплатить", "Payment", new { id = Model.ID }, new { @class = "btOrders btToPay" })%>
         </td>
     </tr>
    </table>

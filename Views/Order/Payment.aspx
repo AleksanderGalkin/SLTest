@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" >
 
 <%using(Html.BeginForm()){ %>
+<%: Html.ValidationSummary(true) %>
 <h2>Оплата заказа от <%:Model.OrderDateTime %></h2>
 <div>
 Вы выбрали способ оплаты <%:Html.DropDownListFor(m => m.formOfP, new SelectList(ViewBag.stList, "ID", "Descr", 1)
@@ -42,7 +43,7 @@
     }
     $(document).ready(function () {
         var t = document.getElementById("selformOdP");
-        onClickFormOfP(t);
+        //onClickFormOfP(t);
     });
 </script>
 

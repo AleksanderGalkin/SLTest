@@ -133,6 +133,12 @@ page width. Or, you can specify an exact pixel width. */
     font-size: 32px !important;
 }
 
+#ws_container
+{
+    max-width:1600px;
+    min-width:1450px;
+    border-color:Red;
+}
 #main
 {
    
@@ -143,7 +149,8 @@ page width. Or, you can specify an exact pixel width. */
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
     
     float:right;
-    width:70%;
+    width:75%;
+
      
 }
 #navigator
@@ -156,7 +163,8 @@ page width. Or, you can specify an exact pixel width. */
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
     
     float:left;
-    width:20%;
+    width:15%;
+
      
 }
 
@@ -662,8 +670,15 @@ display:block;
 {
     font: bold 100% Verdana;
 }
-
-#wrapper div:first-child{margin-left:0px;}
+.section.comment
+{
+    max-width:300px;
+    min-width:98px;
+}
+#wrapper div:first-child
+{
+    margin-left:0px;
+}
 
 .orderDetails
 {

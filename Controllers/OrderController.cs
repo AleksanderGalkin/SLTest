@@ -47,9 +47,16 @@ namespace SLTest.Controllers
             {
                 Console.WriteLine(obj.PSystem);
                 Console.WriteLine(obj.formOfP);
+                return View("Success");
+            }
+            else
+            {
+                var t = (from i in db.formOfP select i).ToList();
+                ViewBag.stList = t;
+                return View(obj);
             }
 
-            return View("Success");
+            
         }
     }//---------public class OrderController : Controller
 
