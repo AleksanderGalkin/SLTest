@@ -41,12 +41,12 @@ namespace SLTest.Controllers
         [HttpPost]
         public ActionResult Payment([Bind(Exclude="tableNum")] FormCollection fc)
         {
-            shipTo obj = new shipTo();
+            shipTo2 obj = new shipTo2();
             TryUpdateModel(obj, fc);
             if (ModelState.IsValid)
             {
-                Console.WriteLine(obj.PSystem);
-                Console.WriteLine(obj.formOfP);
+                obj.dtPaid = DateTime.Now;
+                obj.flPaid = true;
                 return View("Success");
             }
             else

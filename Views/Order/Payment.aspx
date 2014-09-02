@@ -43,7 +43,7 @@
     }
     $(document).ready(function () {
         var t = document.getElementById("selformOdP");
-        //onClickFormOfP(t);
+        onClickFormOfP(t);
     });
 </script>
 

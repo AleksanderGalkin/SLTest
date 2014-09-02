@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.shipTo>" %>
 
-
+<%: Html.ValidationSummary(true)%>
     <fieldset>
         <legend>Оформление заказа</legend>
 
