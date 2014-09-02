@@ -51,7 +51,10 @@ namespace SLTest.Models
                 else
                     return  0;
             }
-
+            public decimal totalCost()
+            {
+                return drinkPrice() + optPrice();
+            }
             public class itCartComparer : IEqualityComparer<itCart>
             {
 
@@ -67,11 +70,10 @@ namespace SLTest.Models
 
 
         [MetadataType(typeof(shipToValidation))]
-           public partial class shipTo:IValidatableObject // оформление заказа
+           public partial class shipTo// оформление заказа
     {
-                      
-            public string PSystem  { get; set; }
-            [Bind(Exclude = "ID")]
+            public  string PSystem { get; set; }        
+             [Bind(Exclude = "ID")]
             public class shipToValidation
             {
                 
@@ -106,21 +108,30 @@ namespace SLTest.Models
             }
 
 
+
+    }
+
+
+        [MetadataType(typeof(shipToValidation))]
+        public partial class shipTo2:shipTo, IValidatableObject // оформление заказа
+        {
+
+           // public override string PSystem { get; set; }
             public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
             {
                 coffeeEntities db = new coffeeEntities();
                 List<ValidationResult> error = new List<ValidationResult>();
                 string formOfPDescr = (from i in db.formOfP
-                                    where i.ID == formOfP
-                                    select i.Descr).FirstOrDefault();
-                if(string.IsNullOrEmpty(formOfPDescr))
+                                       where i.ID == formOfP
+                                       select i.Descr).FirstOrDefault();
+                if (string.IsNullOrEmpty(formOfPDescr))
                     error.Add(new ValidationResult("В справочнике Форма платежа не найден вид 'Банковская карта'"));
                 if (formOfPDescr.Trim() == "Банковская карта" && string.IsNullOrEmpty(PSystem))
-                       error.Add(new ValidationResult("Выберите тип Вашей карты пожалуйста"));
+                    error.Add(new ValidationResult("Выберите тип Вашей карты пожалуйста"));
                 //throw new NotImplementedException();
                 return error;
             }
-    }
+        }
 
 
 }

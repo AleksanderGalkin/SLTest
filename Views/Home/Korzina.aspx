@@ -24,7 +24,7 @@ else
    }
    ))
    {%>
-<%: Html.ValidationSummary(true)%>
+
    
     <div id="aj">
 

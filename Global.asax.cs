@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SLTest.Service;
 
 namespace SLTest
 {
@@ -47,6 +48,7 @@ namespace SLTest
 
         protected void Application_Start()
         {
+	    
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);

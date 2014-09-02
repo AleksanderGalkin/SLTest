@@ -27,11 +27,14 @@ namespace SLTest.Controllers
 
             return View(st);
         }
-       
-        public ActionResult pvCashOrCart()
-        {
 
-            return View();
+        public ActionResult pvCashOrCart(int ShipToID)
+        {
+            var res = (from i in db.shipTo
+                       where i.ID == ShipToID
+                       select i).FirstOrDefault();
+
+            return View(res);
         }
 
 
@@ -69,9 +72,16 @@ namespace SLTest.Controllers
         public ActionResult CartSubmit(int? a, int? b)
         {
             Dictionary<itCart, int> par = new Dictionary<itCart, int>();
-            UpdateModel(par);
-            Session["sKorzina"] = par;
-            return RedirectToAction("pvIndex", "Shipping");
+            TryUpdateModel(par);
+            if (ModelState.IsValid)
+            {
+                Session["sKorzina"] = par;
+                return RedirectToAction("pvIndex", "Shipping");
+            }
+            else
+            {
+                return View("pvKorzina", par);
+            }
         }
 
         [HttpPost]
@@ -89,18 +99,22 @@ namespace SLTest.Controllers
             {
                 
                 db.AddToshipTo(par);
-                db.SaveChanges();
+                
 
                 Dictionary<itCart, int> itCarts = Session["sKorzina"] as Dictionary<itCart, int>;
                 foreach (var i in itCarts)
                 {
-                    i.Key.num = (short)i.Value;
-                    i.Key.shipToID = par.ID;
-                    db.AddToitCart(i.Key);
-                    db.SaveChanges();
+                    if (i.Value > 0)
+                    {
+                        i.Key.num = (short)i.Value;
+                        i.Key.shipToID = par.ID;
+                        db.AddToitCart(i.Key);
+   
+                    }
+                    
                 }
-                
-                return RedirectToAction("pvCashOrCart", "Shipping");
+                db.SaveChanges();
+                return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID=par.ID });
             }
             else
             {
