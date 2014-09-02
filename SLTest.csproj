@@ -85,7 +85,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Service\ConsoleManager.cs" />
     <Compile Include="Service\Helper\btOrder.cs" />
     <Compile Include="Models\CoffeeModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -148,8 +147,6 @@
     <Content Include="Views\Shipping\Index.aspx" />
     <Content Include="Views\Shipping\pvCashOrCart.ascx" />
     <Content Include="Views\Shipping\pvIndex.ascx" />
-    <Content Include="Views\Test\Create.aspx" />
-    <Content Include="Views\Test\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

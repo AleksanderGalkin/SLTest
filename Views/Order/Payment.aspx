@@ -5,12 +5,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" >
 
-<%using(Html.BeginForm()){ %>
-<%: Html.ValidationSummary(true) %>
-<h2>Оплата заказа от <%:Model.OrderDateTime %></h2>
+<%using (Html.BeginForm(new { id = Model.ID }))
+  { %>
+<%: Html.ValidationSummary(true)%>
+<h2>Оплата заказа от <%:Model.OrderDateTime%></h2>
 <div>
 Вы выбрали способ оплаты <%:Html.DropDownListFor(m => m.formOfP, new SelectList(ViewBag.stList, "ID", "Descr", 1)
-                            , new { onChange = "onClickFormOfP(this)",id = "selformOdP" })%>
+                            , new { onChange = "onClickFormOfP(this)", id = "selformOdP" })%>
 <br/>
 При желании Вы можете измениь свой выбор.
 </div>
@@ -26,7 +27,8 @@
 <%}%>
 </ul>
 </fieldset>
-<%:Html.HiddenFor(m=>m.tableNum)%>
+<%:Html.HiddenFor(m => m.tableNum)%>
+
 <input type="submit"  value="Оплатить" />
 <%} %>
 

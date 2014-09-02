@@ -39,15 +39,40 @@ namespace SLTest.Controllers
             return View(v_order);
         }
         [HttpPost]
-        public ActionResult Payment([Bind(Exclude="tableNum")] FormCollection fc)
+        public ActionResult Payment([Bind(Exclude="tableNum")]int id, FormCollection fc)
         {
             shipTo2 obj = new shipTo2();
             TryUpdateModel(obj, fc);
+
             if (ModelState.IsValid)
             {
-                obj.dtPaid = DateTime.Now;
-                obj.flPaid = true;
-                return View("Success");
+
+
+                var res = (from i in db.shipTo
+                           where i.ID == id
+                           select i).FirstOrDefault();
+                res.formOfP = obj.formOfP;
+                if (res.formOfP1.Descr.Trim() == "Банковская карта")
+                {
+                    res.dtPaid = DateTime.Now;
+                    res.flPaid = true;
+                }
+                TryUpdateModel(res);
+
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+                    
+                    ViewBag.formOfP1 = res.formOfP1.Descr.Trim();
+                    return View("Success");
+                }
+                else
+                {
+                    var t = (from i in db.formOfP select i).ToList();
+                    ViewBag.stList = t;
+                    return View(obj);
+                }
+                
             }
             else
             {
