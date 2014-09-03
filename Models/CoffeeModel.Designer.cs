@@ -25,6 +25,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.PayStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 
 #endregion
 
@@ -171,6 +174,54 @@ namespace SLTest.Models
             }
         }
         private ObjectSet<Waiters> _Waiters;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<OrderDashBoards> OrderDashBoards
+        {
+            get
+            {
+                if ((_OrderDashBoards == null))
+                {
+                    _OrderDashBoards = base.CreateObjectSet<OrderDashBoards>("OrderDashBoards");
+                }
+                return _OrderDashBoards;
+            }
+        }
+        private ObjectSet<OrderDashBoards> _OrderDashBoards;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<OrderStages> OrderStages
+        {
+            get
+            {
+                if ((_OrderStages == null))
+                {
+                    _OrderStages = base.CreateObjectSet<OrderStages>("OrderStages");
+                }
+                return _OrderStages;
+            }
+        }
+        private ObjectSet<OrderStages> _OrderStages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PayStages> PayStages
+        {
+            get
+            {
+                if ((_PayStages == null))
+                {
+                    _PayStages = base.CreateObjectSet<PayStages>("PayStages");
+                }
+                return _PayStages;
+            }
+        }
+        private ObjectSet<PayStages> _PayStages;
 
         #endregion
 
@@ -222,6 +273,30 @@ namespace SLTest.Models
         public void AddToWaiters(Waiters waiters)
         {
             base.AddObject("Waiters", waiters);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the OrderDashBoards EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOrderDashBoards(OrderDashBoards orderDashBoards)
+        {
+            base.AddObject("OrderDashBoards", orderDashBoards);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the OrderStages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOrderStages(OrderStages orderStages)
+        {
+            base.AddObject("OrderStages", orderStages);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PayStages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPayStages(PayStages payStages)
+        {
+            base.AddObject("PayStages", payStages);
         }
 
         #endregion
@@ -820,6 +895,581 @@ namespace SLTest.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="OrderDashBoards")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class OrderDashBoards : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new OrderDashBoards object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="shipToID">Initial value of the shipToID property.</param>
+        /// <param name="stageID1">Initial value of the stageID1 property.</param>
+        /// <param name="stageID2">Initial value of the stageID2 property.</param>
+        /// <param name="stageDT">Initial value of the stageDT property.</param>
+        /// <param name="username">Initial value of the username property.</param>
+        public static OrderDashBoards CreateOrderDashBoards(global::System.Int32 id, global::System.Int64 shipToID, global::System.Int32 stageID1, global::System.Int32 stageID2, global::System.DateTime stageDT, global::System.String username)
+        {
+            OrderDashBoards orderDashBoards = new OrderDashBoards();
+            orderDashBoards.ID = id;
+            orderDashBoards.shipToID = shipToID;
+            orderDashBoards.stageID1 = stageID1;
+            orderDashBoards.stageID2 = stageID2;
+            orderDashBoards.stageDT = stageDT;
+            orderDashBoards.username = username;
+            return orderDashBoards;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 shipToID
+        {
+            get
+            {
+                return _shipToID;
+            }
+            set
+            {
+                OnshipToIDChanging(value);
+                ReportPropertyChanging("shipToID");
+                _shipToID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("shipToID");
+                OnshipToIDChanged();
+            }
+        }
+        private global::System.Int64 _shipToID;
+        partial void OnshipToIDChanging(global::System.Int64 value);
+        partial void OnshipToIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 stageID1
+        {
+            get
+            {
+                return _stageID1;
+            }
+            set
+            {
+                OnstageID1Changing(value);
+                ReportPropertyChanging("stageID1");
+                _stageID1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("stageID1");
+                OnstageID1Changed();
+            }
+        }
+        private global::System.Int32 _stageID1;
+        partial void OnstageID1Changing(global::System.Int32 value);
+        partial void OnstageID1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 stageID2
+        {
+            get
+            {
+                return _stageID2;
+            }
+            set
+            {
+                OnstageID2Changing(value);
+                ReportPropertyChanging("stageID2");
+                _stageID2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("stageID2");
+                OnstageID2Changed();
+            }
+        }
+        private global::System.Int32 _stageID2;
+        partial void OnstageID2Changing(global::System.Int32 value);
+        partial void OnstageID2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime stageDT
+        {
+            get
+            {
+                return _stageDT;
+            }
+            set
+            {
+                OnstageDTChanging(value);
+                ReportPropertyChanging("stageDT");
+                _stageDT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("stageDT");
+                OnstageDTChanged();
+            }
+        }
+        private global::System.DateTime _stageDT;
+        partial void OnstageDTChanging(global::System.DateTime value);
+        partial void OnstageDTChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                OnusernameChanging(value);
+                ReportPropertyChanging("username");
+                _username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("username");
+                OnusernameChanged();
+            }
+        }
+        private global::System.String _username;
+        partial void OnusernameChanging(global::System.String value);
+        partial void OnusernameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages")]
+        public OrderStages OrderStages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderStages").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderStages").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<OrderStages> OrderStagesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderStages", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages")]
+        public PayStages PayStages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PayStages> PayStagesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo")]
+        public shipTo shipTo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<shipTo> shipToReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="OrderStages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class OrderStages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new OrderStages object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="descr">Initial value of the Descr property.</param>
+        /// <param name="style">Initial value of the Style property.</param>
+        public static OrderStages CreateOrderStages(global::System.Int32 id, global::System.String descr, global::System.String style)
+        {
+            OrderStages orderStages = new OrderStages();
+            orderStages.ID = id;
+            orderStages.Descr = descr;
+            orderStages.Style = style;
+            return orderStages;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descr
+        {
+            get
+            {
+                return _Descr;
+            }
+            set
+            {
+                OnDescrChanging(value);
+                ReportPropertyChanging("Descr");
+                _Descr = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Descr");
+                OnDescrChanged();
+            }
+        }
+        private global::System.String _Descr;
+        partial void OnDescrChanging(global::System.String value);
+        partial void OnDescrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Style
+        {
+            get
+            {
+                return _Style;
+            }
+            set
+            {
+                OnStyleChanging(value);
+                ReportPropertyChanging("Style");
+                _Style = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Style");
+                OnStyleChanged();
+            }
+        }
+        private global::System.String _Style;
+        partial void OnStyleChanging(global::System.String value);
+        partial void OnStyleChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderDashBoards")]
+        public EntityCollection<OrderDashBoards> OrderDashBoards
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderDashBoards");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_OrderStages", "OrderDashBoards", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="PayStages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PayStages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PayStages object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="descr">Initial value of the Descr property.</param>
+        /// <param name="style">Initial value of the Style property.</param>
+        public static PayStages CreatePayStages(global::System.Int32 id, global::System.String descr, global::System.String style)
+        {
+            PayStages payStages = new PayStages();
+            payStages.ID = id;
+            payStages.Descr = descr;
+            payStages.Style = style;
+            return payStages;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descr
+        {
+            get
+            {
+                return _Descr;
+            }
+            set
+            {
+                OnDescrChanging(value);
+                ReportPropertyChanging("Descr");
+                _Descr = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Descr");
+                OnDescrChanged();
+            }
+        }
+        private global::System.String _Descr;
+        partial void OnDescrChanging(global::System.String value);
+        partial void OnDescrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Style
+        {
+            get
+            {
+                return _Style;
+            }
+            set
+            {
+                OnStyleChanging(value);
+                ReportPropertyChanging("Style");
+                _Style = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Style");
+                OnStyleChanged();
+            }
+        }
+        private global::System.String _Style;
+        partial void OnStyleChanging(global::System.String value);
+        partial void OnStyleChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "OrderDashBoards")]
+        public EntityCollection<OrderDashBoards> OrderDashBoards
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_PayStages", "OrderDashBoards");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_PayStages", "OrderDashBoards", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Recipe")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1399,6 +2049,28 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "OrderDashBoards")]
+        public EntityCollection<OrderDashBoards> OrderDashBoards
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards", value);
                 }
             }
         }
