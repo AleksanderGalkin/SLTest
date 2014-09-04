@@ -14,7 +14,7 @@ namespace SLTest.Models
         //public int stageID2 { get; set; }
         //public DateTime stageDT { get; set; }
         //public string username { get; set; }
-        public bool CanBeDeleted() { return true; }
+ 
 
     }
     public partial class OrderStages:IBase

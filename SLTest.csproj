@@ -78,6 +78,7 @@
     <Compile Include="Controllers\NavigatorController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderDashBoardController.cs" />
     <Compile Include="Controllers\PageHelper.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\ShippingController.cs" />
@@ -104,20 +105,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Factory\OptionsServiceFactory.cs" />
     <Compile Include="Service\Helper\MyPager.cs" />
-    <Compile Include="Service\Interface\OrderDashBoardsEntityService.cs" />
-    <Compile Include="Service\Interface\PayStagesEntityService.cs" />
-    <Compile Include="Service\Interface\OrderStagesEntityService.cs" />
-    <Compile Include="Service\Interface\OptionEntityService.cs" />
+    <Compile Include="Service\OrderDashBoardsEntityService.cs" />
+    <Compile Include="Service\PayStagesEntityService.cs" />
+    <Compile Include="Service\OrderStagesEntityService.cs" />
+    <Compile Include="Service\OptionEntityService.cs" />
     <Compile Include="Service\Factory\RecipeServiceFactory.cs" />
     <Compile Include="Service\Interface\IBaseService.cs" />
-    <Compile Include="Service\Interface\RecipeEntityService.cs" />
-    <Compile Include="Views\Shared\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Service\RecipeEntityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\coffee.mdf" />
@@ -129,11 +123,12 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Korzina.aspx" />
     <Content Include="Views\Home\PVIndex.ascx" />
+    <Content Include="Views\OrderDashBoard\DachBoardView.aspx" />
+    <Content Include="Views\OrderDashBoard\pvIndex.ascx" />
     <Content Include="Views\Order\Detail.aspx" />
     <Content Include="Views\Order\Index.aspx" />
     <Content Include="Views\Order\Payment.aspx" />
     <Content Include="Views\Order\Success.aspx" />
-    <Content Include="Views\Shared\WebForm1.aspx" />
     <Content Include="Views\Shipping\pvKorzina.ascx" />
     <Content Include="Views\Home\Test.aspx" />
     <Content Include="Views\Navigator\Index.aspx" />

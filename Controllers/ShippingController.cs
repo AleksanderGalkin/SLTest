@@ -7,6 +7,7 @@ using SLTest.Models;
 using System.Reflection;
 using System.Data.Objects.DataClasses;
 using System.Web.UI;
+using SLTest.Service;
 
 namespace SLTest.Controllers
 {
@@ -16,7 +17,7 @@ namespace SLTest.Controllers
         //
         // GET: /Shipping/
         coffeeEntities db = new coffeeEntities();
-
+        private OrderDashBoardsStagesEntityService ordDbServ = new OrderDashBoardsStagesEntityService();
         public ActionResult pvIndex()
         {
             
@@ -114,6 +115,11 @@ namespace SLTest.Controllers
                     
                 }
                 db.SaveChanges();
+                ordDbServ.SetState((int)par.ID, "Создан заказ", User.Identity.Name);
+                if(par.flImmediateBill)
+                    ordDbServ.SetState((int)par.ID, "Счёт запрошен", User.Identity.Name);
+                else
+                    ordDbServ.SetState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
                 return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID=par.ID });
             }
             else

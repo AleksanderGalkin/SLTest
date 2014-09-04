@@ -23,12 +23,12 @@
         <li><%: Ajax.ActionLink("Справочник добавок", "Administration", "Home",
                     new { metName = "PVIndex", modName = "Options", pageNum = 1 },
                     new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Options")})%></li>              
+         <li><%: Html.ActionLink("Монитор заказов","DachBoardView","OrderDashBoard") %></li>
     </ul>
     <div id="aj">
 
             <%=Html.Action((string)ViewBag.mtn, (string)ViewBag.mn, new { pageNum = ViewBag.pn,id=ViewBag.id })%>
-
-            
+     
 
      </div>
     <p>

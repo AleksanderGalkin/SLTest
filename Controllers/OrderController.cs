@@ -4,12 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SLTest.Models;
+using SLTest.Service;
+
 
 namespace SLTest.Controllers
 {
     public class OrderController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
+        private OrderDashBoardsStagesEntityService ordDbServ = new OrderDashBoardsStagesEntityService();
+
         [Authorize]
         public ActionResult Index(string parUser)
         {
@@ -24,7 +28,7 @@ namespace SLTest.Controllers
             var v_order = (from i in db.shipTo
                            where i.ID == id
                            select i).FirstOrDefault();
-
+            
             return View(v_order);
         }
 
@@ -62,7 +66,11 @@ namespace SLTest.Controllers
                 if (ModelState.IsValid)
                 {
                     db.SaveChanges();
-                    
+                    if(res.formOfP1.Descr.Trim()=="Банковская карта")
+                          ordDbServ.SetState(id, "Оплачено картой",User.Identity.Name);
+                    else
+                        ordDbServ.SetState(id, "Счёт запрошен", User.Identity.Name);
+
                     ViewBag.formOfP1 = res.formOfP1.Descr.Trim();
                     return View("Success");
                 }

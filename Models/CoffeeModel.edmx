@@ -84,8 +84,8 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="shipToID" Type="bigint" Nullable="false" />
-          <Property Name="stageID1" Type="int" Nullable="false" />
-          <Property Name="stageID2" Type="int" Nullable="false" />
+          <Property Name="stageID1" Type="int" />
+          <Property Name="stageID2" Type="int" />
           <Property Name="stageDT" Type="datetime" Nullable="false" />
           <Property Name="username" Type="nchar" Nullable="false" MaxLength="25" />
         </EntityType>
@@ -186,7 +186,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDashBoards_OrderStages">
-          <End Role="OrderStages" Type="coffeeModel.Store.OrderStages" Multiplicity="1" />
+          <End Role="OrderStages" Type="coffeeModel.Store.OrderStages" Multiplicity="0..1" />
           <End Role="OrderDashBoards" Type="coffeeModel.Store.OrderDashBoards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderStages">
@@ -198,7 +198,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDashBoards_PayStages">
-          <End Role="PayStages" Type="coffeeModel.Store.PayStages" Multiplicity="1" />
+          <End Role="PayStages" Type="coffeeModel.Store.PayStages" Multiplicity="0..1" />
           <End Role="OrderDashBoards" Type="coffeeModel.Store.OrderDashBoards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PayStages">
@@ -445,8 +445,8 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="shipToID" Nullable="false" />
-          <Property Type="Int32" Name="stageID1" Nullable="false" />
-          <Property Type="Int32" Name="stageID2" Nullable="false" />
+          <Property Type="Int32" Name="stageID1" Nullable="true" />
+          <Property Type="Int32" Name="stageID2" Nullable="true" />
           <Property Type="DateTime" Name="stageDT" Nullable="false" />
           <Property Type="String" Name="username" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="OrderStages" Relationship="coffeeModel.FK_OrderDashBoards_OrderStages" FromRole="OrderDashBoards" ToRole="OrderStages" />
@@ -472,7 +472,7 @@
           <NavigationProperty Name="OrderDashBoards" Relationship="coffeeModel.FK_OrderDashBoards_PayStages" FromRole="PayStages" ToRole="OrderDashBoards" />
         </EntityType>
         <Association Name="FK_OrderDashBoards_OrderStages">
-          <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="1" />
+          <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="0..1" />
           <End Type="coffeeModel.OrderDashBoards" Role="OrderDashBoards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderStages">
@@ -484,7 +484,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDashBoards_PayStages">
-          <End Type="coffeeModel.PayStages" Role="PayStages" Multiplicity="1" />
+          <End Type="coffeeModel.PayStages" Role="PayStages" Multiplicity="0..1" />
           <End Type="coffeeModel.OrderDashBoards" Role="OrderDashBoards" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PayStages">

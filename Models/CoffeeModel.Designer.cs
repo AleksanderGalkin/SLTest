@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -25,8 +24,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.PayStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.PayStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 
 #endregion
@@ -224,7 +223,6 @@ namespace SLTest.Models
         private ObjectSet<PayStages> _PayStages;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -300,11 +298,11 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -331,7 +329,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -386,7 +383,6 @@ namespace SLTest.Models
         partial void OnDescrChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -413,7 +409,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -444,7 +439,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -571,7 +565,6 @@ namespace SLTest.Models
         partial void OnshipToIDChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -690,7 +683,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -721,7 +713,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -824,7 +815,6 @@ namespace SLTest.Models
         partial void OnPriceChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -889,7 +879,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -907,24 +896,19 @@ namespace SLTest.Models
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="shipToID">Initial value of the shipToID property.</param>
-        /// <param name="stageID1">Initial value of the stageID1 property.</param>
-        /// <param name="stageID2">Initial value of the stageID2 property.</param>
         /// <param name="stageDT">Initial value of the stageDT property.</param>
         /// <param name="username">Initial value of the username property.</param>
-        public static OrderDashBoards CreateOrderDashBoards(global::System.Int32 id, global::System.Int64 shipToID, global::System.Int32 stageID1, global::System.Int32 stageID2, global::System.DateTime stageDT, global::System.String username)
+        public static OrderDashBoards CreateOrderDashBoards(global::System.Int32 id, global::System.Int64 shipToID, global::System.DateTime stageDT, global::System.String username)
         {
             OrderDashBoards orderDashBoards = new OrderDashBoards();
             orderDashBoards.ID = id;
             orderDashBoards.shipToID = shipToID;
-            orderDashBoards.stageID1 = stageID1;
-            orderDashBoards.stageID2 = stageID2;
             orderDashBoards.stageDT = stageDT;
             orderDashBoards.username = username;
             return orderDashBoards;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -981,9 +965,9 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 stageID1
+        public Nullable<global::System.Int32> stageID1
         {
             get
             {
@@ -998,16 +982,16 @@ namespace SLTest.Models
                 OnstageID1Changed();
             }
         }
-        private global::System.Int32 _stageID1;
-        partial void OnstageID1Changing(global::System.Int32 value);
+        private Nullable<global::System.Int32> _stageID1;
+        partial void OnstageID1Changing(Nullable<global::System.Int32> value);
         partial void OnstageID1Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 stageID2
+        public Nullable<global::System.Int32> stageID2
         {
             get
             {
@@ -1022,8 +1006,8 @@ namespace SLTest.Models
                 OnstageID2Changed();
             }
         }
-        private global::System.Int32 _stageID2;
-        partial void OnstageID2Changing(global::System.Int32 value);
+        private Nullable<global::System.Int32> _stageID2;
+        partial void OnstageID2Changing(Nullable<global::System.Int32> value);
         partial void OnstageID2Changed();
     
         /// <summary>
@@ -1075,7 +1059,6 @@ namespace SLTest.Models
         partial void OnusernameChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1194,7 +1177,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1223,7 +1205,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1302,7 +1283,6 @@ namespace SLTest.Models
         partial void OnStyleChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1329,7 +1309,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1358,7 +1337,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1437,7 +1415,6 @@ namespace SLTest.Models
         partial void OnStyleChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1464,7 +1441,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1495,7 +1471,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1622,7 +1597,6 @@ namespace SLTest.Models
         partial void OnSortChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1671,7 +1645,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1704,7 +1677,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1951,7 +1923,6 @@ namespace SLTest.Models
         partial void OnwaiterIDChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2076,7 +2047,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2103,7 +2073,6 @@ namespace SLTest.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2158,7 +2127,6 @@ namespace SLTest.Models
         partial void OnNameChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2185,10 +2153,8 @@ namespace SLTest.Models
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }
