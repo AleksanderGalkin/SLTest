@@ -1,29 +1,24 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<SLTest.Models.shipTo>>" %>
 
-<p>
-    <%: Html.ActionLink("Create New", "Create") %>
-</p>
 <table>
     <tr>
  
         <th>
-            tableNum
+           Номер столика
         </th>
         <th>
-            OrderDateTime
+            Время заказа
         </th>
         <th>
-            comment
+            Комментарий
         </th>
         <th>
-            formOfP
+            Форма оплаты
         </th>
         <th>
-            waiterID
+            Официант
         </th>
-        <th>
-            PSystem
-        </th>
+       
 
     </tr>
 
@@ -45,24 +40,10 @@
         <td>
             <%: item.waiterID %>
         </td>
-        <td>
-            <%: item.PSystem %>
-        </td>
+ 
      </tr>  
 <% } %>
 
 </table>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        alert(5);
-        upd = function () {
-            $('UpdateBlock').load(('<%=Url.Action("pvIndex","OrderDashBoard") %>'), {
-                asd: Math.random() // что б IE не кешировал
-            }, function () {
-                alert("timer");
-                setTimeout(UpdateBlock, 5000);
-            });
-        }
-    });
-</script>
+

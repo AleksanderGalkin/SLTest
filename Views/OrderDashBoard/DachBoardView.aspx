@@ -10,4 +10,18 @@
 <%Html.RenderAction("pvIndex", "OrderDashBoard"); %>
 </div>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(upd, 5000);
+    });
+
+    upd = function () {
+    
+        $('#UpdateBlock').load(('<%=Url.Action("pvIndex","OrderDashBoard") %>'), {
+            asd: Math.random() // что б IE не кешировал
+        }, function () { setTimeout(upd, 5000); });
+    }
+</script>
+
 </asp:Content>
