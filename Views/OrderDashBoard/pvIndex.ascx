@@ -18,8 +18,12 @@
         <th>
             Официант
         </th>
-       
-
+        <th>
+            Состояние
+        </th>
+        <th>
+            Оплата
+        </th>
     </tr>
 
 <% foreach (var item in Model) { %>
@@ -40,7 +44,12 @@
         <td>
             <%: item.waiterID %>
         </td>
- 
+         <td>
+            <%: item.getOState %>
+        </td>
+         <td>
+            <%: item.getPState %>
+        </td> 
      </tr>  
 <% } %>
 

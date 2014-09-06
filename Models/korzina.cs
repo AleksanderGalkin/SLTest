@@ -72,6 +72,23 @@ namespace SLTest.Models
         [MetadataType(typeof(shipToValidation))]
            public partial class shipTo// оформление заказа
     {
+            private OrderDashBoardsStagesEntityService s =
+                new OrderDashBoardsStagesEntityService();
+            public string getOState
+            {
+                get 
+                {
+                    return s.GetOrderState((int)this.ID);
+                }
+            }
+            public string getPState
+            {
+                get
+                {
+                    return s.GetPayState((int)this.ID);
+                }
+            }
+                
             public  string PSystem { get; set; }        
              [Bind(Exclude = "ID")]
             public class shipToValidation
