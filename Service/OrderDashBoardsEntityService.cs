@@ -34,7 +34,7 @@ namespace SLTest.Service
             return cnt;
         }
 
-        public void SetState(int orderId, string Descr,string user)
+        public  void SetState(int orderId, string Descr,string user)
         {
             OrderDashBoards obj = new OrderDashBoards();
             OrderStages obj_os = (from i in db.OrderStages
@@ -62,13 +62,16 @@ namespace SLTest.Service
 
         public string GetOrderState(int orderId)
         {
-            string result = (from i in db.OrderDashBoards
+            var result = (from i in db.OrderDashBoards
                              where i.shipToID == orderId
-                             let par = i.stageID1
-                             from j in db.OrderStages
-                             where j.ID == par
-                             select j.Descr).ToString();
-            return result;
+                             group i by i.shipToID
+                             ).AsEnumerable();
+                             //where g
+                             //let par=g.Min
+                             //from j in db.OrderStages
+                             //where j.ID == par
+                             //select j.Descr).FirstOrDefault();
+            return "";
         }
         public string GetPayState(int orderId)
         {
@@ -77,7 +80,7 @@ namespace SLTest.Service
                              let par = i.stageID2
                              from j in db.PayStages
                              where j.ID == par
-                             select j.Descr).ToString();
+                             select j.Descr).FirstOrDefault().ToString();
             return result;
         }
     }
