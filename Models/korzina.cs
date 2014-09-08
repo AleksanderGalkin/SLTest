@@ -74,14 +74,14 @@ namespace SLTest.Models
     {
             private OrderDashBoardsStagesEntityService s =
                 new OrderDashBoardsStagesEntityService();
-            public string getOState
+            public OrderStages getOState
             {
                 get 
                 {
                     return s.GetOrderState((int)this.ID);
                 }
             }
-            public string getPState
+            public PayStages getPState
             {
                 get
                 {

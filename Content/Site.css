@@ -691,3 +691,144 @@ display:block;
 {
     border-color:transparent;
 }    
+
+/* Styles for DashBoard
+----------------------------------------------------------*/
+
+a.btSignal
+{
+    background-color: #DCDCDC; 
+    color:#000;
+    text-decoration: none; /* отмена подчеркивания */
+    padding: 0.0em 0.5em; /* внутренние отступы ссылок */
+    text-align: center; /* центровка текста */
+    font-size:1em;
+    display:inline-block;
+    border:1px solid #696969
+
+  
+}
+
+a.ordCreated{
+    background-color: #FF0000; 
+    color:#000;
+}
+ a.ordCreated:hover{
+    background-color: #D74242;
+    color:#FFFFFF;
+    border: 1px solid #26A0DA; 
+}
+a.ordCreated:active{
+ background-color: #7F0505;
+}
+
+ a.ordCooking{
+    background-color: #FFDAB9;
+    color:#FFFFFF;
+    border: 1px solid #26A0DA; 
+}
+ a.ordCooking:hover{
+    background-color: #FCE2CA;
+    border: 1px solid #26A0DA; 
+}
+a.ordCooking:active{
+ background-color: #F8CBA3;
+}
+
+
+ a.ordCooked:hover{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+}
+a.ordCooked:active{
+ background-color: #34B4E3;
+}
+
+ a.ordShiped:hover{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+}
+a.ordShiped:active{
+ background-color: #34B4E3;
+}
+
+ a.notReq:hover{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+}
+a.notReq:active{
+ background-color: #34B4E3;
+}
+
+ a.reqed{
+    background-color: #FF0000;
+    border: 1px solid #26A0DA; 
+}
+ a.reqed:hover{
+    background-color: #D74242;
+    color:#FFFFFF;
+    border: 1px solid #26A0DA; 
+}
+a.reqed:active{
+ background-color: #7F0505;
+}
+
+ a.cashed:hover{
+    background-color: #A6F4FF;
+    border: 1px solid #26A0DA; 
+}
+a.cashed:active{
+ background-color: #34B4E3;
+}
+
+ a.banked{
+    background-color: #66CDAA;
+    border: 1px solid #26A0DA; 
+}
+ a.banked:hover{
+    background-color: #8ABFAD;
+    color:#FFFFFF;
+    border: 1px solid #26A0DA; 
+}
+a.banked:active{
+ background-color: #44CB9E;
+}
+
+
+tr.rowDashBoard:hover
+{
+    background-color: #A6F4FF;
+    cursor:pointer
+}
+
+    
+
+/* Context menu
+----------------------------------------------------------*/
+
+.context-menu {
+    position: absolute; /* Задаем абсолютное позиционирование для нашего меню */
+    display: none; /* Изначально не показываем его */
+    background-color: #fff; /* Цвет фона меню */
+    border: 1px solid #333; /* Граница */
+
+    /* Немного красивостей. Добавляем тень для нашего меню, что бы отобразить его слегка выше остальных элементов страницы: */
+    -moz-box-shadow: -5px 2px 10px rgba(0,0,0,0.5); /* Для Firefox */
+    -webkit-box-shadow: -5px 2px 10px rgba(0,0,0,0.5); /* Для Safari и Chrome */
+   /* box-shadow: -5px 2px 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+
+/* Добавляем стили для списка которые будет находиться внутри меню и, собственно, содержать его пункты: */
+.context-menu ul { list-style: none; margin: 0; padding: 0; }
+            
+.context-menu ul li { margin: 0; padding: 0; background-color: #fff; display: block; }
+
+/* Стили для ссылок пунктов меню: */
+.context-menu ul li a { color: #333; text-decoration: none; font-size: 12px; display: block; padding: 5px; }
+            
+.context-menu ul li a:hover { background-color: #eee; }
+
+
+     
+     
+       

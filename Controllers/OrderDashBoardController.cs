@@ -18,8 +18,9 @@ namespace SLTest.Controllers
         public ActionResult pvIndex()
         {
             var obj = from i in db.shipTo
-                       orderby i.OrderDateTime descending
-                       select i;
+                      orderby i.OrderDateTime descending
+                      select i;
+            
             return View(obj);
         }
 

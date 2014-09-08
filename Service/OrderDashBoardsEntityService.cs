@@ -60,27 +60,23 @@ namespace SLTest.Service
             
         }
 
-        public string GetOrderState(int orderId)
+        public OrderStages GetOrderState(int orderId)
         {
-            var result = (from i in db.OrderDashBoards
-                             where i.shipToID == orderId
-                             group i by i.shipToID
-                             ).AsEnumerable();
-                             //where g
-                             //let par=g.Min
-                             //from j in db.OrderStages
-                             //where j.ID == par
-                             //select j.Descr).FirstOrDefault();
-            return "";
+            OrderStages result = (from i in db.OrderDashBoards
+                          where i.shipToID == orderId && i.stageID1 != null
+                          orderby i.stageDT descending
+                          select i.OrderStages
+                             ).FirstOrDefault();
+
+            return result;
         }
-        public string GetPayState(int orderId)
+        public PayStages GetPayState(int orderId)
         {
-            string result = (from i in db.OrderDashBoards
-                             where i.shipToID == orderId
-                             let par = i.stageID2
-                             from j in db.PayStages
-                             where j.ID == par
-                             select j.Descr).FirstOrDefault().ToString();
+            PayStages result = (from i in db.OrderDashBoards
+                             where i.shipToID == orderId && i.stageID2 != null
+                             orderby i.stageDT descending
+                             select i.PayStages
+                             ).FirstOrDefault();
             return result;
         }
     }
