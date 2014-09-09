@@ -8,10 +8,10 @@
         <EntityContainer Name="coffeeModelStoreContainer">
           <EntitySet Name="formOfP" EntityType="coffeeModel.Store.formOfP" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="itCart" EntityType="coffeeModel.Store.itCart" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NextStages" EntityType="coffeeModel.Store.NextStages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Options" EntityType="coffeeModel.Store.Options" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderDashBoards" EntityType="coffeeModel.Store.OrderDashBoards" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStages" EntityType="coffeeModel.Store.OrderStages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PayStages" EntityType="coffeeModel.Store.PayStages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recipe" EntityType="coffeeModel.Store.Recipe" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="shipTo" EntityType="coffeeModel.Store.shipTo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Waiters" EntityType="coffeeModel.Store.Waiters" store:Type="Tables" Schema="dbo" />
@@ -27,6 +27,14 @@
             <End Role="shipTo" EntitySet="shipTo" />
             <End Role="itCart" EntitySet="itCart" />
           </AssociationSet>
+          <AssociationSet Name="FK_NextStages_OrderStages" Association="coffeeModel.Store.FK_NextStages_OrderStages">
+            <End Role="OrderStages" EntitySet="OrderStages" />
+            <End Role="NextStages" EntitySet="NextStages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextStages_OrderStages1" Association="coffeeModel.Store.FK_NextStages_OrderStages1">
+            <End Role="OrderStages" EntitySet="OrderStages" />
+            <End Role="NextStages" EntitySet="NextStages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Options_Recipe" Association="coffeeModel.Store.FK_Options_Recipe">
             <End Role="Recipe" EntitySet="Recipe" />
             <End Role="Options" EntitySet="Options" />
@@ -35,8 +43,8 @@
             <End Role="OrderStages" EntitySet="OrderStages" />
             <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDashBoards_PayStages" Association="coffeeModel.Store.FK_OrderDashBoards_PayStages">
-            <End Role="PayStages" EntitySet="PayStages" />
+          <AssociationSet Name="FK_OrderDashBoards_OrderStages1" Association="coffeeModel.Store.FK_OrderDashBoards_OrderStages1">
+            <End Role="OrderStages" EntitySet="OrderStages" />
             <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDashBoards_shipTo" Association="coffeeModel.Store.FK_OrderDashBoards_shipTo">
@@ -69,6 +77,14 @@
           <Property Name="num" Type="smallint" Nullable="false" />
           <Property Name="shipToID" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="NextStages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrdStID" Type="int" Nullable="false" />
+          <Property Name="CanBeNextID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Options">
           <Key>
             <PropertyRef Name="OptID" />
@@ -90,14 +106,6 @@
           <Property Name="username" Type="nchar" Nullable="false" MaxLength="25" />
         </EntityType>
         <EntityType Name="OrderStages">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Descr" Type="nchar" Nullable="false" MaxLength="25" />
-          <Property Name="Style" Type="nchar" Nullable="false" MaxLength="25" />
-        </EntityType>
-        <EntityType Name="PayStages">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -173,6 +181,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NextStages_OrderStages">
+          <End Role="OrderStages" Type="coffeeModel.Store.OrderStages" Multiplicity="1" />
+          <End Role="NextStages" Type="coffeeModel.Store.NextStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NextStages">
+              <PropertyRef Name="OrdStID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextStages_OrderStages1">
+          <End Role="OrderStages" Type="coffeeModel.Store.OrderStages" Multiplicity="1" />
+          <End Role="NextStages" Type="coffeeModel.Store.NextStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NextStages">
+              <PropertyRef Name="CanBeNextID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Options_Recipe">
           <End Role="Recipe" Type="coffeeModel.Store.Recipe" Multiplicity="1" />
           <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="*" />
@@ -197,11 +229,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDashBoards_PayStages">
-          <End Role="PayStages" Type="coffeeModel.Store.PayStages" Multiplicity="0..1" />
+        <Association Name="FK_OrderDashBoards_OrderStages1">
+          <End Role="OrderStages" Type="coffeeModel.Store.OrderStages" Multiplicity="0..1" />
           <End Role="OrderDashBoards" Type="coffeeModel.Store.OrderDashBoards" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PayStages">
+            <Principal Role="OrderStages">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="OrderDashBoards">
@@ -282,18 +314,26 @@
           </AssociationSet>
           <EntitySet Name="OrderDashBoards" EntityType="coffeeModel.OrderDashBoards" />
           <EntitySet Name="OrderStages" EntityType="coffeeModel.OrderStages" />
-          <EntitySet Name="PayStages" EntityType="coffeeModel.PayStages" />
           <AssociationSet Name="FK_OrderDashBoards_OrderStages" Association="coffeeModel.FK_OrderDashBoards_OrderStages">
             <End Role="OrderStages" EntitySet="OrderStages" />
-            <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDashBoards_PayStages" Association="coffeeModel.FK_OrderDashBoards_PayStages">
-            <End Role="PayStages" EntitySet="PayStages" />
             <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDashBoards_shipTo" Association="coffeeModel.FK_OrderDashBoards_shipTo">
             <End Role="shipTo" EntitySet="shipTo" />
             <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDashBoards_OrderStages1" Association="coffeeModel.FK_OrderDashBoards_OrderStages1">
+            <End Role="OrderStages" EntitySet="OrderStages" />
+            <End Role="OrderDashBoards" EntitySet="OrderDashBoards" />
+          </AssociationSet>
+          <EntitySet Name="NextStages" EntityType="coffeeModel.NextStages" />
+          <AssociationSet Name="FK_NextStages_OrderStages" Association="coffeeModel.FK_NextStages_OrderStages">
+            <End Role="OrderStages" EntitySet="OrderStages" />
+            <End Role="NextStages" EntitySet="NextStages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextStages_OrderStages1" Association="coffeeModel.FK_NextStages_OrderStages1">
+            <End Role="OrderStages" EntitySet="OrderStages" />
+            <End Role="NextStages" EntitySet="NextStages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Options">
@@ -450,8 +490,8 @@
           <Property Type="DateTime" Name="stageDT" Nullable="false" />
           <Property Type="String" Name="username" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="OrderStages" Relationship="coffeeModel.FK_OrderDashBoards_OrderStages" FromRole="OrderDashBoards" ToRole="OrderStages" />
-          <NavigationProperty Name="PayStages" Relationship="coffeeModel.FK_OrderDashBoards_PayStages" FromRole="OrderDashBoards" ToRole="PayStages" />
           <NavigationProperty Name="shipTo" Relationship="coffeeModel.FK_OrderDashBoards_shipTo" FromRole="OrderDashBoards" ToRole="shipTo" />
+          <NavigationProperty Name="OrderStages1" Relationship="coffeeModel.FK_OrderDashBoards_OrderStages1" FromRole="OrderDashBoards" ToRole="OrderStages" />
         </EntityType>
         <EntityType Name="OrderStages">
           <Key>
@@ -461,15 +501,9 @@
           <Property Type="String" Name="Descr" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="Style" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="OrderDashBoards" Relationship="coffeeModel.FK_OrderDashBoards_OrderStages" FromRole="OrderStages" ToRole="OrderDashBoards" />
-        </EntityType>
-        <EntityType Name="PayStages">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Descr" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="Style" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="OrderDashBoards" Relationship="coffeeModel.FK_OrderDashBoards_PayStages" FromRole="PayStages" ToRole="OrderDashBoards" />
+          <NavigationProperty Name="OrderDashBoards1" Relationship="coffeeModel.FK_OrderDashBoards_OrderStages1" FromRole="OrderStages" ToRole="OrderDashBoards" />
+          <NavigationProperty Name="NextStages" Relationship="coffeeModel.FK_NextStages_OrderStages" FromRole="OrderStages" ToRole="NextStages" />
+          <NavigationProperty Name="NextStages1" Relationship="coffeeModel.FK_NextStages_OrderStages1" FromRole="OrderStages" ToRole="NextStages" />
         </EntityType>
         <Association Name="FK_OrderDashBoards_OrderStages">
           <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="0..1" />
@@ -483,18 +517,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDashBoards_PayStages">
-          <End Type="coffeeModel.PayStages" Role="PayStages" Multiplicity="0..1" />
-          <End Type="coffeeModel.OrderDashBoards" Role="OrderDashBoards" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PayStages">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="OrderDashBoards">
-              <PropertyRef Name="stageID2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderDashBoards_shipTo">
           <End Type="coffeeModel.shipTo" Role="shipTo" Multiplicity="1" />
           <End Type="coffeeModel.OrderDashBoards" Role="OrderDashBoards" Multiplicity="*" />
@@ -504,6 +526,52 @@
             </Principal>
             <Dependent Role="OrderDashBoards">
               <PropertyRef Name="shipToID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDashBoards_OrderStages1">
+          <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="0..1" />
+          <End Type="coffeeModel.OrderDashBoards" Role="OrderDashBoards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDashBoards">
+              <PropertyRef Name="stageID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NextStages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="OrdStID" Nullable="false" />
+          <Property Type="Int32" Name="CanBeNextID" Nullable="false" />
+          <NavigationProperty Name="OrderStages" Relationship="coffeeModel.FK_NextStages_OrderStages" FromRole="NextStages" ToRole="OrderStages" />
+          <NavigationProperty Name="OrderStages1" Relationship="coffeeModel.FK_NextStages_OrderStages1" FromRole="NextStages" ToRole="OrderStages" />
+        </EntityType>
+        <Association Name="FK_NextStages_OrderStages">
+          <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="1" />
+          <End Type="coffeeModel.NextStages" Role="NextStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NextStages">
+              <PropertyRef Name="OrdStID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextStages_OrderStages1">
+          <End Type="coffeeModel.OrderStages" Role="OrderStages" Multiplicity="1" />
+          <End Type="coffeeModel.NextStages" Role="NextStages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NextStages">
+              <PropertyRef Name="CanBeNextID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -598,11 +666,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PayStages">
-            <EntityTypeMapping TypeName="coffeeModel.PayStages">
-              <MappingFragment StoreEntitySet="PayStages">
-                <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="Descr" ColumnName="Descr" />
+          <EntitySetMapping Name="NextStages">
+            <EntityTypeMapping TypeName="coffeeModel.NextStages">
+              <MappingFragment StoreEntitySet="NextStages">
+                <ScalarProperty Name="CanBeNextID" ColumnName="CanBeNextID" />
+                <ScalarProperty Name="OrdStID" ColumnName="OrdStID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -668,19 +736,30 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="coffeeModel.OrderDashBoards" Width="1.5" PointX="7.125" PointY="9.125" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="coffeeModel.OrderStages" Width="1.5" PointX="4.875" PointY="11.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="coffeeModel.PayStages" Width="1.5" PointX="4.875" PointY="13.875" Height="1.7879850260416674" />
         <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_OrderStages" >
-          <ConnectorPoint PointX="6.375" PointY="11.62474609375" />
-          <ConnectorPoint PointX="7.125" PointY="11.62474609375" />
-        </AssociationConnector>
-        <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_PayStages" >
-          <ConnectorPoint PointX="6.375" PointY="14.768992513020834" />
-          <ConnectorPoint PointX="7.875" PointY="14.768992513020834" />
-          <ConnectorPoint PointX="7.875" PointY="11.8744921875" />
+          <ConnectorPoint PointX="6.375" PointY="11.7184326171875" />
+          <ConnectorPoint PointX="7.125" PointY="11.7184326171875" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_shipTo" >
           <ConnectorPoint PointX="6.375" PointY="9.7304996744791659" />
           <ConnectorPoint PointX="7.125" PointY="9.7304996744791659" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_OrderStages1" >
+          <ConnectorPoint PointX="6.375" PointY="11.48421630859375" />
+          <ConnectorPoint PointX="7.125" PointY="11.48421630859375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="coffeeModel.NextStages" Width="1.5" PointX="7.125" PointY="13.625" Height="1.9802864583333317" />
+        <AssociationConnector Association="coffeeModel.FK_NextStages_OrderStages" >
+          <ConnectorPoint PointX="5.625" PointY="13.739889322916666" />
+          <ConnectorPoint PointX="5.625" PointY="14.672588390624998" />
+          <ConnectorPoint PointX="5.9479191666666669" PointY="14.672588390624998" />
+          <ConnectorPoint PointX="6.1145858333333329" PointY="14.672588390624998" />
+          <ConnectorPoint PointX="7.125" PointY="14.672588390624998" />
+        </AssociationConnector>
+        <AssociationConnector Association="coffeeModel.FK_NextStages_OrderStages1" >
+          <ConnectorPoint PointX="6.0312525" PointY="13.739889322916666" />
+          <ConnectorPoint PointX="6.0312525" PointY="15.170189924479166" />
+          <ConnectorPoint PointX="7.125" PointY="15.170189924479166" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

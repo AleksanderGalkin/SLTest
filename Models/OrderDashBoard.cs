@@ -25,11 +25,5 @@ namespace SLTest.Models
        public bool CanBeDeleted() { return true; }
 
     }
-    public partial class PayStages : IBase
-    {
-        //public int ID { get; set; }
-        //public string Descr { get; set; }
-        //public string style { get; set; }
-       public bool CanBeDeleted() { return true; }
-    }
+
 }

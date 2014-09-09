@@ -48,7 +48,7 @@
         </td>
          <td>
             <%--<%: Html.ActionLink(item.getOState.Descr, "#", new { id = item.ID }, new { @class = "btSignal " + item.getOState.Style, onClick = "return false;" })%>--%>
-            <a href="#" id=<%=item.ID%> class="btSignal <%=item.getOState.Style%>"><%=item.getOState.Descr%></a>
+            <a href="#" id=<%=item.ID%> class="btSignal btBlink <%=item.getOState.Style%>"><%=item.getOState.Descr%></a>
         </td>
          <td>
             <%--<%: Html.ActionLink(item.getPState.Descr, "#", new { id = item.ID }, new { @class = "btSignal " + item.getPState.Style, onClick = "return false;" })%>--%>
@@ -68,22 +68,26 @@
         var ar_objColors = new Array(3);
 
         objColor.each(function (i, item) {
+            alert($(this).Name);
             ar_objColors[i] = $(this).css("background-color");
+
         });
 
         var setObjColor = function () {
             objColor.each(function (i, item) {
+               // alert(ar_objColors[i]);
                 $(this).css("background-color", ar_objColors[i]);
             });
-             setTimeout(setObjLightColor, 300);
+            setTimeout(setObjLightColor, 500);
         }
         var setObjLightColor = function () {
             objColor.each(function (i, item) {
                 var cHex = ar_objColors[i];
                 var cRGB = getLight(cHex);
+                //alert(cRGB);
                 $(this).css("background-color", cRGB);
             });
-                setTimeout(setObjColor, 300);
+            setTimeout(setObjColor, 500);
         }
 
         setTimeout(setObjLightColor, 300);
@@ -96,7 +100,13 @@
     function toB(h) { return parseInt((cutHex(h)).substring(4, 6), 16) }
     function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1, 7) : h }
     function getLight(cHex) {
-        return 'rgb(' + toR(cHex)*0.8 + ',' + toG(cHex) + ',' + toB(cHex)*0.6 + ')';
+        if (cHex.charAt(0) == "#")
+            return 'rgb(' + toR(cHex) * 0.5 + ',' + toG(cHex) + ',' + toB(cHex) * 0.6 + ')';
+        else
+            var data = cHex.slice(cHex.indexOf('(')+1, cHex.indexOf(')'));
+            a = data.split(',');
+           // alert(a[2]);
+            return 'rgb(' + a[0] * 0.9 + ',' + a[1] + ',' +a[2] * 0.6 + ')'; ;
     }
 
 

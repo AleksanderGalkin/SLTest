@@ -67,9 +67,9 @@ namespace SLTest.Controllers
                 {
                     db.SaveChanges();
                     if(res.formOfP1.Descr.Trim()=="Банковская карта")
-                          ordDbServ.SetState(id, "Оплачено картой",User.Identity.Name);
+                          ordDbServ.SetPayState(id, "Оплачено картой",User.Identity.Name);
                     else
-                        ordDbServ.SetState(id, "Счёт запрошен", User.Identity.Name);
+                        ordDbServ.SetPayState(id, "Счёт запрошен", User.Identity.Name);
 
                     ViewBag.formOfP1 = res.formOfP1.Descr.Trim();
                     return View("Success");

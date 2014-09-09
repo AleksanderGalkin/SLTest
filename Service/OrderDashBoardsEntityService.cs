@@ -34,7 +34,7 @@ namespace SLTest.Service
             return cnt;
         }
 
-        public  void SetState(int orderId, string Descr,string user)
+        public  void SetOrderState(int orderId, string Descr,string user)
         {
             OrderDashBoards obj = new OrderDashBoards();
             OrderStages obj_os = (from i in db.OrderStages
@@ -44,14 +44,7 @@ namespace SLTest.Service
             {
                 obj.stageID1 = obj_os.ID;
             }
-            else
-            {
-                PayStages obj_ps = (from i in db.PayStages
-                                      where i.Descr == Descr
-                                      select i).FirstOrDefault();
-                if(obj_ps!=null)
-                    obj.stageID2 = obj_ps.ID;
-            }
+            
             obj.shipToID = orderId;
             obj.stageDT = DateTime.Now;
             obj.username = user;
@@ -60,6 +53,24 @@ namespace SLTest.Service
             
         }
 
+        public void SetPayState(int orderId, string Descr, string user)
+        {
+            OrderDashBoards obj = new OrderDashBoards();
+            OrderStages obj_os = (from i in db.OrderStages
+                                  where i.Descr == Descr
+                                  select i).FirstOrDefault();
+            if (obj_os != null)
+            {
+                obj.stageID2 = obj_os.ID;
+            }
+
+            obj.shipToID = orderId;
+            obj.stageDT = DateTime.Now;
+            obj.username = user;
+            db.AddToOrderDashBoards(obj);
+            db.SaveChanges();
+
+        }
         public OrderStages GetOrderState(int orderId)
         {
             OrderStages result = (from i in db.OrderDashBoards
@@ -70,12 +81,12 @@ namespace SLTest.Service
 
             return result;
         }
-        public PayStages GetPayState(int orderId)
+        public OrderStages GetPayState(int orderId)
         {
-            PayStages result = (from i in db.OrderDashBoards
+            OrderStages result = (from i in db.OrderDashBoards
                              where i.shipToID == orderId && i.stageID2 != null
                              orderby i.stageDT descending
-                             select i.PayStages
+                             select i.OrderStages1
                              ).FirstOrDefault();
             return result;
         }

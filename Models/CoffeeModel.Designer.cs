@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -25,8 +26,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.PayStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
 
 #endregion
 
@@ -209,20 +212,21 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<PayStages> PayStages
+        public ObjectSet<NextStages> NextStages
         {
             get
             {
-                if ((_PayStages == null))
+                if ((_NextStages == null))
                 {
-                    _PayStages = base.CreateObjectSet<PayStages>("PayStages");
+                    _NextStages = base.CreateObjectSet<NextStages>("NextStages");
                 }
-                return _PayStages;
+                return _NextStages;
             }
         }
-        private ObjectSet<PayStages> _PayStages;
+        private ObjectSet<NextStages> _NextStages;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -290,19 +294,19 @@ namespace SLTest.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the PayStages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the NextStages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToPayStages(PayStages payStages)
+        public void AddToNextStages(NextStages nextStages)
         {
-            base.AddObject("PayStages", payStages);
+            base.AddObject("NextStages", nextStages);
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -329,6 +333,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -383,6 +388,7 @@ namespace SLTest.Models
         partial void OnDescrChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -409,6 +415,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -439,6 +446,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -565,6 +573,7 @@ namespace SLTest.Models
         partial void OnshipToIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -683,6 +692,196 @@ namespace SLTest.Models
         }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="NextStages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class NextStages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new NextStages object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="ordStID">Initial value of the OrdStID property.</param>
+        /// <param name="canBeNextID">Initial value of the CanBeNextID property.</param>
+        public static NextStages CreateNextStages(global::System.Int32 id, global::System.Int32 ordStID, global::System.Int32 canBeNextID)
+        {
+            NextStages nextStages = new NextStages();
+            nextStages.ID = id;
+            nextStages.OrdStID = ordStID;
+            nextStages.CanBeNextID = canBeNextID;
+            return nextStages;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 OrdStID
+        {
+            get
+            {
+                return _OrdStID;
+            }
+            set
+            {
+                OnOrdStIDChanging(value);
+                ReportPropertyChanging("OrdStID");
+                _OrdStID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrdStID");
+                OnOrdStIDChanged();
+            }
+        }
+        private global::System.Int32 _OrdStID;
+        partial void OnOrdStIDChanging(global::System.Int32 value);
+        partial void OnOrdStIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CanBeNextID
+        {
+            get
+            {
+                return _CanBeNextID;
+            }
+            set
+            {
+                OnCanBeNextIDChanging(value);
+                ReportPropertyChanging("CanBeNextID");
+                _CanBeNextID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CanBeNextID");
+                OnCanBeNextIDChanged();
+            }
+        }
+        private global::System.Int32 _CanBeNextID;
+        partial void OnCanBeNextIDChanging(global::System.Int32 value);
+        partial void OnCanBeNextIDChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_NextStages_OrderStages", "OrderStages")]
+        public OrderStages OrderStages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages", "OrderStages").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages", "OrderStages").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<OrderStages> OrderStagesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages", "OrderStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages", "OrderStages", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_NextStages_OrderStages1", "OrderStages")]
+        public OrderStages OrderStages1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages1", "OrderStages").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages1", "OrderStages").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<OrderStages> OrderStages1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages1", "OrderStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderStages>("coffeeModel.FK_NextStages_OrderStages1", "OrderStages", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -713,6 +912,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -815,6 +1015,7 @@ namespace SLTest.Models
         partial void OnPriceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -879,6 +1080,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -909,6 +1111,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1059,6 +1262,7 @@ namespace SLTest.Models
         partial void OnusernameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1106,44 +1310,6 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "PayStages")]
-        public PayStages PayStages
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<PayStages> PayStagesReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PayStages>("coffeeModel.FK_OrderDashBoards_PayStages", "PayStages", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo")]
         public shipTo shipTo
         {
@@ -1175,8 +1341,47 @@ namespace SLTest.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderStages")]
+        public OrderStages OrderStages1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderStages").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderStages").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<OrderStages> OrderStages1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderStages", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1205,6 +1410,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1283,6 +1489,7 @@ namespace SLTest.Models
         partial void OnStyleChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1307,116 +1514,6 @@ namespace SLTest.Models
                 }
             }
         }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="PayStages")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class PayStages : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new PayStages object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="descr">Initial value of the Descr property.</param>
-        /// <param name="style">Initial value of the Style property.</param>
-        public static PayStages CreatePayStages(global::System.Int32 id, global::System.String descr, global::System.String style)
-        {
-            PayStages payStages = new PayStages();
-            payStages.ID = id;
-            payStages.Descr = descr;
-            payStages.Style = style;
-            return payStages;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Descr
-        {
-            get
-            {
-                return _Descr;
-            }
-            set
-            {
-                OnDescrChanging(value);
-                ReportPropertyChanging("Descr");
-                _Descr = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Descr");
-                OnDescrChanged();
-            }
-        }
-        private global::System.String _Descr;
-        partial void OnDescrChanging(global::System.String value);
-        partial void OnDescrChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Style
-        {
-            get
-            {
-                return _Style;
-            }
-            set
-            {
-                OnStyleChanging(value);
-                ReportPropertyChanging("Style");
-                _Style = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Style");
-                OnStyleChanged();
-            }
-        }
-        private global::System.String _Style;
-        partial void OnStyleChanging(global::System.String value);
-        partial void OnStyleChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1424,23 +1521,68 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_PayStages", "OrderDashBoards")]
-        public EntityCollection<OrderDashBoards> OrderDashBoards
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderDashBoards")]
+        public EntityCollection<OrderDashBoards> OrderDashBoards1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_PayStages", "OrderDashBoards");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderDashBoards");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_PayStages", "OrderDashBoards", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderDashBoards", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_NextStages_OrderStages", "NextStages")]
+        public EntityCollection<NextStages> NextStages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<NextStages>("coffeeModel.FK_NextStages_OrderStages", "NextStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NextStages>("coffeeModel.FK_NextStages_OrderStages", "NextStages", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_NextStages_OrderStages1", "NextStages")]
+        public EntityCollection<NextStages> NextStages1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<NextStages>("coffeeModel.FK_NextStages_OrderStages1", "NextStages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NextStages>("coffeeModel.FK_NextStages_OrderStages1", "NextStages", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1471,6 +1613,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1597,6 +1740,7 @@ namespace SLTest.Models
         partial void OnSortChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1645,6 +1789,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1677,6 +1822,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1923,6 +2069,7 @@ namespace SLTest.Models
         partial void OnwaiterIDChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2047,6 +2194,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2073,6 +2221,7 @@ namespace SLTest.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2127,6 +2276,7 @@ namespace SLTest.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2153,8 +2303,10 @@ namespace SLTest.Models
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

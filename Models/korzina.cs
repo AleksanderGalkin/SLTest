@@ -81,7 +81,7 @@ namespace SLTest.Models
                     return s.GetOrderState((int)this.ID);
                 }
             }
-            public PayStages getPState
+            public OrderStages getPState
             {
                 get
                 {

@@ -115,11 +115,11 @@ namespace SLTest.Controllers
                     
                 }
                 db.SaveChanges();
-                ordDbServ.SetState((int)par.ID, "Создан заказ", User.Identity.Name);
+                ordDbServ.SetOrderState((int)par.ID, "Создан заказ", User.Identity.Name);
                 if(par.flImmediateBill)
-                    ordDbServ.SetState((int)par.ID, "Счёт запрошен", User.Identity.Name);
+                    ordDbServ.SetPayState((int)par.ID, "Счёт запрошен", User.Identity.Name);
                 else
-                    ordDbServ.SetState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
+                    ordDbServ.SetPayState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
                 return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID=par.ID });
             }
             else
