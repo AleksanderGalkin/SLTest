@@ -59,41 +59,44 @@
 
 </table>
 
+
 <script type="text/javascript">
 
     $(function () {
-        var flag = false;
+        
         var objColor = $(".btBlink");
 
         var ar_objColors = new Array(3);
 
         objColor.each(function (i, item) {
-            alert($(this).Name);
             ar_objColors[i] = $(this).css("background-color");
 
         });
-
+        var lFlag = flag_endOfTimer
         var setObjColor = function () {
             objColor.each(function (i, item) {
-               // alert(ar_objColors[i]);
+                
                 $(this).css("background-color", ar_objColors[i]);
             });
-            setTimeout(setObjLightColor, 500);
+            if (lFlag == flag_endOfTimer)
+            setObjLightColorID=setTimeout(setObjLightColor, 500);
         }
         var setObjLightColor = function () {
             objColor.each(function (i, item) {
                 var cHex = ar_objColors[i];
                 var cRGB = getLight(cHex);
-                //alert(cRGB);
                 $(this).css("background-color", cRGB);
             });
-            setTimeout(setObjColor, 500);
+
+            setObjColorID=setTimeout(setObjColor, 500);
         }
 
-        setTimeout(setObjLightColor, 300);
+        setObjLightColorID=setTimeout(setObjLightColor, 300);
     });
 
-    
+
+
+
 
     function toR(h) { return parseInt((cutHex(h)).substring(0, 2), 16) }
     function toG(h) { return parseInt((cutHex(h)).substring(2, 4), 16) }
@@ -105,8 +108,8 @@
         else
             var data = cHex.slice(cHex.indexOf('(')+1, cHex.indexOf(')'));
             a = data.split(',');
-           // alert(a[2]);
-            return 'rgb(' + a[0] * 0.9 + ',' + a[1] + ',' +a[2] * 0.6 + ')'; ;
+          
+            return 'rgb(' + Math.floor(a[0] * 0.9) + ',' + a[1] + ',' +Math.floor(a[2] * 0.6) + ')'; ;
     }
 
 
@@ -125,10 +128,31 @@
             ) {
 
                 // Получаем элемент на котором был совершен клик:
-                var target = $(event.target);
+                // <%: Html.menuCreate("12")%>
+                var stageList = [, 'ordCreated', 'ordCooking', 'ordCooked', 'ordShiped', 'notReq', 'reqed', 'cashed', 'banked'];
+                var stageMap = new Array(9);
+                for (var i = 1; i <= 8; i++)
+                    stageMap[i] = Array(9);
+                stageMap[1][2] = 1;
+                stageMap[2][3] = 1;
+                stageMap[3][4] = 1;
+                stageMap[5][6] = 1;
+                stageMap[5][8] = 1;
+                stageMap[6][7] = 1;
 
-                // Добавляем класс selected-html-element что бы наглядно показать на чем именно мы кликнули (исключительно для тестирования):
-                target.addClass('selected-html-element');
+                var target = $(event.target);
+                var targetStageID = 0;
+                for (var i = 1; i <= stageList.length; i++) {
+                    if (target.hasClass(stageList[i])) {
+                        targetStageID = i;
+                        break;
+                    }
+                }
+                var $ul = $('<ul/>');
+                for (var j = 1; j <= 8; j++) {
+                    if (stageMap[targetStageID][j])
+                            $ul.append('<li><a href="#">' + stageList[j] + '</a></li>')
+                    }
 
                 // Создаем меню:
                 $('<div/>', {
@@ -140,16 +164,9 @@
             })
             .appendTo('body') // Присоединяем наше меню к body документа:
             .append( // Добавляем пункты меню:
-                 $('<ul/>').append('<li><a href="#">Remove element</a></li>'))
-//                   
-//                        .append('<li><a href="#">Remove element</a></li>')
-//                        .append('<li><a href="#">Remove element</a></li>')
-//                        .append('<li><a href="#">Add element</a></li>')
-//                        .append('<li><a href="#">Element style</a></li>')
-//                        .append('<li><a href="#">Element props</a></li>')
-//                        .append('<li><a href="#">Open Inspector</a></li>')
-                   
-             $('.context-menu').show('fast'); // Показываем меню с небольшим стандартным эффектом jQuery. Как раз очень хорошо подходит для меню
+                 $('<ul/>').append($ul));
+
+                $('.context-menu').show('fast'); // Показываем меню с небольшим стандартным эффектом jQuery. Как раз очень хорошо подходит для меню
             }
 
         });

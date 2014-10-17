@@ -12,15 +12,20 @@
 
 
 <script type="text/javascript">
+    flag_endOfTimer = 0;
     $(document).ready(function () {
+        
         setTimeout(upd, 5000);
     });
 
     upd = function () {
-    
+
+        flag_endOfTimer++;
         $('#UpdateBlock').load(('<%=Url.Action("pvIndex","OrderDashBoard") %>'), {
             asd: Math.random() // что б IE не кешировал
-        }, function () { setTimeout(upd, 5000); });
+        }
+        , function () { setTimeout(upd, 5000); }
+        );
     }
 </script>
 

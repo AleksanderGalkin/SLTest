@@ -86,6 +86,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\menuStage.cs" />
     <Compile Include="Models\OrderDashBoard.cs" />
     <Compile Include="Service\Helper\btOrder.cs" />
     <Compile Include="Models\CoffeeModel.Designer.cs">
@@ -104,9 +105,9 @@
     <Compile Include="Models\VMOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Factory\OptionsServiceFactory.cs" />
+    <Compile Include="Service\Helper\menuCreator.cs" />
     <Compile Include="Service\Helper\MyPager.cs" />
     <Compile Include="Service\OrderDashBoardsEntityService.cs" />
-    <Compile Include="Service\PayStagesEntityService.cs" />
     <Compile Include="Service\OrderStagesEntityService.cs" />
     <Compile Include="Service\OptionEntityService.cs" />
     <Compile Include="Service\Factory\RecipeServiceFactory.cs" />
