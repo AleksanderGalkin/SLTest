@@ -129,7 +129,14 @@
 
                 // Получаем элемент на котором был совершен клик:
                 // <%: Html.menuCreate("12")%>
-                var stageList = [, 'ordCreated', 'ordCooking', 'ordCooked', 'ordShiped', 'notReq', 'reqed', 'cashed', 'banked'];
+                var stageList = [, ['ordCreated', 'Создан заказ']
+                                , ['ordCooking', 'Отправлен на кухню']
+                                , ['ordCooked', 'Готов заказ']
+                                , ['ordShiped', 'Доставлено']
+                                , ['notReq', 'Счёт не запрошен']
+                                , ['reqed', 'Счёт запрошен']
+                                , ['cashed', 'Оплачено наличными']
+                                , ['banked', 'Оплачено картой']];
                 var stageMap = new Array(9);
                 for (var i = 1; i <= 8; i++)
                     stageMap[i] = Array(9);
@@ -143,7 +150,7 @@
                 var target = $(event.target);
                 var targetStageID = 0;
                 for (var i = 1; i <= stageList.length; i++) {
-                    if (target.hasClass(stageList[i])) {
+                    if (target.hasClass(stageList[i][0])) {
                         targetStageID = i;
                         break;
                     }
@@ -151,7 +158,7 @@
                 var $ul = $('<ul/>');
                 for (var j = 1; j <= 8; j++) {
                     if (stageMap[targetStageID][j])
-                            $ul.append('<li><a href="#">' + stageList[j] + '</a></li>')
+                            $ul.append('<li><a href="#">' + stageList[j][1] + '</a></li>')
                     }
 
                 // Создаем меню:
