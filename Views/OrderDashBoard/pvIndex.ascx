@@ -48,7 +48,7 @@
         </td>
          <td>
             <%--<%: Html.ActionLink(item.getOState.Descr, "#", new { id = item.ID }, new { @class = "btSignal " + item.getOState.Style, onClick = "return false;" })%>--%>
-            <a href="#" id=<%=item.ID%> class="btSignal btBlink <%=item.getOState.Style%>"><%=item.getOState.Descr%></a>
+            <a href="#" id=<%=item.ID%> class="btSignal <%=item.getOState.Style%>"><%=item.getOState.Descr%></a>
         </td>
          <td>
             <%--<%: Html.ActionLink(item.getPState.Descr, "#", new { id = item.ID }, new { @class = "btSignal " + item.getPState.Style, onClick = "return false;" })%>--%>
@@ -174,8 +174,12 @@
                  $('<ul/>').append($ul));
 
                 $('.context-menu').show('fast'); // Показываем меню с небольшим стандартным эффектом jQuery. Как раз очень хорошо подходит для меню
+                
+                
             }
-
+            $('.context-menu li a').mousedown(function () {
+                alert(targetStageID.toString()+'  '+$(this).text());
+            });
         });
     });
  

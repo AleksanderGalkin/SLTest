@@ -23,6 +23,9 @@ namespace SLTest.Controllers
             
             return View(obj);
         }
-
+        public ActionResult changeStage()
+        {
+            return View();
+        }
     }
 }
