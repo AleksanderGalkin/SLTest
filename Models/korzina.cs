@@ -74,12 +74,19 @@ namespace SLTest.Models
     {
             private OrderDashBoardsStagesEntityService s =
                 new OrderDashBoardsStagesEntityService();
+
             public OrderStages getOState
             {
                 get 
                 {
                     return s.GetOrderState((int)this.ID);
                 }
+            }
+            public int setOState (string Descr,string user)
+            {
+                
+                     return s.SetOrderState((int)this.ID,Descr,user);
+                
             }
             public OrderStages getPState
             {
@@ -88,8 +95,31 @@ namespace SLTest.Models
                     return s.GetPayState((int)this.ID);
                 }
             }
+            public int setPState(string Descr, string user)
+            {
                 
-            public  string PSystem { get; set; }        
+                    return s.SetPayState((int)this.ID, Descr,  user);
+            }    
+            public  string PSystem { get; set; }
+            public Boolean flPaid {
+                get
+                {
+                  if (getPState!=null)
+                    if (getPState.Descr.Contains("Оплачено"))
+                        return true;
+                  return false;
+                }
+            }
+            public DateTime? dtPaid
+            {
+                get
+                {
+                    if (!flPaid)
+                        return null;
+                    else
+                        return s.GetPayDateTime((int)this.ID);
+                }
+            }
              [Bind(Exclude = "ID")]
             public class shipToValidation
             {

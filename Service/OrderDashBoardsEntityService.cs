@@ -34,41 +34,58 @@ namespace SLTest.Service
             return cnt;
         }
 
-        public  void SetOrderState(int orderId, string Descr,string user)
+        public  int SetOrderState(int orderId, string Descr,string user)
         {
-            OrderDashBoards obj = new OrderDashBoards();
-            OrderStages obj_os = (from i in db.OrderStages
-                                  where i.Descr == Descr
-                                   select i).FirstOrDefault();
-            if (obj_os != null)
+            try
             {
-                obj.stageID1 = obj_os.ID;
+                OrderDashBoards obj = new OrderDashBoards();
+                OrderStages obj_os = (from i in db.OrderStages
+                                      where i.Style.Contains(Descr)
+                                      select i).FirstOrDefault();
+                if (obj_os != null)
+                {
+                    obj.stageID1 = obj_os.ID;
+                }
+
+                obj.shipToID = orderId;
+                obj.stageDT = DateTime.Now;
+                obj.username = user;
+                db.AddToOrderDashBoards(obj);
+                db.SaveChanges();
+                return 0;
+            }
+            catch
+            {
+                return 1;
             }
             
-            obj.shipToID = orderId;
-            obj.stageDT = DateTime.Now;
-            obj.username = user;
-            db.AddToOrderDashBoards(obj);
-            db.SaveChanges();
             
         }
 
-        public void SetPayState(int orderId, string Descr, string user)
+        public int SetPayState(int orderId, string Descr, string user)
         {
-            OrderDashBoards obj = new OrderDashBoards();
-            OrderStages obj_os = (from i in db.OrderStages
-                                  where i.Descr == Descr
-                                  select i).FirstOrDefault();
-            if (obj_os != null)
+            try
             {
-                obj.stageID2 = obj_os.ID;
-            }
+                OrderDashBoards obj = new OrderDashBoards();
+                OrderStages obj_os = (from i in db.OrderStages
+                                      where i.Style.Contains(Descr)
+                                      select i).FirstOrDefault();
+                if (obj_os != null)
+                {
+                    obj.stageID2 = obj_os.ID;
+                }
 
-            obj.shipToID = orderId;
-            obj.stageDT = DateTime.Now;
-            obj.username = user;
-            db.AddToOrderDashBoards(obj);
-            db.SaveChanges();
+                obj.shipToID = orderId;
+                obj.stageDT = DateTime.Now;
+                obj.username = user;
+                db.AddToOrderDashBoards(obj);
+                db.SaveChanges();
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
 
         }
         public OrderStages GetOrderState(int orderId)
@@ -87,6 +104,18 @@ namespace SLTest.Service
                              where i.shipToID == orderId && i.stageID2 != null
                              orderby i.stageDT descending
                              select i.OrderStages1
+                             ).FirstOrDefault();
+            return result;
+        }
+        public DateTime GetPayDateTime(int orderId)
+        {
+            DateTime result = (from i in db.OrderDashBoards
+                               join os in db.OrderStages
+                               on i.stageID2 equals os.ID
+                                  where i.shipToID == orderId 
+                                  && os.Descr.Contains("Оплачено") 
+                                  orderby i.stageDT descending
+                                  select i.stageDT
                              ).FirstOrDefault();
             return result;
         }

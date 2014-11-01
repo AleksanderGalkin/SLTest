@@ -4,18 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SLTest.Models;
+using SLTest.Models.Interface;
 
 namespace SLTest.Controllers
 {
     public class NavigatorController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
-        public Navigator<VMMenuItem> nav;
-        public Navigator<VMMenuItem> navSes;
+        public Navigator<INavigator> nav;
+        public Navigator<INavigator> navSes;
 
         public NavigatorController()
         {
-            nav= new Navigator<VMMenuItem>();
+            nav = new Navigator<INavigator>();
             nav.Add(GetModel(), "Sort", "напитки");
         }
 
@@ -24,7 +25,7 @@ namespace SLTest.Controllers
         {
             OptionsDropDownList();
 
-            navSes = Session["SFModel"] as Navigator<VMMenuItem>;
+            navSes = Session["SFModel"] as Navigator<INavigator>;
             if (navSes != null)
             nav = navSes;
 
@@ -63,7 +64,7 @@ namespace SLTest.Controllers
             ViewData["RecList"] = new SelectList(recipeQuery, "OptID", "OptionName", selectedoptions);
         }
 
-        private IEnumerable<VMMenuItem> GetModel()
+        private IEnumerable<INavigator> GetModel()
         {
             return  from recipe in db.Recipe
                       orderby recipe.RecName
@@ -77,6 +78,12 @@ namespace SLTest.Controllers
                           OptID = 0
                       };
         }
+        //private IEnumerable<INavigator> GetModelHot()
+        //{
+        //    return from h in db.Hot
+        //          // orderby h.Name
+        //           select h;
+        //}
 
     }
 }

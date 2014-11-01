@@ -7,6 +7,7 @@
     <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="coffeeModelStoreContainer">
           <EntitySet Name="formOfP" EntityType="coffeeModel.Store.formOfP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Hot" EntityType="coffeeModel.Store.Hot" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="itCart" EntityType="coffeeModel.Store.itCart" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NextStages" EntityType="coffeeModel.Store.NextStages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Options" EntityType="coffeeModel.Store.Options" store:Type="Tables" Schema="dbo" />
@@ -66,6 +67,16 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descr" Type="nchar" Nullable="false" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Hot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Describe" Type="nchar" MaxLength="100" />
+          <Property Name="Sort" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="itCart">
           <Key>
@@ -134,8 +145,6 @@
           <Property Name="comment" Type="nchar" MaxLength="50" />
           <Property Name="flImmediateBill" Type="bit" Nullable="false" />
           <Property Name="userName" Type="nchar" MaxLength="25" />
-          <Property Name="flPaid" Type="bit" Nullable="false" />
-          <Property Name="dtPaid" Type="datetime" />
           <Property Name="waiterID" Type="int" />
         </EntityType>
         <EntityType Name="Waiters">
@@ -335,6 +344,7 @@
             <End Role="OrderStages" EntitySet="OrderStages" />
             <End Role="NextStages" EntitySet="NextStages" />
           </AssociationSet>
+          <EntitySet Name="Hot" EntityType="coffeeModel.Hot" />
         </EntityContainer>
         <EntityType Name="Options">
           <Key>
@@ -397,8 +407,6 @@
           <Property Type="Int32" Name="formOfP" Nullable="false" />
           <NavigationProperty Name="formOfP1" Relationship="coffeeModel.FK_formOfP_shipTo" FromRole="shipTo" ToRole="formOfP" />
           <Property Type="String" Name="userName" MaxLength="25" FixedLength="true" Unicode="true" />
-          <Property Type="Boolean" Name="flPaid" Nullable="false" />
-          <Property Type="DateTime" Name="dtPaid" />
           <Property Type="Int32" Name="waiterID" Nullable="true" />
           <NavigationProperty Name="Waiters" Relationship="coffeeModel.FK_shipTo_Waiters" FromRole="shipTo" ToRole="Waiters" />
           <NavigationProperty Name="OrderDashBoards" Relationship="coffeeModel.FK_OrderDashBoards_shipTo" FromRole="shipTo" ToRole="OrderDashBoards" />
@@ -575,6 +583,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Hot">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="Describe" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Sort" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -617,8 +635,6 @@
             <EntityTypeMapping TypeName="coffeeModel.shipTo">
               <MappingFragment StoreEntitySet="shipTo">
                 <ScalarProperty Name="waiterID" ColumnName="waiterID" />
-                <ScalarProperty Name="dtPaid" ColumnName="dtPaid" />
-                <ScalarProperty Name="flPaid" ColumnName="flPaid" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="formOfP" ColumnName="formOfP" />
                 <ScalarProperty Name="flImmediateBill" ColumnName="flImmediateBill" />
@@ -675,6 +691,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Hot">
+            <EntityTypeMapping TypeName="coffeeModel.Hot">
+              <MappingFragment StoreEntitySet="Hot">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -703,26 +730,24 @@
           <ConnectorPoint PointX="3" PointY="3.3362939453125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="coffeeModel.itCart" Width="1.5" PointX="7.125" PointY="5.5" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="coffeeModel.shipTo" Width="1.5" PointX="4.875" PointY="6.625" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="coffeeModel.shipTo" Width="1.5" PointX="4.875" PointY="6.625" Height="3.3263964843749996" />
         <AssociationConnector Association="coffeeModel.FK_itCart_Options" >
           <ConnectorPoint PointX="4.34375" PointY="4.422587890625" />
-          <ConnectorPoint PointX="4.34375" PointY="6.3846257096354186" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="6.3846257096354178" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="6.3846257096354186" />
-          <ConnectorPoint PointX="7.125" PointY="6.3846257096354186" />
+          <ConnectorPoint PointX="4.34375" PointY="5.7427953515624992" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="5.7427953515624983" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="5.7427953515624992" />
+          <ConnectorPoint PointX="7.125" PointY="5.7427953515624992" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_itCart_Recipe" >
           <ConnectorPoint PointX="1.5" PointY="4.6148893229166656" />
-          <ConnectorPoint PointX="1.5" PointY="5.7343724999999992" />
-          <ConnectorPoint PointX="4.260416666666667" PointY="5.7343724999999983" />
-          <ConnectorPoint PointX="4.427083333333333" PointY="5.7343724999999992" />
-          <ConnectorPoint PointX="5.791666666666667" PointY="5.7343724999999983" />
-          <ConnectorPoint PointX="5.958333333333333" PointY="5.7343724999999992" />
-          <ConnectorPoint PointX="7.125" PointY="5.7343724999999992" />
+          <ConnectorPoint PointX="1.5" PointY="6.18390017578125" />
+          <ConnectorPoint PointX="5.791666666666667" PointY="6.1839001757812495" />
+          <ConnectorPoint PointX="5.958333333333333" PointY="6.18390017578125" />
+          <ConnectorPoint PointX="7.125" PointY="6.18390017578125" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_itCart_shipTo" >
-          <ConnectorPoint PointX="6.375" PointY="7.3410953776041659" />
-          <ConnectorPoint PointX="7.125" PointY="7.3410953776041659" />
+          <ConnectorPoint PointX="6.375" PointY="7.3410953776041667" />
+          <ConnectorPoint PointX="7.125" PointY="7.3410953776041667" />
         </AssociationConnector>
         <EntityTypeShape EntityType="coffeeModel.formOfP" Width="1.5" PointX="2.625" PointY="7.25" Height="1.5956835937499996" />
         <AssociationConnector Association="coffeeModel.FK_formOfP_shipTo" >
@@ -741,8 +766,8 @@
           <ConnectorPoint PointX="7.125" PointY="11.7184326171875" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_shipTo" >
-          <ConnectorPoint PointX="6.375" PointY="9.7304996744791659" />
-          <ConnectorPoint PointX="7.125" PointY="9.7304996744791659" />
+          <ConnectorPoint PointX="6.375" PointY="9.6343489583333337" />
+          <ConnectorPoint PointX="7.125" PointY="9.6343489583333337" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_OrderDashBoards_OrderStages1" >
           <ConnectorPoint PointX="6.375" PointY="11.48421630859375" />
@@ -761,6 +786,7 @@
           <ConnectorPoint PointX="6.0312525" PointY="15.170189924479166" />
           <ConnectorPoint PointX="7.125" PointY="15.170189924479166" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="coffeeModel.Hot" Width="1.5" PointX="7.375" PointY="0.75" Height="1.9802864583333331" />
       </Diagram>
     </Diagrams>
   </Designer>

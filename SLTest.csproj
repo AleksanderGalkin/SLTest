@@ -86,6 +86,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Hot.cs" />
+    <Compile Include="Models\Interface\INavigator.cs" />
     <Compile Include="Models\menuStage.cs" />
     <Compile Include="Models\OrderDashBoard.cs" />
     <Compile Include="Service\Helper\btOrder.cs" />

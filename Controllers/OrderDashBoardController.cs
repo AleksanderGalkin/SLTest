@@ -23,9 +23,20 @@ namespace SLTest.Controllers
             
             return View(obj);
         }
-        public ActionResult changeStage()
+        public ActionResult changeStage(int? id=null,string nextStageID="",int typeOfStage=0)
         {
-            return View();
+
+            var obj = (from i in db.shipTo
+                      where i.ID==id
+                      select i).FirstOrDefault();
+            int orderStageID = (from i in db.OrderStages
+                               where i.Style.Contains(nextStageID)
+                               select i.ID).FirstOrDefault();
+            if (typeOfStage == 1)
+                obj.setOState(nextStageID, User.Identity.Name);
+            if (typeOfStage == 2)
+                obj.setPState(nextStageID, User.Identity.Name);
+            return RedirectToAction("pvIndex");
         }
     }
 }

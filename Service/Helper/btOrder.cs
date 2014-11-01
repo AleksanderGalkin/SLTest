@@ -50,13 +50,16 @@ namespace SLTest.Models
                              ;
 
                 ret.notPaidOrdNum = (from i in db.shipTo
-                                where i.userName == parUser
-                                group i by i.flPaid
-                                    into iGr
-                                    where iGr.Key == false
-                                    select iGr.Count()).FirstOrDefault();
-                   
-                
+                         where i.userName == parUser
+                                && !(from odb in db.OrderDashBoards
+                                    join os in db.OrderStages
+                                    on odb.stageID2 equals os.ID
+                                        where odb.shipToID==i.ID 
+                                        && os.Descr.Contains("Оплачено")
+                                        select odb).Any()
+                            select i).Count();
+
+                       
                 ret.active = true;
                 ret.userName = parUser;
             }

@@ -224,6 +224,22 @@ namespace SLTest.Models
             }
         }
         private ObjectSet<NextStages> _NextStages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Hot> Hot
+        {
+            get
+            {
+                if ((_Hot == null))
+                {
+                    _Hot = base.CreateObjectSet<Hot>("Hot");
+                }
+                return _Hot;
+            }
+        }
+        private ObjectSet<Hot> _Hot;
 
         #endregion
 
@@ -299,6 +315,14 @@ namespace SLTest.Models
         public void AddToNextStages(NextStages nextStages)
         {
             base.AddObject("NextStages", nextStages);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Hot EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToHot(Hot hot)
+        {
+            base.AddObject("Hot", hot);
         }
 
         #endregion
@@ -416,6 +440,163 @@ namespace SLTest.Models
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Hot")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Hot : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Hot object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="price">Initial value of the Price property.</param>
+        public static Hot CreateHot(global::System.Int32 id, global::System.String name, global::System.Decimal price)
+        {
+            Hot hot = new Hot();
+            hot.ID = id;
+            hot.Name = name;
+            hot.Price = price;
+            return hot;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private global::System.Decimal _Price;
+        partial void OnPriceChanging(global::System.Decimal value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Describe
+        {
+            get
+            {
+                return _Describe;
+            }
+            set
+            {
+                OnDescribeChanging(value);
+                ReportPropertyChanging("Describe");
+                _Describe = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Describe");
+                OnDescribeChanged();
+            }
+        }
+        private global::System.String _Describe;
+        partial void OnDescribeChanging(global::System.String value);
+        partial void OnDescribeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.String _Sort;
+        partial void OnSortChanging(global::System.String value);
+        partial void OnSortChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -1809,15 +1990,13 @@ namespace SLTest.Models
         /// <param name="orderDateTime">Initial value of the OrderDateTime property.</param>
         /// <param name="flImmediateBill">Initial value of the flImmediateBill property.</param>
         /// <param name="formOfP">Initial value of the formOfP property.</param>
-        /// <param name="flPaid">Initial value of the flPaid property.</param>
-        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP, global::System.Boolean flPaid)
+        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP)
         {
             shipTo shipTo = new shipTo();
             shipTo.ID = id;
             shipTo.OrderDateTime = orderDateTime;
             shipTo.flImmediateBill = flImmediateBill;
             shipTo.formOfP = formOfP;
-            shipTo.flPaid = flPaid;
             return shipTo;
         }
 
@@ -1995,54 +2174,6 @@ namespace SLTest.Models
         private global::System.String _userName;
         partial void OnuserNameChanging(global::System.String value);
         partial void OnuserNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean flPaid
-        {
-            get
-            {
-                return _flPaid;
-            }
-            set
-            {
-                OnflPaidChanging(value);
-                ReportPropertyChanging("flPaid");
-                _flPaid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("flPaid");
-                OnflPaidChanged();
-            }
-        }
-        private global::System.Boolean _flPaid;
-        partial void OnflPaidChanging(global::System.Boolean value);
-        partial void OnflPaidChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> dtPaid
-        {
-            get
-            {
-                return _dtPaid;
-            }
-            set
-            {
-                OndtPaidChanging(value);
-                ReportPropertyChanging("dtPaid");
-                _dtPaid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("dtPaid");
-                OndtPaidChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _dtPaid;
-        partial void OndtPaidChanging(Nullable<global::System.DateTime> value);
-        partial void OndtPaidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

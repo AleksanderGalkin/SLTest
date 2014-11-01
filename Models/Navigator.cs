@@ -12,7 +12,7 @@ namespace SLTest.Models
 
 
     public class SearchTerm<T> //Критерии фильтрации для одной модели
-        where T : class, new()
+        where T : INavigator, new()
         
     {
         public class stItemStru { public bool cbItem; public string nmItem; }// структура с критерием 
@@ -73,18 +73,18 @@ namespace SLTest.Models
 
     }
     public class Navigator<T>
-    where T : class, new()
+    where T :  INavigator, new()
     {
         public string test{get;set;}
-        public List<string> tl;
+        //public List<string> tl;
         public List<SearchTerm<T>> list;
         public Navigator()
         {
             list = new List<SearchTerm<T>>();
-            tl = new List<string>();
-            tl.Add("раз");
-            tl.Add("два");
-            tl.Add("три");
+            //tl = new List<string>();
+            //tl.Add("раз");
+            //tl.Add("два");
+            //tl.Add("три");
         }
 
         public void Add(SearchTerm<T> st)

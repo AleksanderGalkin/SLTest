@@ -58,8 +58,9 @@ namespace SLTest.Controllers
                 res.formOfP = obj.formOfP;
                 if (res.formOfP1.Descr.Trim() == "Банковская карта")
                 {
-                    res.dtPaid = DateTime.Now;
-                    res.flPaid = true;
+                    //res.dtPaid = DateTime.Now;
+                    res.setPState("banked", User.Identity.Name);
+                    //res.flPaid = true;
                 }
                 TryUpdateModel(res);
 
