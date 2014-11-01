@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Collections;
 using System.Web.Mvc;
+using SLTest.Models.Interface;
 
 namespace SLTest.Models
 {
-    public class VMMenuItem
+    public class VMMenuItem:INavigator
     {
         public bool cb { get; set; }
         public Int64 RecID { get; set; }
