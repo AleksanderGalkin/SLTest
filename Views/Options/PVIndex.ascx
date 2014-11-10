@@ -1,16 +1,16 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.VMMenu<SLTest.Models.Options>>" %>
 
- <h2>Добавки</h2>
+ <h2>Дополнительные ингредиенты</h2>
 
     <table>
         <tr>
             <th></th>
      
             <th>
-                Относится к напитку
+                Относится к блюду
             </th>
             <th>
-                Наименование добавки
+                Наименование опции
             </th>
             <th>
                 Цена

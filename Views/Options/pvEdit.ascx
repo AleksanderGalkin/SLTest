@@ -4,7 +4,7 @@
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Реквизиты</legend>
+            <legend>Описание ингредиента</legend>
             
            
             <div class="editor-label">
@@ -32,7 +32,7 @@
             </div>
             
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
 

@@ -32,13 +32,13 @@
             <td>
                 
                 <%--<%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%> --%>
-                <%=Html.CheckBox(""+item.RecID)%> 
+                <%=Html.CheckBox(""+item.ID)%> 
             
 
             </td>
 
             <td>
-                <%: item.RecName %>
+                <%: item.Name %>
             </td>
             <td>
                 <%: String.Format("{0:F}", item.Price) %>

@@ -11,8 +11,8 @@ namespace SLTest.Models
     public class VMMenuItem:INavigator
     {
         public bool cb { get; set; }
-        public Int64 RecID { get; set; }
-        public string RecName { get; set; }
+        public Int64 ID { get; set; }
+        public string Name { get; set; }
         public string Sort { get; set; }
         public Decimal Price { get; set; }
         public Int64 OptID { get; set; }
@@ -26,7 +26,7 @@ namespace SLTest.Models
         {
             var sprOpt = from s in spr
                          orderby s.OptionName
-                         where s.Recipe.RecID == RecID
+                         where s.Recipe.RecID == ID
                          select s;
             if (sprOpt.Count() == 0)
             {

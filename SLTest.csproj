@@ -73,7 +73,9 @@
   <ItemGroup>
     <Compile Include="Controllers\Abstract\BaseController.cs" />
     <Compile Include="Controllers\Abstract\BaseController1DL.cs" />
+    <Compile Include="Controllers\Abstract\BaseController2DL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigatorController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
@@ -82,14 +84,20 @@
     <Compile Include="Controllers\PageHelper.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\ShippingController.cs" />
+    <Compile Include="Controllers\SortsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Hot.cs" />
+    <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Interface\INavigator.cs" />
     <Compile Include="Models\menuStage.cs" />
     <Compile Include="Models\OrderDashBoard.cs" />
+    <Compile Include="Models\Sorts.cs" />
+    <Compile Include="Service\CategoriesEntityService.cs" />
+    <Compile Include="Service\Factory\CategoriesServiceFactory.cs" />
+    <Compile Include="Service\Factory\SortsServiceFactory.cs" />
+    <Compile Include="Service\SortsEntityService.cs" />
     <Compile Include="Service\Helper\btOrder.cs" />
     <Compile Include="Models\CoffeeModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,11 +125,19 @@
     <Compile Include="Service\RecipeEntityService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\coffee.mdf" />
-    <Content Include="App_Data\coffee_log.ldf">
-      <DependentUpon>coffee.mdf</DependentUpon>
+    <Content Include="App_Data\COFFEEEX.MDF" />
+    <Content Include="App_Data\coffeeex_log.ldf">
+      <DependentUpon>COFFEEEX.MDF</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Categories\pvCreate.ascx" />
+    <Content Include="Views\Categories\DEL!!!pvDelete.ascx" />
+    <Content Include="Views\Categories\pvEdit.ascx" />
+    <Content Include="Views\Categories\PVIndex.ascx" />
+    <Content Include="Views\Sorts\pvCreate.ascx" />
+    <Content Include="Views\Sorts\DEL!!!pvDelete.ascx" />
+    <Content Include="Views\Sorts\pvEdit.ascx" />
+    <Content Include="Views\Sorts\PVIndex.ascx" />
     <Content Include="Views\Home\Administration.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Korzina.aspx" />
@@ -133,17 +149,17 @@
     <Content Include="Views\Order\Payment.aspx" />
     <Content Include="Views\Order\Success.aspx" />
     <Content Include="Views\Shipping\pvKorzina.ascx" />
-    <Content Include="Views\Home\Test.aspx" />
+    <Content Include="Views\Home\DEL!!Test.aspx" />
     <Content Include="Views\Navigator\Index.aspx" />
     <Content Include="Views\Navigator\PVIndex.ascx" />
-    <Content Include="Views\Options\Delete.aspx" />
+    <Content Include="Views\Options\DEL!!Delete.aspx" />
     <Content Include="Views\Options\pvCreate.ascx" />
     <Content Include="Views\Options\pvDelete.ascx" />
     <Content Include="Views\Options\pvEdit.ascx" />
     <Content Include="Views\Options\PVIndex.ascx" />
-    <Content Include="Views\Recipe\Delete.aspx" />
+    <Content Include="Views\Recipe\DEL!!!Delete.aspx" />
     <Content Include="Views\Recipe\pvCreate.ascx" />
-    <Content Include="Views\Recipe\pvDelete.ascx" />
+    <Content Include="Views\Recipe\DEL!!pvDelete.ascx" />
     <Content Include="Views\Recipe\pvEdit.ascx" />
     <Content Include="Views\Recipe\PVIndex.ascx" />
     <Content Include="Views\Shipping\Index.aspx" />

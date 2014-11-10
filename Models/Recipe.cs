@@ -37,6 +37,12 @@ namespace SLTest.Models
             [DisplayFormat(ConvertEmptyStringToNull = false)]
             [StringLength(100)]
             public string Describe { get; set; }
+
+            [DisplayName("Вид блюда (подкатегория)")]
+            public Int32 Sort { get; set; }
+
+            [DisplayName("Категория")]
+            public Int32 Category { get; set; }
         }
         public bool CanBeDeleted()
         {

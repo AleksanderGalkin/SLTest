@@ -11,11 +11,11 @@ using SLTest.Controllers.Abstract;
 
 namespace SLTest.Controllers
 {
-    public class RecipeController : BaseController<Recipe,IBaseService<Recipe>>
+    public class RecipeController : BaseController2DL<Recipe, IBaseService<Recipe>, Sorts, IBaseService<Sorts>, Categories, IBaseService<Categories>>
     {
-        
-        public RecipeController(IBaseService<Recipe> _service) : base(_service) { }
-        public RecipeController() : this(RecipeServiceFactory.Create()) { }
+        IBaseService<Sorts> L = SortsServiceFactory.Create();
+        public RecipeController(IBaseService<Recipe> service, IBaseService<Sorts> List1, IBaseService<Categories> List2) : base(service, List1,List2) { }
+        public RecipeController() : this(RecipeServiceFactory.Create(), SortsServiceFactory.Create(), CategoriesServiceFactory.Create()) { }
  
     }
 }

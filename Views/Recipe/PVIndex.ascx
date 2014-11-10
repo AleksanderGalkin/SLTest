@@ -2,7 +2,7 @@
 
 
 
-    <h2>Рецепты напитков</h2>
+    <h2>Ассортимент</h2>
 
     <table>
         <tr>
@@ -15,6 +15,12 @@
             </th>
             <th>
                 Описание
+            </th>
+            <th>
+                Сорт
+            </th>
+            <th>
+                Категория
             </th>
         </tr>
 
@@ -41,6 +47,12 @@
             </td>
             <td>
                 <%: item.Describe %>
+            </td>
+            <td>
+                <%: item.Sorts == null ? "(пусто)" : item.Sorts.Sort%>
+            </td>
+            <td>
+                <%: item.Categories == null ? "(пусто)" : item.Categories.Category%>
             </td>
         </tr>
     

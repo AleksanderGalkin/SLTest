@@ -11,18 +11,18 @@ namespace SLTest.Models
 
 
 
-    public class SearchTerm<T> //Критерии фильтрации для одной модели
-        where T : INavigator, new()
+    public class SearchTerm //Критерии фильтрации для одной категории
+        
         
     {
         public class stItemStru { public bool cbItem; public string nmItem; }// структура с критерием 
         public List<stItemStru> stList;// список критериев для данной модели
-        public IEnumerable<T> model; //модель
+        public IEnumerable<INavigator> model; //модель из которой формируется stItemStru
     
         public string stDescr;
         public string stField;
 
-        public SearchTerm( IEnumerable<T> m, string f, string d)
+        public SearchTerm(IEnumerable<INavigator> m, string f, string d)
         {
 
             model = m;
@@ -43,9 +43,9 @@ namespace SLTest.Models
                     select a).ToList();
             return r;
         }
-        
 
-        public IEnumerable<T> GetFiltered() // модель отфильтрованная по всем критериям
+
+        public IEnumerable<INavigator> GetFiltered() // модель отфильтрованная по всем критериям
         {
             var cntSel = (from it in stList
                           where it.cbItem
@@ -72,31 +72,80 @@ namespace SLTest.Models
         }
 
     }
-    public class Navigator<T>
-    where T :  INavigator, new()
+    public class Navigator//<T>
+    //where T :  INavigator, new()
     {
         public string test{get;set;}
         //public List<string> tl;
-        public List<SearchTerm<T>> list;
+        public List<SearchTerm> list;
         public Navigator()
         {
-            list = new List<SearchTerm<T>>();
+            list = new List<SearchTerm>();
             //tl = new List<string>();
             //tl.Add("раз");
             //tl.Add("два");
             //tl.Add("три");
         }
 
-        public void Add(SearchTerm<T> st)
+        public void Add(SearchTerm st)
         {
             list.Add(st);
             
         }
-        public void Add( IEnumerable<T> m, string f, string d)
+        public void Add(IEnumerable<INavigator> m, string f, string d)
         {
-            list.Add(new SearchTerm<T> (  m ,f,d));
+            list.Add(new SearchTerm(m, f, d));
 
         }
 
+        public IEnumerable<INavigator> GetFiltered() // модель отфильтрованная по всем критериям
+        {
+            var cntSel = (from i in list
+                          select i.stList.Count(p=>p.cbItem==true)
+                          ).Sum();
+
+            if (cntSel > 0)
+            {
+
+                var r = from a in list.FirstOrDefault().model
+                        join it in list.FirstOrDefault().stList
+                        on (a.GetType().GetProperty(list.FirstOrDefault().stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                        where it.cbItem
+                        select a;
+
+                foreach (var i in list)
+                {
+                     r = r.Union(from a in i.model
+                            join it in i.stList
+                            on (a.GetType().GetProperty(i.stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                            where it.cbItem
+                            select a);
+                }
+                return r;
+            }
+            else
+            {
+                var r = from a in list.FirstOrDefault().model
+                        join it in list.FirstOrDefault().stList
+                        on (a.GetType().GetProperty(list.FirstOrDefault().stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                        where it.cbItem
+                        select a;
+
+                foreach (var i in list)
+                {
+                    r = r.Union(from a in i.model
+                                join it in i.stList
+                                on (a.GetType().GetProperty(i.stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                                select a);
+                }
+                return r;
+                //var r = from a in model
+                //        join it in stList
+                //        on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
+                //        select a;
+                //return r;
+            }
+
+        }
     }
 }

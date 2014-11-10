@@ -30,6 +30,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_Recipe_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Categories), "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Recipe), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_Recipe_Sorts", "Sorts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Sorts), "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Recipe), true)]
 
 #endregion
 
@@ -228,18 +230,34 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Hot> Hot
+        public ObjectSet<Categories> Categories
         {
             get
             {
-                if ((_Hot == null))
+                if ((_Categories == null))
                 {
-                    _Hot = base.CreateObjectSet<Hot>("Hot");
+                    _Categories = base.CreateObjectSet<Categories>("Categories");
                 }
-                return _Hot;
+                return _Categories;
             }
         }
-        private ObjectSet<Hot> _Hot;
+        private ObjectSet<Categories> _Categories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Sorts> Sorts
+        {
+            get
+            {
+                if ((_Sorts == null))
+                {
+                    _Sorts = base.CreateObjectSet<Sorts>("Sorts");
+                }
+                return _Sorts;
+            }
+        }
+        private ObjectSet<Sorts> _Sorts;
 
         #endregion
 
@@ -318,11 +336,19 @@ namespace SLTest.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Hot EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToHot(Hot hot)
+        public void AddToCategories(Categories categories)
         {
-            base.AddObject("Hot", hot);
+            base.AddObject("Categories", categories);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sorts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSorts(Sorts sorts)
+        {
+            base.AddObject("Sorts", sorts);
         }
 
         #endregion
@@ -332,6 +358,137 @@ namespace SLTest.Models
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Categories")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Categories : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Categories object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static Categories CreateCategories(global::System.Int32 id)
+        {
+            Categories categories = new Categories();
+            categories.ID = id;
+            return categories;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Category
+        {
+            get
+            {
+                return _Category;
+            }
+            set
+            {
+                OnCategoryChanging(value);
+                ReportPropertyChanging("Category");
+                _Category = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Category");
+                OnCategoryChanged();
+            }
+        }
+        private global::System.String _Category;
+        partial void OnCategoryChanging(global::System.String value);
+        partial void OnCategoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Arrange
+        {
+            get
+            {
+                return _Arrange;
+            }
+            set
+            {
+                OnArrangeChanging(value);
+                ReportPropertyChanging("Arrange");
+                _Arrange = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Arrange");
+                OnArrangeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Arrange;
+        partial void OnArrangeChanging(Nullable<global::System.Int32> value);
+        partial void OnArrangeChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Recipe_Categories", "Recipe")]
+        public EntityCollection<Recipe> Recipe
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recipe>("coffeeModel.FK_Recipe_Categories", "Recipe");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recipe>("coffeeModel.FK_Recipe_Categories", "Recipe", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -440,163 +597,6 @@ namespace SLTest.Models
 
         #endregion
 
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Hot")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Hot : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Hot object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="price">Initial value of the Price property.</param>
-        public static Hot CreateHot(global::System.Int32 id, global::System.String name, global::System.Decimal price)
-        {
-            Hot hot = new Hot();
-            hot.ID = id;
-            hot.Name = name;
-            hot.Price = price;
-            return hot;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal Price
-        {
-            get
-            {
-                return _Price;
-            }
-            set
-            {
-                OnPriceChanging(value);
-                ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Price");
-                OnPriceChanged();
-            }
-        }
-        private global::System.Decimal _Price;
-        partial void OnPriceChanging(global::System.Decimal value);
-        partial void OnPriceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Describe
-        {
-            get
-            {
-                return _Describe;
-            }
-            set
-            {
-                OnDescribeChanging(value);
-                ReportPropertyChanging("Describe");
-                _Describe = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Describe");
-                OnDescribeChanged();
-            }
-        }
-        private global::System.String _Describe;
-        partial void OnDescribeChanging(global::System.String value);
-        partial void OnDescribeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Sort
-        {
-            get
-            {
-                return _Sort;
-            }
-            set
-            {
-                OnSortChanging(value);
-                ReportPropertyChanging("Sort");
-                _Sort = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Sort");
-                OnSortChanged();
-            }
-        }
-        private global::System.String _Sort;
-        partial void OnSortChanging(global::System.String value);
-        partial void OnSortChanged();
-
-        #endregion
-
-    
     }
     
     /// <summary>
@@ -1901,7 +1901,7 @@ namespace SLTest.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Sort
+        public Nullable<global::System.Int32> Sort
         {
             get
             {
@@ -1911,14 +1911,38 @@ namespace SLTest.Models
             {
                 OnSortChanging(value);
                 ReportPropertyChanging("Sort");
-                _Sort = StructuralObject.SetValidValue(value, true);
+                _Sort = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("Sort");
                 OnSortChanged();
             }
         }
-        private global::System.String _Sort;
-        partial void OnSortChanging(global::System.String value);
+        private Nullable<global::System.Int32> _Sort;
+        partial void OnSortChanging(Nullable<global::System.Int32> value);
         partial void OnSortChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Category
+        {
+            get
+            {
+                return _Category;
+            }
+            set
+            {
+                OnCategoryChanging(value);
+                ReportPropertyChanging("Category");
+                _Category = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Category");
+                OnCategoryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Category;
+        partial void OnCategoryChanging(Nullable<global::System.Int32> value);
+        partial void OnCategoryChanged();
 
         #endregion
 
@@ -1965,6 +1989,82 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<itCart>("coffeeModel.FK_itCart_Recipe", "itCart", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Recipe_Categories", "Categories")]
+        public Categories Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Categories>("coffeeModel.FK_Recipe_Categories", "Categories").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Categories>("coffeeModel.FK_Recipe_Categories", "Categories").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Categories> CategoriesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Categories>("coffeeModel.FK_Recipe_Categories", "Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Categories>("coffeeModel.FK_Recipe_Categories", "Categories", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Recipe_Sorts", "Sorts")]
+        public Sorts Sorts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sorts>("coffeeModel.FK_Recipe_Sorts", "Sorts").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sorts>("coffeeModel.FK_Recipe_Sorts", "Sorts").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Sorts> SortsReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sorts>("coffeeModel.FK_Recipe_Sorts", "Sorts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sorts>("coffeeModel.FK_Recipe_Sorts", "Sorts", value);
                 }
             }
         }
@@ -2320,6 +2420,113 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Sorts")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Sorts : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Sorts object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static Sorts CreateSorts(global::System.Int32 id)
+        {
+            Sorts sorts = new Sorts();
+            sorts.ID = id;
+            return sorts;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sort
+        {
+            get
+            {
+                return _Sort;
+            }
+            set
+            {
+                OnSortChanging(value);
+                ReportPropertyChanging("Sort");
+                _Sort = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sort");
+                OnSortChanged();
+            }
+        }
+        private global::System.String _Sort;
+        partial void OnSortChanging(global::System.String value);
+        partial void OnSortChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Recipe_Sorts", "Recipe")]
+        public EntityCollection<Recipe> Recipe
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recipe>("coffeeModel.FK_Recipe_Sorts", "Recipe");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recipe>("coffeeModel.FK_Recipe_Sorts", "Recipe", value);
                 }
             }
         }

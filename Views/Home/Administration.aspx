@@ -17,12 +17,18 @@
 
     <ul id="popup">
         
-        <li><%: Ajax.ActionLink("Справочник напитков", "Administration", "Home",
+        <li><%: Ajax.ActionLink("Блюда", "Administration", "Home",
                     new { metName = "PVIndex",modName = "Recipe", pageNum = 1 },
                     new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Recipe")})%></li> 
-        <li><%: Ajax.ActionLink("Справочник добавок", "Administration", "Home",
+        <li><%: Ajax.ActionLink("Опции", "Administration", "Home",
                     new { metName = "PVIndex", modName = "Options", pageNum = 1 },
                     new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Options")})%></li>              
+        <li><%: Ajax.ActionLink("Виды", "Administration", "Home",
+                    new { metName = "PVIndex", modName = "Sorts", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Sorts") })%></li> 
+        <li><%: Ajax.ActionLink("Категории", "Administration", "Home",
+                    new { metName = "PVIndex", modName = "Categories", pageNum = 1 },
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Categories") })%></li> 
          <li><%: Html.ActionLink("Монитор заказов","DachBoardView","OrderDashBoard") %></li>
     </ul>
     <div id="aj">

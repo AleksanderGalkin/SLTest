@@ -11,13 +11,49 @@ namespace SLTest.Controllers
     public class NavigatorController : Controller
     {
         private coffeeEntities db = new coffeeEntities();
-        public Navigator<INavigator> nav;
-        public Navigator<INavigator> navSes;
+        public Navigator nav;
+        public Navigator navSes;
 
         public NavigatorController()
         {
-            nav = new Navigator<INavigator>();
-            nav.Add(GetModel(), "Sort", "напитки");
+            nav = new Navigator();
+            var t = from recipe in db.Recipe
+                    join c in db.Categories
+                    on recipe.Category equals c.ID
+                    join s in db.Sorts
+                    on recipe.Sort equals s.ID
+                    select new
+                    {
+                        cb = false,
+                        ID = recipe.RecID,
+                        Name = recipe.RecName,
+                        Sort = s.Sort,
+                        Cat = c.Category,
+                        Price = recipe.Price,
+                        OptID = 0
+                    } into lst
+                    group lst by lst.Cat
+                        into g
+                        select new
+                       {
+                           cc = g.Key,
+                           vv = g.Select(p => new VMMenuItem {
+                                                      cb = false,
+                                                      ID = p.ID,
+                                                      Name = p.Name,
+                                                      Sort = p.Sort,
+                                                      Price = p.Price,
+                                                      OptID = p.OptID
+                                                  }
+                                    )
+                       };
+
+            foreach (var i in t)
+            {
+
+                nav.Add(i.vv, "Sort", i.cc);
+            }
+
         }
 
         
@@ -25,11 +61,11 @@ namespace SLTest.Controllers
         {
             OptionsDropDownList();
 
-            navSes = Session["SFModel"] as Navigator<INavigator>;
+            navSes = Session["SFModel"] as Navigator;
             if (navSes != null)
             nav = navSes;
 
-           // ViewBag.pn = pageNum;
+
                  return View(nav);
         }
         [HttpPost]
@@ -50,7 +86,6 @@ namespace SLTest.Controllers
                 }
             }
 
-            var r = nav.list.ElementAt(0).GetFiltered();
             Session["SFModel"] = nav;
         
             return RedirectToAction("Index", "Home");
@@ -66,24 +101,32 @@ namespace SLTest.Controllers
 
         private IEnumerable<INavigator> GetModel()
         {
+
+            var t= from recipe in db.Recipe
+                   join s in db.Sorts
+                   on recipe.Sort equals s.ID
+                   join c in db.Categories
+                   on recipe.Sort equals c.ID
+                   orderby recipe.RecName
+                   group recipe by c.Category
+                   into g
+                   select g;
+
+            
             return  from recipe in db.Recipe
+                        join s in db.Sorts
+                        on recipe.Sort equals s.ID
                       orderby recipe.RecName
                       select new VMMenuItem
                       {
                           cb = false,
-                          RecID = recipe.RecID,
-                          RecName = recipe.RecName,
-                          Sort = recipe.Sort,
+                          ID = recipe.RecID,
+                          Name = recipe.RecName,
+                          Sort = s.Sort,
                           Price = recipe.Price,
                           OptID = 0
                       };
         }
-        //private IEnumerable<INavigator> GetModelHot()
-        //{
-        //    return from h in db.Hot
-        //          // orderby h.Name
-        //           select h;
-        //}
 
     }
 }

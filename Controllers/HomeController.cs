@@ -21,7 +21,6 @@ namespace SLTest.Controllers
         public ActionResult Index(int pageNum=1)
         {
 
-         //   btOrder.("alec");
             vmmenu.paginginfo.CurrentPage = pageNum;
             vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
             vmmenu.paginginfo.ItemsToView = 4;
@@ -29,8 +28,8 @@ namespace SLTest.Controllers
             ViewData["Message"] = "Добро пожаловать в нашу кофейню";
             
             OptionsDropDownList();
-            Navigator<VMMenuItem> nav;
-            nav = Session["SFModel"] as Navigator<VMMenuItem>;
+            Navigator nav;
+            nav = Session["SFModel"] as Navigator;
             if (nav == null)
             {
                 vmmenu.paginginfo.TotalItems = db.Recipe.Count();
@@ -39,8 +38,8 @@ namespace SLTest.Controllers
                                 select new VMMenuItem
                                 {
                                     cb = false,
-                                    RecID = recipe.RecID,
-                                    RecName = recipe.RecName,
+                                    ID = recipe.RecID,
+                                    Name = recipe.RecName,
                                     Price = recipe.Price,
                                     OptID = 0
                                 }).
@@ -49,16 +48,18 @@ namespace SLTest.Controllers
             }
             else
             {
-                
-                vmmenu.paginginfo.TotalItems = nav.list.ElementAt(0).GetFiltered().Count();
-                vmmenu.items = (from recipe in nav.list.ElementAt(0).GetFiltered()
-                                 orderby recipe.RecName
+
+                var t = nav.GetFiltered();
+
+                vmmenu.paginginfo.TotalItems = nav.GetFiltered().Count();
+                vmmenu.items = (from r in nav.GetFiltered()
+                                orderby (r.GetType().GetProperty(nav.list.ElementAt(0).stField).GetValue(r, null) ?? "Пусто").ToString()
                                  select new VMMenuItem
                                  {
                                      cb = false,
-                                     RecID = recipe.RecID,
-                                     RecName = recipe.RecName,
-                                     Price = recipe.Price,
+                                     ID = (long)r.GetType().GetProperty("ID").GetValue(r,null),
+                                     Name = (string)r.GetType().GetProperty("Name").GetValue(r, null),
+                                     Price =    (decimal)r.GetType().GetProperty("Price").GetValue(r, null),
                                      OptID = 0
                                  }).
                                     Skip(itemsPerPage * (pageNum - 1)).Take(itemsPerPage);
@@ -135,50 +136,50 @@ namespace SLTest.Controllers
         }
 
 
-        public ActionResult PVIndex(int pageNum = 1)
-        {
+        //public ActionResult PVIndex(int pageNum = 1)
+        //{
 
-            vmmenu.paginginfo.CurrentPage = pageNum;
-            vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
-            vmmenu.paginginfo.ItemsToView = 4;
-            vmmenu.paginginfo.TotalItems = db.Recipe.Count();
-            ViewData["Message"] = "Добро пожаловать в нашу кофейню";
+        //    vmmenu.paginginfo.CurrentPage = pageNum;
+        //    vmmenu.paginginfo.ItemsPerPage = itemsPerPage;
+        //    vmmenu.paginginfo.ItemsToView = 4;
+        //    vmmenu.paginginfo.TotalItems = db.Recipe.Count();
+        //    ViewData["Message"] = "Добро пожаловать в нашу кофейню";
 
-            OptionsDropDownList();
+        //    OptionsDropDownList();
 
-            if (TempData["FModel"] == null)
-            {
-                vmmenu.paginginfo.TotalItems = db.Recipe.Count();
-                vmmenu.items = (from recipe in db.Recipe
-                                orderby recipe.RecName
-                                select new VMMenuItem
-                                {
-                                    cb = false,
-                                    RecID = recipe.RecID,
-                                    RecName = recipe.RecName,
-                                    Price = recipe.Price,
-                                    OptID = 0
-                                }).
-                    Skip(itemsPerPage * (pageNum - 1)).Take(itemsPerPage);
+        //    if (TempData["FModel"] == null)
+        //    {
+        //        vmmenu.paginginfo.TotalItems = db.Recipe.Count();
+        //        vmmenu.items = (from recipe in db.Recipe
+        //                        orderby recipe.RecName
+        //                        select new VMMenuItem
+        //                        {
+        //                            cb = false,
+        //                            RecID = recipe.RecID,
+        //                            RecName = recipe.RecName,
+        //                            Price = recipe.Price,
+        //                            OptID = 0
+        //                        }).
+        //            Skip(itemsPerPage * (pageNum - 1)).Take(itemsPerPage);
 
-            }
-            else
-            {
-                vmmenu.items = TempData["FModel"] as IEnumerable<VMMenuItem>;
-                vmmenu.paginginfo.TotalItems = vmmenu.items.Count();
-            }
-
-
-            VMMenuItem.spr = from sprOpt in db.Options
-                             select sprOpt;
+        //    }
+        //    else
+        //    {
+        //        vmmenu.items = TempData["FModel"] as IEnumerable<VMMenuItem>;
+        //        vmmenu.paginginfo.TotalItems = vmmenu.items.Count();
+        //    }
 
 
+        //    VMMenuItem.spr = from sprOpt in db.Options
+        //                     select sprOpt;
 
 
-            return View("PVIndex",vmmenu);
 
 
-        }
+        //    return View("PVIndex",vmmenu);
+
+
+        //}
 
 
 

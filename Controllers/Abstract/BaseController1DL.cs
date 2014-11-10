@@ -9,27 +9,27 @@ using SLTest.Models;
 
 namespace SLTest.Controllers.Abstract
 {
-    public abstract class BaseController1DL<_T,_S,dlT,dlS>:BaseController<_T,_S>
-        where _T:class,IBase,new()
-        where _S:class,IBaseService<_T>
+    public abstract class BaseController1DL<T,S,dlT,dlS>:BaseController<T,S>
+        where T:class,IBase,new()
+        where S:class,IBaseService<T>
         where dlT:class,IBase,new()
         where dlS:class,IBaseService<dlT>
 
     {
-        protected _S Serv;
+        protected S Serv;
         protected dlS dlServ;
        // private int itemsPerPage = 3;
         VMMenu<VMMenuItem> vmmenu = new VMMenu<VMMenuItem>();
 
-        public BaseController1DL(_S _Service):base(_Service)
+        public BaseController1DL(S Service):base(Service)
         {
-            Serv = _Service;
+            Serv = Service;
         }
 
-        public BaseController1DL(_S _Service,dlS _ServiceDL):base(_Service)
+        public BaseController1DL(S Service,dlS ServiceDL):base(Service)
         {
-            Serv = _Service;
-            dlServ=_ServiceDL;
+            Serv = Service;
+            dlServ=ServiceDL;
            // dlFlag=true;
         }
 
@@ -67,7 +67,7 @@ namespace SLTest.Controllers.Abstract
         //}
         public override ActionResult Edit(int id)
         {
-            _T obj = Serv.Get(id);
+            T obj = Serv.Get(id);
             RecipeDropDownList();
             if (Request.IsAjaxRequest())
             {

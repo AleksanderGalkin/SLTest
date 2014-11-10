@@ -40,7 +40,8 @@ namespace SLTest.Service
             {
                 OrderDashBoards obj = new OrderDashBoards();
                 OrderStages obj_os = (from i in db.OrderStages
-                                      where i.Style.Contains(Descr)
+                                      where i.Descr.Contains(Descr)
+                                      || i.Style.Contains(Descr) 
                                       select i).FirstOrDefault();
                 if (obj_os != null)
                 {
@@ -68,7 +69,8 @@ namespace SLTest.Service
             {
                 OrderDashBoards obj = new OrderDashBoards();
                 OrderStages obj_os = (from i in db.OrderStages
-                                      where i.Style.Contains(Descr)
+                                      where i.Descr.Contains(Descr)
+                                      || i.Style.Contains(Descr)
                                       select i).FirstOrDefault();
                 if (obj_os != null)
                 {

@@ -1,13 +1,13 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Options>" %>
 
-   <h2>Создать новую добавку</h2>
+   <h2>Создать новый ингредиент</h2>
 
     <% using (Ajax.BeginForm("Create","Options", new AjaxOptions { UpdateTargetId = "aj" }))
         {%>
         <%: Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Реквизиты</legend>
+            <legend>Описание ингредиента</legend>
 
             <div class="editor-label">
                 
@@ -45,7 +45,7 @@
 
 
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
 

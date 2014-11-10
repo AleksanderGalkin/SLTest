@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Recipe>" %>
 
-    <h2>Create</h2>
+    <h2>Добавить блюдо в ассортимент</h2>
 
 <% using (Ajax.BeginForm("Create","Recipe", new AjaxOptions { UpdateTargetId = "aj" }))
    {%>
@@ -8,7 +8,7 @@
         <%: Html.ValidationSummary(true)%>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Описание блюда</legend>
 
             
             <div class="editor-label">
@@ -34,9 +34,22 @@
                 <%: Html.TextBoxFor(model => model.Describe)%>
                 <%: Html.ValidationMessageFor(model => model.Describe)%>
             </div>
-            
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Sort) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.DropDownListFor(model => model.Sort, (SelectList)ViewData["List1"], new { @class="sel_edit"})%>
+                <%: Html.ValidationMessageFor(model => model.Sort) %>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Category) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.DropDownListFor(model => model.Category, (SelectList)ViewData["List2"], new { @class="sel_edit"})%>
+                <%: Html.ValidationMessageFor(model => model.Category) %>
+            </div>     
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
 

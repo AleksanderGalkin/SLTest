@@ -43,12 +43,12 @@ namespace SLTest.Models
             [ScaffoldColumn(false)]
             public Int64 OptID { get; set; }
 
-            [DisplayName("Относится к напитку")]
+            [DisplayName("Относится к блюду")]
             [Required(ErrorMessage = "Это обязательное поле")]
             public Int64 RecID { get; set; }
 
 
-            [DisplayName("Дополнительный компонент")]
+            [DisplayName("Дополнительный ингредиент")]
             [Required(ErrorMessage="Это обязательное поле")]
             [DisplayFormat(ConvertEmptyStringToNull=false)]
             [StringLength(50)]
