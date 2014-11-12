@@ -46,13 +46,25 @@
         <div class="editor-field">
             <%: Html.Hidden("userName",Page.User.Identity.Name)%>
         </div>
-        <p>
-            <input type="submit" name="sendCart" value="Оправить" />
-        </p>
+        <input type="hidden" class="sendCart" name="sendCart" value="" />
+
     </fieldset>
 
 
-              <% 
+<% 
   }//form    
-
 %>
+     <ul class='buttons'>
+        <li>
+            <a href="#" id="aButton">Оправить</a> 
+        </li>
+    </ul>
+
+
+<script type="text/javascript">
+    document.getElementById('aButton').onclick = function ()
+	{
+	    $('.sendCart').val('Оправить');
+        $('.Forma').trigger('submit');
+	}
+</script>
