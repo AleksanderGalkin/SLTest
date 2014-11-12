@@ -1,5 +1,14 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.shipTo>" %>
 
+<% using (Ajax.BeginForm(null,null,new AjaxOptions
+   {
+       UpdateTargetId = "aj",
+       Url = Url.Action("CartSubmit","Shipping"),
+       HttpMethod = "Post"
+   }, new { id = "Forma",@class="Forma" }
+   ))
+   {%>
+
 <%: Html.ValidationSummary(true)%>
     <fieldset>
         <legend>Оформление заказа</legend>
@@ -43,4 +52,7 @@
     </fieldset>
 
 
+              <% 
+  }//form    
 
+%>

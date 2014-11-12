@@ -2,7 +2,8 @@
 
     <h2>Меню</h2>
 
-        <% using (Html.BeginForm()) {%>
+        <% using (Html.BeginForm("PVIndex", "Home", FormMethod.Post, new { id = "MenuForm" }))
+           {%>
         <%: Html.ValidationSummary(true) %>
         
 
@@ -30,8 +31,7 @@
     
         <tr>
             <td>
-                
-                <%--<%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%> --%>
+
                 <%=Html.CheckBox(""+item.ID)%> 
             
 
@@ -45,7 +45,6 @@
             </td>
             <td>
                  <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>
-                 <%--<%: Html.DropDownListFor(p => item.OptID, (SelectList)ViewData["RecList"])%>--%>
             </td>
         </tr>
     
@@ -73,10 +72,11 @@
         <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Index","Navigator",new{pageNum=x}))%>
        
     </p>
-
-             <p>
-                <input type="submit" value="Поместить в заказ" />
-            </p>
+    <ul class="buttons">
+        <li>
+            <a href="#" onclick="document.forms['MenuForm'].submit();">Поместить в заказ</a>
+        </li>
+    </ul>
 
      <% } %>
 

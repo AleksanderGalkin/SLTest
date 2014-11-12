@@ -15,12 +15,14 @@
         <% }
   }%>
 
-  
-             <p>
-                <input type="submit" value="Найти" />
-             
-                <input type="button" value="Сбросить" onclick="unCheckAll();" />
-            </p>
+            <ul class="buttons">
+                <li>
+                    <a href="#" onclick="document.forms['NavForm'].submit();">Найти</a>
+                </li>
+                <li>
+                    <a href="#" onclick="unCheckAll();">Сбросить</a>
+                </li>
+            </ul>
             <%
            }
                %>

@@ -1,5 +1,15 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<KeyValuePair<SLTest.Models.itCart, int>>>" %>
 
+<% using (Ajax.BeginForm(null,null,new AjaxOptions
+   {
+       UpdateTargetId = "aj",
+       Url = Url.Action("CartSubmit","Shipping"),
+       HttpMethod = "Post"
+   }, new { id = "Forma",@class="Forma" }
+   ))
+   {%>
+
+
 
  <table>
         <tr>
@@ -48,9 +58,12 @@
                <% amount=amount+Model[i].Value * (Model[i].Key.drinkPrice() + Model[i].Key.optPrice()); %>
             </td>
          </tr>
+       
                
     <%}
     %>
+
+
     <tr>
         <td colspan="4" align="right" class="stImpInfo">
             Стоимость счёта:
@@ -61,6 +74,20 @@
     </tr>
      </table>
      <p></p>
-     <input type="submit" name="sendCart" value="Пересчитать" />
-     <input type="submit" name="sendCart" value="Оформить заказ" />
-     
+
+    <input type="hidden" class="sendCart" name="sendCart" value="" />
+
+
+    <ul class="buttons">
+        <li>
+            <a href="#"  onclick="$('.sendCart').val('Пересчитать');$('.Forma').trigger('submit');">Пересчитать</a> 
+        </li>
+        <li>
+            <a href="#"  onclick="$('.sendCart').val('Оформить заказ');$('.Forma').trigger('submit');">Оформить заказ</a>
+        </li>
+    </ul>
+
+          <% 
+  }//form    
+
+%>

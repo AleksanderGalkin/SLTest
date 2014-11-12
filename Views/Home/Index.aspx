@@ -1,14 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SLTest.Models.VMMenu<SLTest.Models.VMMenuItem>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Много диких обезьян
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Меню</h2>
 
-        <% using (Html.BeginForm()) {%>
+        <% using (Html.BeginForm("Index","Home",FormMethod.Post, new { id = "MenuForm" }))
+           {%>
         <%: Html.ValidationSummary(true) %>
         
 
@@ -80,9 +81,11 @@
        
     </p>
 
-             <p>
-                <input type="submit" value="Поместить в заказ" />
-            </p>
+    <ul class="buttons">
+        <li>
+            <a href="#" onclick="document.forms['MenuForm'].submit();">Поместить в заказ</a>
+        </li>
+    </ul>
 
      <% } %>
 
@@ -97,12 +100,11 @@
     %>
 
 
- <p>
-                
-       <%: Html.ActionLink("Ваш заказ:"+count, "Korzina")%> 
-                
-   </p>
-
+     <ul class="buttons">
+        <li>               
+            <%: Html.ActionLink("Ваш заказ:"+count, "Korzina")%> 
+        </li>
+    </ul>
    
 </asp:Content>
 

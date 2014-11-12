@@ -829,6 +829,48 @@ tr.rowDashBoard:hover
 .context-menu ul li a:hover { background-color: #eee; }
 
 
-     
+/* BUTTONS  
+----------------------------------------------------------*/
+ul.buttons
+{
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
+
+ul.buttons li
+{
+    display: inline;
+    list-style: none;
+}
+
+ul.buttons li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4; 
+    color:#034af3; 
+}
+
+ul.buttons li a:hover
+{
+    background-color: #9AFF9A;
+    text-decoration: none;
+}
+
+ul.buttons li a:active
+{
+    background-color: #43CD80;
+    text-decoration: none;
+}
+
+ul.buttons li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}     
      
        

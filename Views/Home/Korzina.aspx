@@ -16,14 +16,7 @@ else
 {
     //decimal price = 0;
     %>
-<% using (Ajax.BeginForm(new AjaxOptions
-   {
-       UpdateTargetId = "aj",
-       Url = Url.Action("CartSubmit","Shipping"),
-       HttpMethod = "Post"
-   }
-   ))
-   {%>
+
 
    
     <div id="aj">
@@ -31,8 +24,8 @@ else
 <%=Html.Action("pvKorzina", "Shipping")%>
 
     </div>
-<% 
-   }//form    
+ 
+          <% 
 }//if (Model == null || Model.Count == 0)
 
 %>
