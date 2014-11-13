@@ -211,20 +211,32 @@ ul#menu li a
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
+    background-color: #90EE90;  /*e8eef4*/
+    color: #442d25;
+    /*
     background-color: #e8eef4;
     color: #034af3;
+    */
 }
 
 ul#menu li a:hover
 {
+    background-color: #9AFF9A;
+    text-decoration: none;
+    /*
     background-color: #fff;
     text-decoration: none;
+    */
 }
 
 ul#menu li a:active
 {
+    background-color: #43CD80;
+    text-decoration: none;
+    /*
     background-color: #a6e2a6;
     text-decoration: none;
+    */
 }
 
 ul#menu li.selected a
@@ -291,7 +303,7 @@ ul#popup li.selected a
 
 a.btRecords
 {
-    background-color: #fff; 
+  /*  background-color: #fff; 
     background-repeat:no-repeat;
     background-size:100%; 
     min-width:20px;
@@ -299,9 +311,9 @@ a.btRecords
     text-decoration: none; /* отмена подчеркивания */
     text-align: center; /* центровка текста */
     padding: 30% 0 10%; /* внутренние отступы ссылок */
-    font-size:0px;
+   /* font-size:0px;
     margin:0px 0px;
-
+    */
 }
 
   a.btInsert
@@ -722,22 +734,23 @@ a.ordCreated:active{
  background-color: #7F0505;
 }
 
- a.ordCooking{
-    background-color: #FFDAB9;
-    color:#FFFFFF;
-    border: 1px solid #26A0DA; 
-}
+
  a.ordCooking:hover{
-    background-color: #FCE2CA;
+    background-color: #A6F4FF;
     border: 1px solid #26A0DA; 
 }
 a.ordCooking:active{
- background-color: #F8CBA3;
+ background-color: #34B4E3;
 }
 
-
+ a.ordCooked{
+    background-color: #FFFF00;
+    color:#8B7500;
+    border: 1px solid #26A0DA; 
+}
  a.ordCooked:hover{
-    background-color: #A6F4FF;
+    background-color: #8B7500;
+    color:#000;
     border: 1px solid #26A0DA; 
 }
 a.ordCooked:active{
@@ -781,10 +794,7 @@ a.cashed:active{
  background-color: #34B4E3;
 }
 
- a.banked{
-    background-color: #66CDAA;
-    border: 1px solid #26A0DA; 
-}
+
  a.banked:hover{
     background-color: #8ABFAD;
     color:#FFFFFF;
@@ -833,7 +843,7 @@ tr.rowDashBoard:hover
 ----------------------------------------------------------*/
 ul.buttons
 {
-    padding: 0 0 2px;
+    padding:  2px;
     position: relative;
     margin: 0;
     text-align: left;

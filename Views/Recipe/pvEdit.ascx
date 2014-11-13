@@ -50,9 +50,10 @@
 
     <% } %>
 
-    <div>
-         <%: Ajax.ActionLink("Back to List", "Administration", "Home",
+<ul class="buttons">
+      <li>
+            <%: Ajax.ActionLink("Назад к списку", "Administration", "Home",
                     new { metName = "PVIndex", modName = "Recipe", pageNum = 1 },
-                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Recipe") },
-                    new { @class = "btBody btToList" })%>
-    </div>
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Recipe") })%>
+    </li>
+</ul>

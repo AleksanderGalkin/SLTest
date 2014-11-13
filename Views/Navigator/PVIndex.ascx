@@ -4,7 +4,7 @@
         <% using (Html.BeginForm("PVIndexPost", "Navigator",FormMethod.Post, new { id = "NavForm" }))
            {%>
         <%: Html.ValidationSummary(true)%>
-<%foreach (var i in Model.list)
+<%foreach (var i in Model.GetSortedList())
   { %>
       <h3><%:i.stDescr%> </h3>
       <%foreach (var j in i.GetContent())

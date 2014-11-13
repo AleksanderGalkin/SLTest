@@ -21,13 +21,15 @@ namespace SLTest.Models
     
         public string stDescr;
         public string stField;
+        public int stArrange;
 
-        public SearchTerm(IEnumerable<INavigator> m, string f, string d)
+        public SearchTerm(IEnumerable<INavigator> m, string f, string d,int a)
         {
 
             model = m;
             stField = f;
             stDescr = d;
+            stArrange=a;
             stList = new List<stItemStru>();
             var stL = from l in model
                       group l by (l.GetType().GetProperty(stField).GetValue(l, null) ?? "Пусто").ToString();
@@ -92,9 +94,9 @@ namespace SLTest.Models
             list.Add(st);
             
         }
-        public void Add(IEnumerable<INavigator> m, string f, string d)
+        public void Add(IEnumerable<INavigator> m, string f, string d,int a)
         {
-            list.Add(new SearchTerm(m, f, d));
+            list.Add(new SearchTerm(m, f, d,a));
 
         }
 
@@ -146,6 +148,14 @@ namespace SLTest.Models
                 //return r;
             }
 
+        }
+
+        public List<SearchTerm> GetSortedList() // модель отфильтрованная по всем критериям
+        {
+            var ret = (from i in list
+                       orderby i.stArrange ascending
+                      select i).ToList();
+            return ret;
         }
     }
 }

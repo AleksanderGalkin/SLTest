@@ -17,6 +17,9 @@ namespace SLTest.Controllers
         public NavigatorController()
         {
             nav = new Navigator();
+
+
+
             var t = from recipe in db.Recipe
                     join c in db.Categories
                     on recipe.Category equals c.ID
@@ -29,6 +32,7 @@ namespace SLTest.Controllers
                         Name = recipe.RecName,
                         Sort = s.Sort,
                         Cat = c.Category,
+                        Arrange=c.Arrange,
                         Price = recipe.Price,
                         OptID = 0
                     } into lst
@@ -37,6 +41,7 @@ namespace SLTest.Controllers
                         select new
                        {
                            cc = g.Key,
+                           ar=g.Min(p=>p.Arrange),
                            vv = g.Select(p => new VMMenuItem {
                                                       cb = false,
                                                       ID = p.ID,
@@ -51,7 +56,7 @@ namespace SLTest.Controllers
             foreach (var i in t)
             {
 
-                nav.Add(i.vv, "Sort", i.cc);
+                nav.Add(i.vv, "Sort", i.cc,(int)i.ar);
             }
 
         }

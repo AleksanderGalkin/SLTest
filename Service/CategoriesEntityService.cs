@@ -12,7 +12,9 @@ namespace SLTest.Service
         coffeeEntities db = new coffeeEntities();
         public IEnumerable<Categories> Get()
         {
-            IEnumerable<Categories> obj = from a in db.Categories select a;
+            IEnumerable<Categories> obj = from a in db.Categories
+                                          orderby a.Arrange ascending
+                                          select a;
             return obj;
         }
         public Categories Get(int id)
@@ -22,7 +24,7 @@ namespace SLTest.Service
         }
         public IEnumerable<Categories> GetToPage(int page, int itemsToPage)
         {
-            IEnumerable<Categories> obj = (from a in db.Categories orderby a.Category select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);
+            IEnumerable<Categories> obj = (from a in db.Categories orderby a.Arrange select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);
             return obj;
         }
         public void Create(Categories obj)
