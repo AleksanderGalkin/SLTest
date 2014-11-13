@@ -16,15 +16,15 @@
     
         <tr>
             <td class="btTd">
-<%: Ajax.ActionLink("E", "Administration", "Home", new { metName = "Edit", modName = "Sorts", id = item.ID },
+                <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Edit", modName = "Sorts", id = item.ID },
                                               new AjaxOptions { UpdateTargetId = "aj",
-                                                Url = Url.Action("Edit", "Sorts", new { id = item.ID })},new {@class="btRecords btEdit"})%> 
-                                                                |
-                 <%: Ajax.ActionLink("D", "Administration", "Home", new { metName = "Delete", modName = "Sorts", id = item.ID },
+                                                Url = Url.Action("Edit", "Sorts", new { id = item.ID })},new {@class="btRecords icon-pencil"})%> 
+                                                         
+                 <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Delete", modName = "Sorts", id = item.ID },
                             new AjaxOptions { UpdateTargetId = "aj",
                                               Url = Url.Action("Delete", "Sorts", new { id = item.ID }),
                                                 Confirm="Вы действительно хотите удалить эту запись?",
-                                                HttpMethod="Post"},new {@class="btRecords btDelete"})%>
+                                                HttpMethod="Post"},new {@class="btRecords icon-trash"})%>
             </td>
 
             <td>
@@ -36,12 +36,14 @@
 
     </table>
 
-    <p>
-        <%: Ajax.ActionLink("Create New", "Administration", "Home",
+    <ul class="buttons">
+      <li>
+        <%: Ajax.ActionLink("добавить", "Administration", "Home",
                                     new{metName="Create",modName="Sorts"},
                                                             new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("Create", "Sorts") },
-                                                new { @class = "btBody btInsert" })%>
-    </p>
+                                                            new { @class = "icon-plus" })%>
+      </li>
+    </ul>
     <p>
         
         <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Sorts", pageNum = x }),

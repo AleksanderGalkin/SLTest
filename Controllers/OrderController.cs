@@ -43,7 +43,7 @@ namespace SLTest.Controllers
             return View(v_order);
         }
         [HttpPost]
-        public ActionResult Payment([Bind(Exclude="tableNum")]int id, FormCollection fc)
+        public ActionResult Payment([Bind(Exclude = "tableNum")]int shipId, FormCollection fc)
         {
             shipTo2 obj = new shipTo2();
             TryUpdateModel(obj, fc);
@@ -53,7 +53,7 @@ namespace SLTest.Controllers
 
 
                 var res = (from i in db.shipTo
-                           where i.ID == id
+                           where i.ID == shipId
                            select i).FirstOrDefault();
                 res.formOfP = obj.formOfP;
                 if (res.formOfP1.Descr.Trim() == "Банковская карта")
@@ -68,9 +68,9 @@ namespace SLTest.Controllers
                 {
                     db.SaveChanges();
                     if(res.formOfP1.Descr.Trim()=="Банковская карта")
-                          ordDbServ.SetPayState(id, "Оплачено картой",User.Identity.Name);
+                        ordDbServ.SetPayState(shipId, "Оплачено картой", User.Identity.Name);
                     else
-                        ordDbServ.SetPayState(id, "Счёт запрошен", User.Identity.Name);
+                        ordDbServ.SetPayState(shipId, "Счёт запрошен", User.Identity.Name);
 
                     ViewBag.formOfP1 = res.formOfP1.Descr.Trim();
                     return View("Success");

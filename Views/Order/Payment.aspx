@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" >
 
-<%using (Html.BeginForm(new { id = Model.ID }))
+<%using (Html.BeginForm(null, null, new { shipId = Model.ID },FormMethod.Post, new { id = "Forma" }))
   { %>
 <%: Html.ValidationSummary(true)%>
 <h2>Оплата заказа от <%:Model.OrderDateTime%></h2>
@@ -29,7 +29,11 @@
 </fieldset>
 <%:Html.HiddenFor(m => m.tableNum)%>
 
-<input type="submit"  value="Оплатить" />
+<ul class="buttons">
+    <li>
+        <a href="#" onclick="document.forms['Forma'].submit();">Оплатить</a>
+    </li>
+</ul>
 <%} %>
 
 <script type="text/javascript">

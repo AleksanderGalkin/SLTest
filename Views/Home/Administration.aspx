@@ -37,7 +37,9 @@
      
 
      </div>
-    <p>
-    <%: Html.ActionLink("Назад в магазин", "Index", "Home", new { @class="btBody btToShop"})%>
-    </p>
+    <ul class="buttons">
+        <li>
+            <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
+        </li>
+    </ul>
 </asp:Content>

@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<h2>Монитор заказов</h2>
 <div id="UpdateBlock">
 <%Html.RenderAction("pvIndex", "OrderDashBoard"); %>
 </div>

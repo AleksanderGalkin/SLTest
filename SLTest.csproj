@@ -129,6 +129,21 @@
     <Content Include="App_Data\coffeeex_log.ldf">
       <DependentUpon>COFFEEEX.MDF</DependentUpon>
     </Content>
+    <Content Include="Content\bg.jpg" />
+    <Content Include="Content\bg2.jpg" />
+    <Content Include="Content\bg3.jpg" />
+    <Content Include="Content\btDel.png" />
+    <Content Include="Content\btDelClicked.png" />
+    <Content Include="Content\btEdit.png" />
+    <Content Include="Content\btEditClicked.png" />
+    <Content Include="Content\btInsert.png" />
+    <Content Include="Content\btInsertClicked.png" />
+    <Content Include="Content\btToList.png" />
+    <Content Include="Content\btToListClicked.png" />
+    <Content Include="Content\btToShop.png" />
+    <Content Include="Content\btToShopClicked.png" />
+    <Content Include="Content\coficon.css" />
+    <Content Include="Content\font\coficon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Views\Categories\pvCreate.ascx" />
     <Content Include="Views\Categories\DEL!!!pvDelete.ascx" />
@@ -196,6 +211,9 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
+    <None Include="Content\font\coficon.eot" />
+    <None Include="Content\font\coficon.ttf" />
+    <None Include="Content\font\coficon.woff" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />

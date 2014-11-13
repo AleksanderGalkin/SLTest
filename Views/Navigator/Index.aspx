@@ -22,16 +22,7 @@
         <% }
   }%>
 
-            
-  
-  
-  
-<%--           <%foreach (string tl in Model.tl)
-              { %>
-            <p><%:Html.CheckBox(tl) %> <%:tl %></p>
 
-         <%}
-            %>--%>
              <p>
                 <input type="submit" value="Найти" />
             </p>

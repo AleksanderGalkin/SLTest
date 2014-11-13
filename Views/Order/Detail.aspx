@@ -117,11 +117,12 @@
   </div>
     
 </fieldset>
-<p>
+<ul class="buttons">
+    <li>
 
-    <%: Html.ActionLink("Back to List", "Index", new { parUser=Model.userName}
-                            , new { @class = "btBody btToList" })%>
-</p>
+    <%: Html.ActionLink("назад к списку", "Index", new { parUser=Model.userName})%>
+    </li>
+</ul>
 
 </asp:Content>
 
