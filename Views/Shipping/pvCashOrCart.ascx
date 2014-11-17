@@ -14,7 +14,7 @@
        totalSum = totalSum + i.totalCost() * i.num;
         %>
 <p>
-    Сумма Вашего заказа составляет <%:totalSum%> р.
+    Сумма Вашего заказа составляет <%:string.Format("{0:F2}",totalSum)%> р.
 </p>
 <%if (Model.formOfP==1){ %>
 <p>

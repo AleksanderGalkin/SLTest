@@ -8,6 +8,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+
+        <div id="loader">
+            <img alt="" src="/Content/ajax-loader.gif">
+        </div>
+
  
 
 <%-- <script ="<%=Url.Content("~/Scripts/jquery-1.4.4.min.js")%>" type="text/javascript"></script>
@@ -31,15 +36,24 @@
                     new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Categories") })%></li> 
          <li><%: Html.ActionLink("Монитор заказов","DachBoardView","OrderDashBoard") %></li>
     </ul>
+
+
     <div id="aj">
-
             <%=Html.Action((string)ViewBag.mtn, (string)ViewBag.mn, new { pageNum = ViewBag.pn,id=ViewBag.id })%>
-     
-
-     </div>
+    </div>
     <ul class="buttons">
         <li>
             <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
         </li>
     </ul>
+
+    <script type="text/javascript">
+        $(document).ajaxStart(function () {
+            $('#loader').show();
+        }).ajaxStop(function () {
+            $('#loader').hide();
+        });
+</script>
+
 </asp:Content>
+

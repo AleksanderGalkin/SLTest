@@ -4,16 +4,33 @@
         <% using (Html.BeginForm("PVIndexPost", "Navigator",FormMethod.Post, new { id = "NavForm" }))
            {%>
         <%: Html.ValidationSummary(true)%>
+<ul class='navMenu'>
 <%foreach (var i in Model.GetSortedList())
   { %>
-      <h3><%:i.stDescr%> </h3>
+      <li class='navCat'><a href='#'><%:i.stDescr%></a>
+      
+      <div class='navAnnot'>
+        <%foreach (var j in i.GetContent())
+        {
+            if (j.cbItem)
+            {%>
+            
+                <%:j.nmItem %> 
+            
+            <%}
+        }%>
+      </div>
+      <ul>
       <%foreach (var j in i.GetContent())
         {%>
-    <p>
-         <%=Html.CheckBox(j.nmItem, j.cbItem, new { @class = "cbNavigator" })%> <%:j.nmItem%>
-   </p>
-        <% }
-  }%>
+            <li>
+                 <%=Html.CheckBox(j.nmItem, j.cbItem, new { @class = "cbNavigator" })%> <%:j.nmItem%>
+            </li>
+        <% }%>
+      </ul>
+      </li>
+  <%}%>
+  </ul>
 
             <ul class="buttons">
                 <li>
@@ -56,5 +73,11 @@
                      all[i].checked = false;                      //IE8
         }
         document.forms["NavForm"].submit();
-} 
+    }
+    $(document).ready(function () {
+        $('.cbNavigator').click(function (event) {
+            var currentAnnotation = $(this).parents('li.navCat').children('.navAnnot').text();
+            $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation + ' ' + $(this).attr('name'))
+        });
+    });
 </script>

@@ -21,17 +21,20 @@
             Ваш комментарий
         </th>
         <th>
+            Официант
+        </th>
+        <th>
             Форма оплаты
         </th>
 
         <th>
             Дата оплаты
         </th>
-        <th>
-            Официант
-        </th>
          <th>
             Оплачено?
+        </th>
+        <th>
+            Статус
         </th>
     </tr>
 
@@ -48,14 +51,15 @@
             <%: item.comment.Substring(0,25)+(item.comment.Trim().IsEmpty()?"":"...") %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
+            <%: item.waiterID %>
+        </td>
+        <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
             <%: item.formOfP1.Descr %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
             <%: String.Format("{0:g}", item.dtPaid) %>
         </td>
-        <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
-            <%: item.waiterID %>
-        </td>
+        
         <td>
             <% if (item.flPaid)
                { %>
@@ -65,6 +69,9 @@
                { %>
             <%: Html.ActionLink("Оплатить", "Payment", new { id = item.ID }, new { @class = "btOrders btToPay" })%>
             <%} %> 
+        </td>
+        <td>
+
         </td>
     </tr>  
 <% } %>

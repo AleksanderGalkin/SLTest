@@ -884,3 +884,91 @@ ul.buttons li.selected a
 }     
      
        
+/* BUTTONS  
+----------------------------------------------------------*/
+       
+
+ul.navMenu 
+{
+        padding: 0;
+        margin: 0;
+        
+        
+	
+}
+
+ ul.navMenu  li {
+        list-style: none;
+         
+         /* height: 47px;  */
+
+        margin: 5px;
+        width: 100%;
+        text-align: left;
+        background-color: #e8eef4;
+        
+        padding: 5px 0px 5px 5px;
+        
+        font-size: 1em;
+        font-family: Verdana, Helvetica, Sans-Serif;
+           
+        font-weight: bold;
+        color: #442d25;
+        
+        }
+
+		
+ ul.navMenu li ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: none;
+        position:relative;
+        left:-5px;
+        top:5px;
+       
+ }		
+		
+		
+ ul.navMenu li ul li {
+        margin: 0px;
+        width: 100%;
+        text-align: left;
+        padding: 5px 0px 0px 5px;
+        background-color: #e8eef4;
+        
+}		
+ul.navMenu li  a
+{
+        font-size: 1em;
+        font-family: Verdana, Helvetica, Sans-Serif;
+        font-weight: bold;
+        color: #442d25;
+        text-decoration:none;
+}
+
+ ul.navMenu li:hover ul  {
+        display: block;
+		
+        }
+
+ul.navMenu li .navAnnot
+{
+        font-size: 0.9em;
+        font-family: Verdana, Helvetica, Sans-Serif;
+        font-weight:lighter;
+        font-style:italic;
+        color: black;
+}       
+
+/* Ajax loader  
+----------------------------------------------------------*/
+#loader
+{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:40%;
+    
+} 

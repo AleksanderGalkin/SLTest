@@ -120,7 +120,9 @@ namespace SLTest.Controllers
                     ordDbServ.SetPayState((int)par.ID, "Счёт запрошен", User.Identity.Name);
                 else
                     ordDbServ.SetPayState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
+                Session.Abandon();
                 return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID=par.ID });
+                
             }
             else
             {
