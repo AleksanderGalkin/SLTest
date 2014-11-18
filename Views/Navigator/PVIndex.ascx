@@ -20,7 +20,7 @@
             <%}
         }%>
       </div>
-      <ul>
+      <ul class='navPop'>
       <%foreach (var j in i.GetContent())
         {%>
             <li>
@@ -78,6 +78,19 @@
         $('.cbNavigator').click(function (event) {
             var currentAnnotation = $(this).parents('li.navCat').children('.navAnnot').text();
             $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation + ' ' + $(this).attr('name'))
+        });
+    });
+
+    $(document).ready(function () {
+
+        // Вешаем слушатель события нажатие кнопок мыши для всего документа:
+        $(document).mouseout(function (event) {
+            if (event.relatedTarget !== null) {
+                alert(event.relatedTarget.className);
+            }
+            if (event.target.className.indexOf("navCat") >= 0) {
+                alert(event.target);
+            }
         });
     });
 </script>

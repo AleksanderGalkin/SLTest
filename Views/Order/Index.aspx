@@ -46,11 +46,12 @@
         <td>
         <%if (item.getOState.Descr.Contains("Создан заказ"))
           { %>
-            <%: Html.ActionLink(" ", "DeleteOrder", new { id = item.ID }, new { @class = "icon-trash btRecords" })%> 
+            <%: Html.ActionLink(" ", "DeleteOrder", new { id = item.ID }, new { @class = "icon-trash btRecords"
+                                                                                , onclick="return(confirm('Удалить запись?'));"})%> 
             <%}
           else
           { %>
-          <font class = "icon-trash"></font>
+          <font class = "icon-trash" color="LightGray"></font>
         <%} %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
