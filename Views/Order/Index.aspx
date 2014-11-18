@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<SLTest.Models.shipTo>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+    Много диких обезьян
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,6 +11,9 @@
 
 <table>
     <tr>
+        <th>
+        
+        </th>
         <th>
             Столик
         </th>
@@ -40,6 +43,16 @@
 
 <% foreach (var item in Model) { %>
     <tr  class="rowOrders" >
+        <td>
+        <%if (item.getOState.Descr.Contains("Создан заказ"))
+          { %>
+            <%: Html.ActionLink(" ", "DeleteOrder", new { id = item.ID }, new { @class = "icon-trash btRecords" })%> 
+            <%}
+          else
+          { %>
+          <font class = "icon-trash"></font>
+        <%} %>
+        </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
             <%: item.tableNum %>
         </td>
@@ -70,8 +83,8 @@
             <%: Html.ActionLink("Оплатить", "Payment", new { id = item.ID }, new { @class = "btOrders btToPay" })%>
             <%} %> 
         </td>
-        <td>
-
+        <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
+            <%:item.getOState.Descr %>
         </td>
     </tr>  
 <% } %>

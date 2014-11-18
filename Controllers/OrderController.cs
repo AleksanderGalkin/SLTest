@@ -92,6 +92,46 @@ namespace SLTest.Controllers
 
             
         }
+
+        public ActionResult DeleteOrder(int id)
+        {
+            var resShipTo = (from i in db.shipTo
+                      where i.ID == id 
+                      select i).FirstOrDefault();
+            var resItCart = from i in db.itCart
+                            where i.shipToID == id
+                            select i;
+            var resDB = from i in db.OrderDashBoards
+                        where i.shipToID == id
+                        select i;
+            if (resShipTo.getOState.Descr.Contains("Создан заказ"))
+            {
+
+                if (resDB != null)
+                {
+                    foreach (var i in resDB)
+                    {
+                        db.DeleteObject(i);
+                    }
+                    db.SaveChanges();
+                }
+                if (resItCart != null)
+                {
+                    foreach (var i in resItCart)
+                    {
+                        db.DeleteObject(i);
+                    }
+                    db.SaveChanges();
+                }
+                if (resShipTo != null)
+                {
+                    db.DeleteObject(resShipTo);
+                    db.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Index", new { parUser = User.Identity.Name });
+        }
     }//---------public class OrderController : Controller
 
 }

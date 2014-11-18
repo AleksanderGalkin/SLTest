@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SLTest.Models.Navigator<SLTest.Models.VMMenuItem>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+    Много диких обезьян
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="NavigatorContent" runat="server">
