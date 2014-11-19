@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="coffeeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="coffeeModelStoreContainer">
+          <EntitySet Name="aspnet_Users" EntityType="coffeeModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Categories" EntityType="coffeeModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="formOfP" EntityType="coffeeModel.Store.formOfP" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="itCart" EntityType="coffeeModel.Store.itCart" store:Type="Tables" Schema="dbo" />
@@ -17,6 +18,10 @@
           <EntitySet Name="shipTo" EntityType="coffeeModel.Store.shipTo" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sorts" EntityType="coffeeModel.Store.Sorts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Waiters" EntityType="coffeeModel.Store.Waiters" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Categories_Categories1" Association="coffeeModel.Store.FK_Categories_Categories1">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories1" EntitySet="Categories" />
+          </AssociationSet>
           <AssociationSet Name="FK_itCart_Options" Association="coffeeModel.Store.FK_itCart_Options">
             <End Role="Options" EntitySet="Options" />
             <End Role="itCart" EntitySet="itCart" />
@@ -70,6 +75,18 @@
             <End Role="shipTo" EntitySet="shipTo" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="ID" />
@@ -127,7 +144,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descr" Type="nchar" Nullable="false" MaxLength="25" />
           <Property Name="Style" Type="nchar" Nullable="false" MaxLength="25" />
         </EntityType>
@@ -169,6 +186,18 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Categories_Categories1">
+          <End Role="Categories" Type="coffeeModel.Store.Categories" Multiplicity="1" />
+          <End Role="Categories1" Type="coffeeModel.Store.Categories" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Categories1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_itCart_Options">
           <End Role="Options" Type="coffeeModel.Store.Options" Multiplicity="0..1" />
           <End Role="itCart" Type="coffeeModel.Store.itCart" Multiplicity="*" />
@@ -392,6 +421,11 @@
           <AssociationSet Name="FK_Recipe_Sorts" Association="coffeeModel.FK_Recipe_Sorts">
             <End Role="Sorts" EntitySet="Sorts" />
             <End Role="Recipe" EntitySet="Recipe" />
+          </AssociationSet>
+          <EntitySet Name="aspnet_Users" EntityType="coffeeModel.aspnet_Users" />
+          <AssociationSet Name="FK_Categories_Categories1" Association="coffeeModel.FK_Categories_Categories1">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories1" EntitySet="Categories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Options">
@@ -642,6 +676,8 @@
           <Property Type="String" Name="Category" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Type="Int32" Name="Arrange" />
           <NavigationProperty Name="Recipe" Relationship="coffeeModel.FK_Recipe_Categories" FromRole="Categories" ToRole="Recipe" />
+          <NavigationProperty Name="Categories1" Relationship="coffeeModel.FK_Categories_Categories1" FromRole="Categories" ToRole="Categories1" />
+          <NavigationProperty Name="Categories2" Relationship="coffeeModel.FK_Categories_Categories1" FromRole="Categories1" ToRole="Categories" />
         </EntityType>
         <EntityType Name="Sorts">
           <Key>
@@ -672,6 +708,30 @@
             </Principal>
             <Dependent Role="Recipe">
               <PropertyRef Name="Sort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredUserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobileAlias" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
+          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Categories_Categories1">
+          <End Type="coffeeModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="coffeeModel.Categories" Role="Categories1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Categories1">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -791,6 +851,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="coffeeModel.aspnet_Users">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -815,10 +888,8 @@
         <EntityTypeShape EntityType="coffeeModel.Options" Width="1.5" PointX="3" PointY="2.25" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="coffeeModel.Recipe" Width="1.5" PointX="0.75" PointY="2.25" Height="2.3648893229166656" IsExpanded="true" />
         <AssociationConnector Association="coffeeModel.FK_Options_Recipe" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.3362939453125" />
-          <ConnectorPoint PointX="2.5416691666666664" PointY="3.3362939453124993" />
-          <ConnectorPoint PointX="2.7083358333333334" PointY="3.3362939453125" />
-          <ConnectorPoint PointX="3" PointY="3.3362939453125" />
+          <ConnectorPoint PointX="2.25" PointY="3.1564261881510438" />
+          <ConnectorPoint PointX="3" PointY="3.1564261881510438" />
         </AssociationConnector>
         <EntityTypeShape EntityType="coffeeModel.itCart" Width="1.5" PointX="7.125" PointY="5.5" Height="2.5571907552083317" />
         <EntityTypeShape EntityType="coffeeModel.shipTo" Width="1.5" PointX="4.875" PointY="6.625" Height="3.3263964843749996" />
@@ -882,13 +953,21 @@
         <EntityTypeShape EntityType="coffeeModel.Categories" Width="1.5" PointX="1.5" PointY="0.5" Height="1.787985026041671" />
         <EntityTypeShape EntityType="coffeeModel.Sorts" Width="1.5" PointX="0.875" PointY="5.875" Height="1.5956835937500031" />
         <AssociationConnector Association="coffeeModel.FK_Recipe_Categories" >
-          <ConnectorPoint PointX="2.6250025" PointY="2.287985026041671" />
-          <ConnectorPoint PointX="2.6250025" PointY="4.0873673502604166" />
-          <ConnectorPoint PointX="2.25" PointY="4.0873673502604166" />
+          <ConnectorPoint PointX="1.5" PointY="1.5862939453124998" />
+          <ConnectorPoint PointX="0.5" PointY="1.5862939453124998" />
+          <ConnectorPoint PointX="0.5" PointY="3.7208968098958333" />
+          <ConnectorPoint PointX="0.75" PointY="3.7208968098958333" />
         </AssociationConnector>
         <AssociationConnector Association="coffeeModel.FK_Recipe_Sorts" >
           <ConnectorPoint PointX="1.5625" PointY="5.875" />
           <ConnectorPoint PointX="1.5625" PointY="5.1917936197916665" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="coffeeModel.aspnet_Users" Width="1.5" PointX="7.375" PointY="0.75" Height="2.3648893229166674" />
+        <AssociationConnector Association="coffeeModel.FK_Categories_Categories1" >
+          <ConnectorPoint PointX="2.0319230769230767" PointY="2.672587890625" />
+          <ConnectorPoint PointX="2.0319230769230767" PointY="2.9225878906249996" />
+          <ConnectorPoint PointX="2.4784615384615383" PointY="2.9225878906249996" />
+          <ConnectorPoint PointX="2.4784615384615383" PointY="2.672587890625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

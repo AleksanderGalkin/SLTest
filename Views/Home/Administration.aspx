@@ -34,6 +34,8 @@
         <li><%: Ajax.ActionLink("Категории", "Administration", "Home",
                     new { metName = "PVIndex", modName = "Categories", pageNum = 1 },
                     new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Categories") })%></li> 
+         <li><%: Html.ActionLink("Пользователи","Administration", "Home"
+                                  ,new { metName = "PVIndex", modName = "Users", pageNum = 1 },null) %></li>
          <li><%: Html.ActionLink("Монитор заказов","DachBoardView","OrderDashBoard") %></li>
     </ul>
 

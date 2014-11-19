@@ -81,16 +81,4 @@
         });
     });
 
-    $(document).ready(function () {
-
-        // Вешаем слушатель события нажатие кнопок мыши для всего документа:
-        $(document).mouseout(function (event) {
-            if (event.relatedTarget !== null) {
-                alert(event.relatedTarget.className);
-            }
-            if (event.target.className.indexOf("navCat") >= 0) {
-                alert(event.target);
-            }
-        });
-    });
 </script>

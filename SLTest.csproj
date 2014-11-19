@@ -85,6 +85,7 @@
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\ShippingController.cs" />
     <Compile Include="Controllers\SortsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -94,6 +95,7 @@
     <Compile Include="Models\menuStage.cs" />
     <Compile Include="Models\OrderDashBoard.cs" />
     <Compile Include="Models\Sorts.cs" />
+    <Compile Include="Models\UserAndRoles.cs" />
     <Compile Include="Service\CategoriesEntityService.cs" />
     <Compile Include="Service\Factory\CategoriesServiceFactory.cs" />
     <Compile Include="Service\Factory\SortsServiceFactory.cs" />
@@ -129,6 +131,7 @@
     <Content Include="App_Data\coffeeex_log.ldf">
       <DependentUpon>COFFEEEX.MDF</DependentUpon>
     </Content>
+    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\bg.jpg" />
     <Content Include="Content\bg2.jpg" />
     <Content Include="Content\bg3.jpg" />
@@ -180,6 +183,7 @@
     <Content Include="Views\Shipping\Index.aspx" />
     <Content Include="Views\Shipping\pvCashOrCart.ascx" />
     <Content Include="Views\Shipping\pvIndex.ascx" />
+    <Content Include="Views\Users\PVIndex.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
