@@ -10,6 +10,7 @@ namespace SLTest.Service.Interface
     {
         IEnumerable<T> Get();
         T Get(int id);
+        T Get(string id);
         IEnumerable<T> GetToPage(int page, int itemsToPage);
         void Create(T dataObject);
         void Edit(T dataObject);

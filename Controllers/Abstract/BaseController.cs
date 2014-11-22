@@ -84,6 +84,16 @@ namespace SLTest.Controllers.Abstract
             }
             return View("pvEdit",obj);
         }
+        public virtual ActionResult EditStr(string id)
+        {
+            T obj = Service.Get(id);
+
+            if (Request.IsAjaxRequest())
+            {
+                return View("pvEdit", obj);
+            }
+            return View("pvEdit", obj);
+        }
         [HttpPost]
         public virtual ActionResult Edit(int id,FormCollection FC)
         {

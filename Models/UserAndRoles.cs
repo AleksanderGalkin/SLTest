@@ -8,7 +8,7 @@ namespace SLTest.Models
 {
     public class UserAndRoles:IBase
     {
-        public string id;
+        public string ID;
         public string roleName;
         public string[] users;
 

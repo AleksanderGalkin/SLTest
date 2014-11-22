@@ -20,6 +20,8 @@ namespace SLTest.Service
             OrderStages obj = (from a in db.OrderStages where a.ID == id select a).SingleOrDefault();
             return obj;
         }
+        public OrderStages Get(string id)
+        { return null; }
         public IEnumerable<OrderStages> GetToPage(int page, int itemsToPage)
         {
             IEnumerable<OrderStages> obj = (from a in db.OrderStages orderby a.Descr select a).Skip((page-1) * itemsToPage).Take(itemsToPage);

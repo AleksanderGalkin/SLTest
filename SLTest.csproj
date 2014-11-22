@@ -184,6 +184,7 @@
     <Content Include="Views\Shipping\Index.aspx" />
     <Content Include="Views\Shipping\pvCashOrCart.ascx" />
     <Content Include="Views\Shipping\pvIndex.ascx" />
+    <Content Include="Views\Users\pvEdit.ascx" />
     <Content Include="Views\Users\PVIndex.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -22,6 +22,8 @@ namespace SLTest.Service
             Categories obj = (from a in db.Categories where a.ID == id select a).SingleOrDefault();
             return obj;
         }
+        public Categories Get(string id)
+        { return null; }
         public IEnumerable<Categories> GetToPage(int page, int itemsToPage)
         {
             IEnumerable<Categories> obj = (from a in db.Categories orderby a.Arrange select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);

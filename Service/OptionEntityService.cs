@@ -20,6 +20,8 @@ namespace SLTest.Service
             Options obj = (from a in db.Options where a.OptID == id select a).SingleOrDefault();
             return obj;
         }
+        public Options Get(string id)
+        { return null; }
         public IEnumerable<Options> GetToPage(int page, int itemsToPage)
         {
             IEnumerable<Options> obj = (from a in db.Options orderby a.OptionName select a).Skip((page-1) * itemsToPage).Take(itemsToPage);

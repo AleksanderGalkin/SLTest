@@ -4,47 +4,70 @@ using System.Linq;
 using System.Web;
 using SLTest.Service.Interface;
 using SLTest.Models;
+using System.Web.Security;
 
 namespace SLTest.Service
 {
     public class UserAndRolesService : IBaseService<UserAndRoles>
     {
-        coffeeEntities db = new coffeeEntities();
+       
         public IEnumerable<UserAndRoles> Get()
         {
-            IEnumerable<UserAndRoles> obj = from a in db.Sorts select a;
+
+            var obj = from i in Roles.GetAllRoles()
+                                            select new UserAndRoles { 
+                                                ID=i,
+                                                roleName=i,
+                                                users=Roles.GetUsersInRole(i)
+                                            };
             return obj;
         }
-        //public Sorts Get(int id)
-        //{
-        //    Sorts obj = (from a in db.Sorts where a.ID == id select a).SingleOrDefault();
-        //    return obj;
-        //}
-        //public IEnumerable<Sorts> GetToPage(int page, int itemsToPage)
-        //{
-        //    IEnumerable<Sorts> obj = (from a in db.Sorts orderby a.Sort select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);
-        //    return obj;
-        //}
-        //public void Create(Sorts obj)
-        //{
-        //    db.AddToSorts(obj);
-        //    db.SaveChanges();
-        //}
-        //public void Edit(Sorts obj)
-        //{
-            
-        //    db.SaveChanges();
-        //}
-        //public void Delete(Sorts obj)
-        //{
-        //    db.DeleteObject(obj);
-        //    db.SaveChanges();
-        //}
-        //public int Count()
-        //{
-        //    int cnt = (from a in db.Sorts select a).Count();
-        //    return cnt;
-        //}
+        public UserAndRoles Get(int id)
+        { return null; }
+
+        public UserAndRoles Get(string id)
+        {
+            UserAndRoles obj = (from i in Roles.GetAllRoles()
+                                where i==id
+                                select new UserAndRoles
+                                {
+                                    ID = i,
+                                    roleName = i,
+                                    users = Roles.GetUsersInRole(i)
+                                }).SingleOrDefault();
+            return obj;
+        }
+        public IEnumerable<UserAndRoles> GetToPage(int page, int itemsToPage)
+        {
+            var obj = (from i in Roles.GetAllRoles()
+                                            select new UserAndRoles { 
+                                                ID=i,
+                                                roleName=i,
+                                                users=Roles.GetUsersInRole(i)
+                                            }).Skip((page - 1) * itemsToPage).Take(itemsToPage);
+            return obj;
+        }
+        public void Create(UserAndRoles obj)
+        {
+            //db.AddToSorts(obj);
+            //db.SaveChanges();
+        }
+        public void Edit(UserAndRoles obj)
+        {
+
+           // db.SaveChanges();
+        }
+        public void Delete(UserAndRoles obj)
+        {
+            //db.DeleteObject(obj);
+            //db.SaveChanges();
+        }
+        public int Count()
+        {
+            int cnt = ( from i in Roles.GetAllRoles()
+                                            select i).Count();
+            return cnt;
+        }
         public String IdField
         {
             get

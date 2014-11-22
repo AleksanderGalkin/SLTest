@@ -17,6 +17,6 @@ namespace SLTest.Controllers
         
         public UsersController(IBaseService<UserAndRoles> service) : base(service) { }
         public UsersController() : this(UserAndRolesServiceFactory.Create()) { }
-
+        
     }
 }

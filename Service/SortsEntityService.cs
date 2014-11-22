@@ -20,6 +20,8 @@ namespace SLTest.Service
             Sorts obj = (from a in db.Sorts where a.ID == id select a).SingleOrDefault();
             return obj;
         }
+        public Sorts Get(string id)
+        { return null; }
         public IEnumerable<Sorts> GetToPage(int page, int itemsToPage)
         {
             IEnumerable<Sorts> obj = (from a in db.Sorts orderby a.Sort select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);

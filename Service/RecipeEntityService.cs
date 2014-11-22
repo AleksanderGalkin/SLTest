@@ -20,6 +20,8 @@ namespace SLTest.Service
             Recipe obj = (from a in db.Recipe where a.RecID == id select a).SingleOrDefault();
             return obj;
         }
+        public Recipe Get(string id)
+        { return null; }
         public IEnumerable<Recipe> GetToPage(int page, int itemsToPage)
         {
             IEnumerable<Recipe> obj = (from a in db.Recipe orderby a.RecName select a).Skip((page-1) * itemsToPage).Take(itemsToPage);
