@@ -97,7 +97,9 @@
     <Compile Include="Models\Sorts.cs" />
     <Compile Include="Models\UserAndRoles.cs" />
     <Compile Include="Service\CategoriesEntityService.cs" />
+    <Compile Include="Service\UserAndRolesService.cs" />
     <Compile Include="Service\Factory\CategoriesServiceFactory.cs" />
+    <Compile Include="Service\Factory\UserAndRolesServiceFactory.cs" />
     <Compile Include="Service\Factory\SortsServiceFactory.cs" />
     <Compile Include="Service\SortsEntityService.cs" />
     <Compile Include="Service\Helper\btOrder.cs" />
@@ -112,7 +114,6 @@
     <Compile Include="Models\Options.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\VMMenu.cs" />
     <Compile Include="Models\VMOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

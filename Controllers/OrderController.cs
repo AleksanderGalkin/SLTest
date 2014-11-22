@@ -142,7 +142,7 @@ namespace SLTest.Controllers
                     transaction.Commit();
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 if (transaction != null)
                 {
