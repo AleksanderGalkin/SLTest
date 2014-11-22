@@ -8,8 +8,9 @@ namespace SLTest.Models
 {
     public class UserAndRoles:IBase
     {
-        public string uName;
-        public string[] roles;
+        public string id;
+        public string roleName;
+        public string[] users;
 
         public bool CanBeDeleted()
         {

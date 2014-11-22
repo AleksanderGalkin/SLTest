@@ -10,41 +10,41 @@ namespace SLTest.Service
     public class UserAndRolesService : IBaseService<UserAndRoles>
     {
         coffeeEntities db = new coffeeEntities();
-        public IEnumerable<Sorts> Get()
+        public IEnumerable<UserAndRoles> Get()
         {
-            IEnumerable<Sorts> obj = from a in db.Sorts select a;
+            IEnumerable<UserAndRoles> obj = from a in db.Sorts select a;
             return obj;
         }
-        public Sorts Get(int id)
-        {
-            Sorts obj = (from a in db.Sorts where a.ID == id select a).SingleOrDefault();
-            return obj;
-        }
-        public IEnumerable<Sorts> GetToPage(int page, int itemsToPage)
-        {
-            IEnumerable<Sorts> obj = (from a in db.Sorts orderby a.Sort select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);
-            return obj;
-        }
-        public void Create(Sorts obj)
-        {
-            db.AddToSorts(obj);
-            db.SaveChanges();
-        }
-        public void Edit(Sorts obj)
-        {
+        //public Sorts Get(int id)
+        //{
+        //    Sorts obj = (from a in db.Sorts where a.ID == id select a).SingleOrDefault();
+        //    return obj;
+        //}
+        //public IEnumerable<Sorts> GetToPage(int page, int itemsToPage)
+        //{
+        //    IEnumerable<Sorts> obj = (from a in db.Sorts orderby a.Sort select a).Skip((page - 1) * itemsToPage).Take(itemsToPage);
+        //    return obj;
+        //}
+        //public void Create(Sorts obj)
+        //{
+        //    db.AddToSorts(obj);
+        //    db.SaveChanges();
+        //}
+        //public void Edit(Sorts obj)
+        //{
             
-            db.SaveChanges();
-        }
-        public void Delete(Sorts obj)
-        {
-            db.DeleteObject(obj);
-            db.SaveChanges();
-        }
-        public int Count()
-        {
-            int cnt = (from a in db.Sorts select a).Count();
-            return cnt;
-        }
+        //    db.SaveChanges();
+        //}
+        //public void Delete(Sorts obj)
+        //{
+        //    db.DeleteObject(obj);
+        //    db.SaveChanges();
+        //}
+        //public int Count()
+        //{
+        //    int cnt = (from a in db.Sorts select a).Count();
+        //    return cnt;
+        //}
         public String IdField
         {
             get
@@ -56,7 +56,7 @@ namespace SLTest.Service
         {
             get
             {
-                return "Sort";
+                return "roleName";
             }
         }
     }
