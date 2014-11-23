@@ -6,25 +6,38 @@
         
         <fieldset>
             <legend>Пользователи данной группы</legend>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.roleName)%>
+            <br />
+            <div>
+                <div style="display:inline-block;">
+                    <p>Все</p>
+                    <%: Html.ListBoxFor(model => model.users, new SelectList(ViewBag.AllUsers), new { style = "width:110px" })%>
+                </div>  
+                <div class="moveButtonBlock">
+                   <div class="moveButton">      
+                            <a href="#" onclick=""> >> </a>
+                   </div>
+                   <div class="moveButton">      
+                            <a href="#" onclick=""> << </a>
+                   </div>
+                </div>                      
+                <div style="display:inline-block;">
+                    <p><%: Html.DisplayFor(model => model.roleName)%></p>
+                    <%: Html.ListBoxFor(model => model.users, new SelectList(Model.users), new { style = "width:110px" })%>
+                </div>
+                <%: Html.ValidationMessageFor(model => model.users)%>
             </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.roleName)%>
-                <%: Html.ValidationMessageFor(model => model.roleName)%>
-            </div>
-            Sorts            
+        
             <p>
                 <input type="submit" value="Сохранить" />
             </p>
-        </fieldset>
+       </fieldset>
 
     <% } %>
 
-    <div>
-         <%: Ajax.ActionLink("Back to List", "Administration", "Home",
-                                 new { metName = "PVIndex", modName = "UserAndRoles", pageNum = 1 },
-                                 new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "UserAndRoles") },
-                    new { @class = "btBody btToList" })%>
-    </div>
+   <ul class="buttons">
+      <li>
+         <%: Ajax.ActionLink("Назад к списку", "Administration", "Home",
+                                 new { metName = "PVIndex", modName = "Users", pageNum = 1 },
+                                 new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Users") })%>
+    </li>
+</ul>

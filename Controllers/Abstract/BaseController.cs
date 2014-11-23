@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SLTest.Models.Interface;
 using SLTest.Service.Interface;
 using SLTest.Models;
+using System.Web.Security;
 
 namespace SLTest.Controllers.Abstract
 {
@@ -84,10 +85,12 @@ namespace SLTest.Controllers.Abstract
             }
             return View("pvEdit",obj);
         }
-        public virtual ActionResult EditStr(string id)
+        public virtual ActionResult EditUsers(string id)
         {
             T obj = Service.Get(id);
-
+            //IMembershipService MembershipService;
+            //MembershipService = new AccountMembershipService();
+            ViewBag.AllUsers = Membership.GetAllUsers();
             if (Request.IsAjaxRequest())
             {
                 return View("pvEdit", obj);

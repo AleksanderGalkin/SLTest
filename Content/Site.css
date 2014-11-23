@@ -213,6 +213,7 @@ ul#menu li a
     line-height: 2.8em;
     background-color: #90EE90;  /*e8eef4*/
     color: #442d25;
+    outline:none;
     /*
     background-color: #e8eef4;
     color: #034af3;
@@ -279,6 +280,7 @@ ul#popup li a
     line-height: 2.8em;
     background-color: #90EE90;  /*e8eef4*/
     color: #442d25;
+    outline:none;
 }
 
 ul#popup li a:hover
@@ -314,6 +316,7 @@ a.btRecords
    /* font-size:0px;
     margin:0px 0px;
     */
+    
 }
 
   a.btInsert
@@ -612,7 +615,8 @@ a.btCart
     text-align: center; /* центровка текста */
     font-size:1em;
     display:inline-block;
-    border:1px solid #696969
+    border:1px solid #696969;
+    outline:none;
 
   
 }
@@ -646,7 +650,8 @@ a.btOrders
     text-align: center; /* центровка текста */
     font-size:1em;
     display:inline-block;
-    border:1px solid #696969
+    border:1px solid #696969;
+    outline:none;
 
   
 }
@@ -716,9 +721,9 @@ a.btSignal
     text-align: center; /* центровка текста */
     font-size:1em;
     display:inline-block;
-    border:1px solid #696969
-
-  
+    border:1px solid #696969;
+    outline:none;
+    
 }
 
 a.ordCreated{
@@ -863,6 +868,7 @@ ul.buttons li a
     line-height: 2.8em;
     background-color: #e8eef4; 
     color:#034af3; 
+    outline:none;
 }
 
 ul.buttons li a:hover
@@ -884,7 +890,7 @@ ul.buttons li.selected a
 }     
      
        
-/* BUTTONS  
+/* MENU NAVIGATOR 
 ----------------------------------------------------------*/
        
 
@@ -961,6 +967,53 @@ ul.navMenu li .navAnnot
         font-style:italic;
         color: black;
 }       
+
+/* moveButton
+----------------------------------------------------------*/
+div.moveButtonBlock
+{
+    display:inline-block;
+    vertical-align:bottom;
+    
+}
+
+div.moveButton
+{
+    padding:  2px;
+    margin: 0;
+    text-align: left;
+    display:inline-block;
+    vertical-align:top;
+    display:block;
+}
+
+
+div.moveButton a
+{
+    padding: 5px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4; 
+    color:#034af3; 
+    outline:none;
+
+
+}
+
+div.moveButton a:hover
+{
+    background-color: #9AFF9A;
+    text-decoration: none;
+}
+
+div.moveButton a:active
+{
+    background-color: #43CD80;
+    text-decoration: none;
+}
+
+
 
 /* Ajax loader  
 ----------------------------------------------------------*/
