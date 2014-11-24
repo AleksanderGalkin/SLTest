@@ -9,6 +9,7 @@ namespace SLTest.Models
     
     public partial class OrderDashBoards
     {
+        
         //public int shipToID { get; set; }
         //public int stageID1 { get; set; }
         //public int stageID2 { get; set; }

@@ -7,20 +7,36 @@ using SLTest.Models;
 
 namespace SLTest.Controllers
 {
+    [Authorize(Roles = "Administrators,Waiters")]
     public class OrderDashBoardController : Controller
     {
         coffeeEntities db = new coffeeEntities();
-
+        public enum mode { Active, Archive, All };
         public ActionResult DachBoardView()
         {
             return View();
         }
-        public ActionResult pvIndex()
+        public ActionResult pvIndex(mode m )
         {
-            var obj = from i in db.shipTo
+            string pattern;
+            if(User.IsInRole("Administrators"))
+                 pattern="";
+            else
+                 pattern=User.Identity.Name;
+            var obj = (from i in db.shipTo
                       orderby i.OrderDateTime descending
-                      select i;
-            
+                      where  i.Tables.Waiters.login.Contains(pattern)
+                      select i).AsEnumerable();
+            if (m == mode.Active)
+            {
+                obj = obj.Where(o => !o.getOState.Descr.Contains("Доставлено") || !o.getPState.Descr.Contains("Оплачено"));
+            }
+
+            if (m == mode.Archive)
+            {
+                obj = obj.Where(o => o.getOState.Descr.Contains("Доставлено") && o.getPState.Descr.Contains("Оплачено"));
+            }
+
             return View(obj);
         }
         public ActionResult changeStage(int? id=null,string nextStageID="",int typeOfStage=0)

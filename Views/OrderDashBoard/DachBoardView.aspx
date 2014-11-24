@@ -6,8 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <h2>Монитор заказов</h2>
+<input type="radio" name="radioMode" value="OrderDashBoardController.mode.Active"/>
+<input type="radio" name="radioMode" value="OrderDashBoardController.mode.Archive"/>
+<input type="radio" name="radioMode" value="OrderDashBoardController.mode.All"/>
+
 <div id="UpdateBlock">
-<%Html.RenderAction("pvIndex", "OrderDashBoard"); %>
+<%Html.RenderAction("pvIndex", "OrderDashBoard", new {m=OrderDashBoardController.mode.Active}); %>
 </div>
 
 
@@ -159,8 +163,10 @@
             });
         });
     });
- 
 
+    $('input[name="radioMode"]').click(function (event) {
+        alert($('input[name="radioMode"]:checked').val())
+    });
 
 
 
