@@ -33,7 +33,10 @@ namespace SLTest.Controllers
 
         public ActionResult LogOn()
         {
-            return View();
+            if (Request.IsAjaxRequest())
+                return View("pvLogOn");
+            else
+                return View();
         }
 
         [HttpPost]
@@ -47,7 +50,11 @@ namespace SLTest.Controllers
                     FormsService.SignIn(model.UserName, model.RememberMe);
                     if (!String.IsNullOrEmpty(returnUrl))
                     {
-                        return Redirect(returnUrl);
+                        if (Request.IsAjaxRequest())
+                            return RedirectToAction("Administration", "Home",new { modName = "Home",pageNum=1 });
+                            //"Administration", "Home", new { modName = "Home",pageNum=1 },null
+                        else
+                            return Redirect(returnUrl);
                     }
                     else
                     {
@@ -61,7 +68,8 @@ namespace SLTest.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            
+                return View(model);
         }
 
         // **************************************

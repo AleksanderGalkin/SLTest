@@ -62,7 +62,7 @@
 
     <ul class="buttons">
       <li>
-        <%: Ajax.ActionLink("Create New", "Administration", "Home",
+        <%: Ajax.ActionLink("добавить", "Administration", "Home",
                                     new{metName="Create",modName="Recipe"},
                                                 new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("Create", "Recipe") },
                                                 new { @class = "icon-plus" })%>

@@ -17,7 +17,7 @@
             <%: Html.LabelFor(model => model.tableNum) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.tableNum) %>
+            <%: Html.DropDownListFor(model=>model.tableNum,new SelectList (ViewBag.Tables,"ID","numTable",1)) %>
             <%: Html.ValidationMessageFor(model => model.tableNum) %>
         </div>
 

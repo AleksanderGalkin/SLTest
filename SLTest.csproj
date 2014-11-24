@@ -76,6 +76,7 @@
     <Compile Include="Controllers\Abstract\BaseController2DL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigatorController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Controllers\ShippingController.cs" />
     <Compile Include="Controllers\SortsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WaitersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -95,8 +97,14 @@
     <Compile Include="Models\menuStage.cs" />
     <Compile Include="Models\OrderDashBoard.cs" />
     <Compile Include="Models\Sorts.cs" />
+    <Compile Include="Models\Tables.cs" />
     <Compile Include="Models\UserAndRoles.cs" />
+    <Compile Include="Models\waiters.cs" />
     <Compile Include="Service\CategoriesEntityService.cs" />
+    <Compile Include="Service\TablesEntityService.cs" />
+    <Compile Include="Service\Factory\TablesServiceFactory.cs" />
+    <Compile Include="Service\Factory\WaitersServiceFactory.cs" />
+    <Compile Include="Service\WaitersEntityService.cs" />
     <Compile Include="Service\UserAndRolesService.cs" />
     <Compile Include="Service\Factory\CategoriesServiceFactory.cs" />
     <Compile Include="Service\Factory\UserAndRolesServiceFactory.cs" />
@@ -149,10 +157,21 @@
     <Content Include="Content\coficon.css" />
     <Content Include="Content\font\coficon.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\pvLogOn.ascx" />
     <Content Include="Views\Categories\pvCreate.ascx" />
     <Content Include="Views\Categories\DEL!!!pvDelete.ascx" />
     <Content Include="Views\Categories\pvEdit.ascx" />
     <Content Include="Views\Categories\PVIndex.ascx" />
+    <Content Include="Views\Home\AdministrationStart.ascx" />
+    <Content Include="Views\Tables\DEL!!Delete.aspx" />
+    <Content Include="Views\Tables\pvCreate.ascx" />
+    <Content Include="Views\Tables\pvDelete.ascx" />
+    <Content Include="Views\Tables\pvEdit.ascx" />
+    <Content Include="Views\Tables\PVIndex.ascx" />
+    <Content Include="Views\Waiters\DEL!!!pvDelete.ascx" />
+    <Content Include="Views\Waiters\pvCreate.ascx" />
+    <Content Include="Views\Waiters\pvEdit.ascx" />
+    <Content Include="Views\Waiters\PVIndex.ascx" />
     <Content Include="Views\Sorts\pvCreate.ascx" />
     <Content Include="Views\Sorts\DEL!!!pvDelete.ascx" />
     <Content Include="Views\Sorts\pvEdit.ascx" />

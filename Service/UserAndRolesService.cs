@@ -54,8 +54,24 @@ namespace SLTest.Service
         }
         public void Edit(UserAndRoles obj)
         {
+            foreach(var i in obj.users)
+            {
+                if (!Roles.GetUsersInRole(obj.roleName).Contains(i))
+                {
+                    Roles.AddUserToRole(i, obj.roleName);
+                }
 
-           // db.SaveChanges();
+            }
+
+            foreach (var i in Roles.GetUsersInRole(obj.roleName))
+            {
+                if (!obj.users.Contains(i))
+                {
+                    Roles.RemoveUserFromRole(i, obj.roleName);
+                }
+
+            }
+
         }
         public void Delete(UserAndRoles obj)
         {

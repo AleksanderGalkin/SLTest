@@ -22,17 +22,19 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_Options_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Options), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Options", "Options", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Options), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_Recipe", "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Recipe), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
-[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.OrderStages), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_NextStages_OrderStages1", "OrderStages", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.OrderStages), "NextStages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.NextStages), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_Recipe_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Categories), "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Recipe), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_Recipe_Sorts", "Sorts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Sorts), "Recipe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Recipe), true)]
 [assembly: EdmRelationshipAttribute("coffeeModel", "FK_Categories_Categories1", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Categories), "Categories1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Categories), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_Tables_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "Tables", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.Tables), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_formOfP", "formOfP", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.formOfP), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_itCart_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "itCart", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.itCart), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.shipTo), "OrderDashBoards", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.OrderDashBoards), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_shipTo", "Tables", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SLTest.Models.Tables), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
+[assembly: EdmRelationshipAttribute("coffeeModel", "FK_shipTo_Waiters", "Waiters", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SLTest.Models.Waiters), "shipTo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SLTest.Models.shipTo), true)]
 
 #endregion
 
@@ -131,22 +133,6 @@ namespace SLTest.Models
             }
         }
         private ObjectSet<itCart> _itCart;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<shipTo> shipTo
-        {
-            get
-            {
-                if ((_shipTo == null))
-                {
-                    _shipTo = base.CreateObjectSet<shipTo>("shipTo");
-                }
-                return _shipTo;
-            }
-        }
-        private ObjectSet<shipTo> _shipTo;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -263,18 +249,34 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<aspnet_Users> aspnet_Users
+        public ObjectSet<Tables> Tables
         {
             get
             {
-                if ((_aspnet_Users == null))
+                if ((_Tables == null))
                 {
-                    _aspnet_Users = base.CreateObjectSet<aspnet_Users>("aspnet_Users");
+                    _Tables = base.CreateObjectSet<Tables>("Tables");
                 }
-                return _aspnet_Users;
+                return _Tables;
             }
         }
-        private ObjectSet<aspnet_Users> _aspnet_Users;
+        private ObjectSet<Tables> _Tables;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<shipTo> shipTo
+        {
+            get
+            {
+                if ((_shipTo == null))
+                {
+                    _shipTo = base.CreateObjectSet<shipTo>("shipTo");
+                }
+                return _shipTo;
+            }
+        }
+        private ObjectSet<shipTo> _shipTo;
 
         #endregion
 
@@ -302,14 +304,6 @@ namespace SLTest.Models
         public void AddToitCart(itCart itCart)
         {
             base.AddObject("itCart", itCart);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the shipTo EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToshipTo(shipTo shipTo)
-        {
-            base.AddObject("shipTo", shipTo);
         }
     
         /// <summary>
@@ -369,11 +363,19 @@ namespace SLTest.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the aspnet_Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Tables EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToaspnet_Users(aspnet_Users aspnet_Users)
+        public void AddToTables(Tables tables)
         {
-            base.AddObject("aspnet_Users", aspnet_Users);
+            base.AddObject("Tables", tables);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the shipTo EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToshipTo(shipTo shipTo)
+        {
+            base.AddObject("shipTo", shipTo);
         }
 
         #endregion
@@ -383,217 +385,6 @@ namespace SLTest.Models
     #endregion
 
     #region Entities
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="aspnet_Users")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class aspnet_Users : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new aspnet_Users object.
-        /// </summary>
-        /// <param name="applicationId">Initial value of the ApplicationId property.</param>
-        /// <param name="userId">Initial value of the UserId property.</param>
-        /// <param name="userName">Initial value of the UserName property.</param>
-        /// <param name="loweredUserName">Initial value of the LoweredUserName property.</param>
-        /// <param name="isAnonymous">Initial value of the IsAnonymous property.</param>
-        /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
-        public static aspnet_Users Createaspnet_Users(global::System.Guid applicationId, global::System.Guid userId, global::System.String userName, global::System.String loweredUserName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
-        {
-            aspnet_Users aspnet_Users = new aspnet_Users();
-            aspnet_Users.ApplicationId = applicationId;
-            aspnet_Users.UserId = userId;
-            aspnet_Users.UserName = userName;
-            aspnet_Users.LoweredUserName = loweredUserName;
-            aspnet_Users.IsAnonymous = isAnonymous;
-            aspnet_Users.LastActivityDate = lastActivityDate;
-            return aspnet_Users;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid ApplicationId
-        {
-            get
-            {
-                return _ApplicationId;
-            }
-            set
-            {
-                OnApplicationIdChanging(value);
-                ReportPropertyChanging("ApplicationId");
-                _ApplicationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ApplicationId");
-                OnApplicationIdChanged();
-            }
-        }
-        private global::System.Guid _ApplicationId;
-        partial void OnApplicationIdChanging(global::System.Guid value);
-        partial void OnApplicationIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid UserId
-        {
-            get
-            {
-                return _UserId;
-            }
-            set
-            {
-                if (_UserId != value)
-                {
-                    OnUserIdChanging(value);
-                    ReportPropertyChanging("UserId");
-                    _UserId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("UserId");
-                    OnUserIdChanged();
-                }
-            }
-        }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
-        partial void OnUserIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String UserName
-        {
-            get
-            {
-                return _UserName;
-            }
-            set
-            {
-                OnUserNameChanging(value);
-                ReportPropertyChanging("UserName");
-                _UserName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("UserName");
-                OnUserNameChanged();
-            }
-        }
-        private global::System.String _UserName;
-        partial void OnUserNameChanging(global::System.String value);
-        partial void OnUserNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String LoweredUserName
-        {
-            get
-            {
-                return _LoweredUserName;
-            }
-            set
-            {
-                OnLoweredUserNameChanging(value);
-                ReportPropertyChanging("LoweredUserName");
-                _LoweredUserName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LoweredUserName");
-                OnLoweredUserNameChanged();
-            }
-        }
-        private global::System.String _LoweredUserName;
-        partial void OnLoweredUserNameChanging(global::System.String value);
-        partial void OnLoweredUserNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String MobileAlias
-        {
-            get
-            {
-                return _MobileAlias;
-            }
-            set
-            {
-                OnMobileAliasChanging(value);
-                ReportPropertyChanging("MobileAlias");
-                _MobileAlias = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MobileAlias");
-                OnMobileAliasChanged();
-            }
-        }
-        private global::System.String _MobileAlias;
-        partial void OnMobileAliasChanging(global::System.String value);
-        partial void OnMobileAliasChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean IsAnonymous
-        {
-            get
-            {
-                return _IsAnonymous;
-            }
-            set
-            {
-                OnIsAnonymousChanging(value);
-                ReportPropertyChanging("IsAnonymous");
-                _IsAnonymous = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsAnonymous");
-                OnIsAnonymousChanged();
-            }
-        }
-        private global::System.Boolean _IsAnonymous;
-        partial void OnIsAnonymousChanging(global::System.Boolean value);
-        partial void OnIsAnonymousChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime LastActivityDate
-        {
-            get
-            {
-                return _LastActivityDate;
-            }
-            set
-            {
-                OnLastActivityDateChanging(value);
-                ReportPropertyChanging("LastActivityDate");
-                _LastActivityDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LastActivityDate");
-                OnLastActivityDateChanged();
-            }
-        }
-        private global::System.DateTime _LastActivityDate;
-        partial void OnLastActivityDateChanging(global::System.DateTime value);
-        partial void OnLastActivityDateChanged();
-
-        #endregion
-
-    
-    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -891,18 +682,18 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_formOfP_shipTo", "shipTo")]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_formOfP", "shipTo")]
         public EntityCollection<shipTo> shipTo
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<shipTo>("coffeeModel.FK_formOfP_shipTo", "shipTo");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<shipTo>("coffeeModel.FK_shipTo_formOfP", "shipTo");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<shipTo>("coffeeModel.FK_formOfP_shipTo", "shipTo", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<shipTo>("coffeeModel.FK_shipTo_formOfP", "shipTo", value);
                 }
             }
         }
@@ -1803,44 +1594,6 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo")]
-        public shipTo shipTo
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<shipTo> shipToReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_OrderStages1", "OrderStages")]
         public OrderStages OrderStages1
         {
@@ -1869,6 +1622,44 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderStages>("coffeeModel.FK_OrderDashBoards_OrderStages1", "OrderStages", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "shipTo")]
+        public shipTo shipTo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<shipTo> shipToReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<shipTo>("coffeeModel.FK_OrderDashBoards_shipTo", "shipTo", value);
                 }
             }
         }
@@ -2399,16 +2190,18 @@ namespace SLTest.Models
         /// Create a new shipTo object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="tableNum">Initial value of the tableNum property.</param>
         /// <param name="orderDateTime">Initial value of the OrderDateTime property.</param>
-        /// <param name="flImmediateBill">Initial value of the flImmediateBill property.</param>
         /// <param name="formOfP">Initial value of the formOfP property.</param>
-        public static shipTo CreateshipTo(global::System.Int64 id, global::System.DateTime orderDateTime, global::System.Boolean flImmediateBill, global::System.Int32 formOfP)
+        /// <param name="flImmediateBill">Initial value of the flImmediateBill property.</param>
+        public static shipTo CreateshipTo(global::System.Int64 id, global::System.Int32 tableNum, global::System.DateTime orderDateTime, global::System.Int32 formOfP, global::System.Boolean flImmediateBill)
         {
             shipTo shipTo = new shipTo();
             shipTo.ID = id;
+            shipTo.tableNum = tableNum;
             shipTo.OrderDateTime = orderDateTime;
-            shipTo.flImmediateBill = flImmediateBill;
             shipTo.formOfP = formOfP;
+            shipTo.flImmediateBill = flImmediateBill;
             return shipTo;
         }
 
@@ -2446,9 +2239,9 @@ namespace SLTest.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int16> tableNum
+        public global::System.Int32 tableNum
         {
             get
             {
@@ -2463,8 +2256,8 @@ namespace SLTest.Models
                 OntableNumChanged();
             }
         }
-        private Nullable<global::System.Int16> _tableNum;
-        partial void OntableNumChanging(Nullable<global::System.Int16> value);
+        private global::System.Int32 _tableNum;
+        partial void OntableNumChanging(global::System.Int32 value);
         partial void OntableNumChanged();
     
         /// <summary>
@@ -2490,6 +2283,30 @@ namespace SLTest.Models
         private global::System.DateTime _OrderDateTime;
         partial void OnOrderDateTimeChanging(global::System.DateTime value);
         partial void OnOrderDateTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 formOfP
+        {
+            get
+            {
+                return _formOfP;
+            }
+            set
+            {
+                OnformOfPChanging(value);
+                ReportPropertyChanging("formOfP");
+                _formOfP = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("formOfP");
+                OnformOfPChanged();
+            }
+        }
+        private global::System.Int32 _formOfP;
+        partial void OnformOfPChanging(global::System.Int32 value);
+        partial void OnformOfPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2538,30 +2355,6 @@ namespace SLTest.Models
         private global::System.Boolean _flImmediateBill;
         partial void OnflImmediateBillChanging(global::System.Boolean value);
         partial void OnflImmediateBillChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 formOfP
-        {
-            get
-            {
-                return _formOfP;
-            }
-            set
-            {
-                OnformOfPChanging(value);
-                ReportPropertyChanging("formOfP");
-                _formOfP = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("formOfP");
-                OnformOfPChanged();
-            }
-        }
-        private global::System.Int32 _formOfP;
-        partial void OnformOfPChanging(global::System.Int32 value);
-        partial void OnformOfPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2622,6 +2415,44 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_formOfP", "formOfP")]
+        public formOfP formOfP1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_shipTo_formOfP", "formOfP").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_shipTo_formOfP", "formOfP").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<formOfP> formOfP1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_shipTo_formOfP", "formOfP");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<formOfP>("coffeeModel.FK_shipTo_formOfP", "formOfP", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_itCart_shipTo", "itCart")]
         public EntityCollection<itCart> itCart
         {
@@ -2644,16 +2475,38 @@ namespace SLTest.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_formOfP_shipTo", "formOfP")]
-        public formOfP formOfP1
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "OrderDashBoards")]
+        public EntityCollection<OrderDashBoards> OrderDashBoards
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards");
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP").Value = value;
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_shipTo", "Tables")]
+        public Tables Tables
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tables>("coffeeModel.FK_shipTo_shipTo", "Tables").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tables>("coffeeModel.FK_shipTo_shipTo", "Tables").Value = value;
             }
         }
         /// <summary>
@@ -2661,17 +2514,17 @@ namespace SLTest.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<formOfP> formOfP1Reference
+        public EntityReference<Tables> TablesReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tables>("coffeeModel.FK_shipTo_shipTo", "Tables");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<formOfP>("coffeeModel.FK_formOfP_shipTo", "formOfP", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tables>("coffeeModel.FK_shipTo_shipTo", "Tables", value);
                 }
             }
         }
@@ -2710,28 +2563,6 @@ namespace SLTest.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Waiters>("coffeeModel.FK_shipTo_Waiters", "Waiters", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_OrderDashBoards_shipTo", "OrderDashBoards")]
-        public EntityCollection<OrderDashBoards> OrderDashBoards
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderDashBoards>("coffeeModel.FK_OrderDashBoards_shipTo", "OrderDashBoards", value);
                 }
             }
         }
@@ -2850,6 +2681,201 @@ namespace SLTest.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Tables")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Tables : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Tables object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="numTable">Initial value of the numTable property.</param>
+        public static Tables CreateTables(global::System.Int32 id, global::System.Int32 numTable)
+        {
+            Tables tables = new Tables();
+            tables.ID = id;
+            tables.numTable = numTable;
+            return tables;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 numTable
+        {
+            get
+            {
+                return _numTable;
+            }
+            set
+            {
+                OnnumTableChanging(value);
+                ReportPropertyChanging("numTable");
+                _numTable = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("numTable");
+                OnnumTableChanged();
+            }
+        }
+        private global::System.Int32 _numTable;
+        partial void OnnumTableChanging(global::System.Int32 value);
+        partial void OnnumTableChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String comment
+        {
+            get
+            {
+                return _comment;
+            }
+            set
+            {
+                OncommentChanging(value);
+                ReportPropertyChanging("comment");
+                _comment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("comment");
+                OncommentChanged();
+            }
+        }
+        private global::System.String _comment;
+        partial void OncommentChanging(global::System.String value);
+        partial void OncommentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> waiterID
+        {
+            get
+            {
+                return _waiterID;
+            }
+            set
+            {
+                OnwaiterIDChanging(value);
+                ReportPropertyChanging("waiterID");
+                _waiterID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("waiterID");
+                OnwaiterIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _waiterID;
+        partial void OnwaiterIDChanging(Nullable<global::System.Int32> value);
+        partial void OnwaiterIDChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Tables_Waiters", "Waiters")]
+        public Waiters Waiters
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_Tables_Waiters", "Waiters").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_Tables_Waiters", "Waiters").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Waiters> WaitersReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Waiters>("coffeeModel.FK_Tables_Waiters", "Waiters");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Waiters>("coffeeModel.FK_Tables_Waiters", "Waiters", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_shipTo_shipTo", "shipTo")]
+        public EntityCollection<shipTo> shipTo
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<shipTo>("coffeeModel.FK_shipTo_shipTo", "shipTo");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<shipTo>("coffeeModel.FK_shipTo_shipTo", "shipTo", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="coffeeModel", Name="Waiters")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2861,12 +2887,14 @@ namespace SLTest.Models
         /// Create a new Waiters object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static Waiters CreateWaiters(global::System.Int32 id, global::System.String name)
+        /// <param name="login">Initial value of the login property.</param>
+        /// <param name="name">Initial value of the name property.</param>
+        public static Waiters CreateWaiters(global::System.Int32 id, global::System.String login, global::System.String name)
         {
             Waiters waiters = new Waiters();
             waiters.ID = id;
-            waiters.Name = name;
+            waiters.login = login;
+            waiters.name = name;
             return waiters;
         }
 
@@ -2906,29 +2934,75 @@ namespace SLTest.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Name
+        public global::System.String login
         {
             get
             {
-                return _Name;
+                return _login;
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
+                OnloginChanging(value);
+                ReportPropertyChanging("login");
+                _login = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("login");
+                OnloginChanged();
             }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
+        private global::System.String _login;
+        partial void OnloginChanging(global::System.String value);
+        partial void OnloginChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
 
         #endregion
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("coffeeModel", "FK_Tables_Waiters", "Tables")]
+        public EntityCollection<Tables> Tables
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Tables>("coffeeModel.FK_Tables_Waiters", "Tables");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Tables>("coffeeModel.FK_Tables_Waiters", "Tables", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.

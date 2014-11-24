@@ -11,8 +11,9 @@
             </th>
         </tr>
 
-<tr>
+
 <% foreach(var item in Model.items){ %>
+        <tr>
             <td class="btTd">
                 <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "EditUsers", modName = "Users", id = item.ID },
                                               new AjaxOptions { UpdateTargetId = "aj",
@@ -22,8 +23,9 @@
             <td>
                 <%: item.roleName%>
             </td>
+       </tr>
 <%} %>
-</tr>
+
 </table>
 <p>
         

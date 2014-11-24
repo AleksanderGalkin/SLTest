@@ -10,6 +10,7 @@ using SLTest.Service.Factory;
 
 namespace SLTest.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class SortsController : BaseController<Sorts,IBaseService<Sorts>>
     {
         public SortsController(IBaseService<Sorts> _service) : base(_service) { }

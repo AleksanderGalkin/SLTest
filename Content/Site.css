@@ -973,7 +973,7 @@ ul.navMenu li .navAnnot
 div.moveButtonBlock
 {
     display:inline-block;
-    vertical-align:bottom;
+    vertical-align:baseline;
     
 }
 

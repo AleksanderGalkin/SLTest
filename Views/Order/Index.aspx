@@ -55,7 +55,7 @@
         <%} %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
-            <%: item.tableNum %>
+            <%: item.Tables.numTable %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
             <%: String.Format("{0:g}", item.OrderDateTime) %>
@@ -65,7 +65,7 @@
             <%: item.comment.Substring(0,25)+(item.comment.Trim().IsEmpty()?"":"...") %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
-            <%: item.waiterID %>
+            <%: item.Tables.Waiters.name %>
         </td>
         <td onclick='clickDetail("<%:Url.Action("Detail","Order",new{ID=item.ID}) %>")'>
             <%: item.formOfP1.Descr %>

@@ -11,6 +11,7 @@ using SLTest.Controllers.Abstract;
 
 namespace SLTest.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class RecipeController : BaseController2DL<Recipe, IBaseService<Recipe>, Sorts, IBaseService<Sorts>, Categories, IBaseService<Categories>>
     {
         IBaseService<Sorts> L = SortsServiceFactory.Create();

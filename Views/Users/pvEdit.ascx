@@ -1,28 +1,27 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.UserAndRoles>" %>
 
-     <% using (Ajax.BeginForm("Edit", "UserAndRoles", new { id = Model.ID }, new AjaxOptions { UpdateTargetId = "aj" }))
+     <% using (Ajax.BeginForm("EditUsers", "Users", new { id = Model.ID }, new AjaxOptions { UpdateTargetId = "aj" }))
         {%>
         <%: Html.ValidationSummary(true) %>
-        
+        <%: Html.HiddenFor(model=>model.roleName) %>
         <fieldset>
             <legend>Пользователи данной группы</legend>
-            <br />
-            <div>
+             <div>
                 <div style="display:inline-block;">
                     <p>Все</p>
-                    <%: Html.ListBoxFor(model => model.users, new SelectList(ViewBag.AllUsers), new { style = "width:110px" })%>
+                    <%: Html.ListBox("null", new SelectList(ViewBag.Users), new { style = "width:110px",id="uList" })%>
                 </div>  
                 <div class="moveButtonBlock">
                    <div class="moveButton">      
-                            <a href="#" onclick=""> >> </a>
+                            <a href="#" id="moveButtonIn"> >> </a>
                    </div>
                    <div class="moveButton">      
-                            <a href="#" onclick=""> << </a>
+                            <a href="#" id="moveButtonOut"> << </a>
                    </div>
                 </div>                      
                 <div style="display:inline-block;">
                     <p><%: Html.DisplayFor(model => model.roleName)%></p>
-                    <%: Html.ListBoxFor(model => model.users, new SelectList(Model.users), new { style = "width:110px" })%>
+                    <%: Html.ListBoxFor(model => model.users, new SelectList(Model.users), new { style = "width:110px", id = "rList" })%>
                 </div>
                 <%: Html.ValidationMessageFor(model => model.users)%>
             </div>
@@ -41,3 +40,32 @@
                                  new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Users") })%>
     </li>
 </ul>
+
+<script type="text/javascript">
+    $('#moveButtonIn').click(function (event) {
+        var user = $('#uList option:selected').val();
+        if (user == undefined) {
+            alert('Выберите учётную запись');
+            return false;
+        }
+        var $o = $('<option/>').attr('value', user).text(user);
+        $('#rList').append($o);
+        $('#uList option:selected').remove();
+
+    });
+    $('#moveButtonOut').click(function (event) {
+        var user = $('#rList option:selected').val();
+        if (user == undefined) {
+            alert('Выберите учётную запись');
+            return false;
+        }
+        var $o = $('<option/>').attr('value', user).text(user);
+        $('#uList').append($o);
+        $('#rList option:selected').remove();
+    });
+    
+    $('Form').submit(function(event){
+        
+        $('#rList option').attr('selected', 'selected');
+    });
+</script>

@@ -24,7 +24,9 @@ namespace SLTest.Controllers
             
             shipTo st = new shipTo();
             var t=(from i in db.formOfP select i).ToList() ;
+            var tables = (from i in db.Tables select i).ToList();
             ViewBag.stList = t;
+            ViewBag.Tables = tables;
 
             return View(st);
         }

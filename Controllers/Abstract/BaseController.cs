@@ -85,18 +85,7 @@ namespace SLTest.Controllers.Abstract
             }
             return View("pvEdit",obj);
         }
-        public virtual ActionResult EditUsers(string id)
-        {
-            T obj = Service.Get(id);
-            //IMembershipService MembershipService;
-            //MembershipService = new AccountMembershipService();
-            ViewBag.AllUsers = Membership.GetAllUsers();
-            if (Request.IsAjaxRequest())
-            {
-                return View("pvEdit", obj);
-            }
-            return View("pvEdit", obj);
-        }
+      
         [HttpPost]
         public virtual ActionResult Edit(int id,FormCollection FC)
         {

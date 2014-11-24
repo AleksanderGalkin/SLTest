@@ -13,7 +13,7 @@
     <div id="wrapper">
     <div class="section">
             <div class="display-label">Столик</div>
-            <div class="display-field"><%: Model.tableNum %></div>
+            <div class="display-field"><%: Model.Tables.numTable %></div>
     </div>
     <div class="section comment">
             <div class="display-label">Комментарий</div>
@@ -44,7 +44,7 @@
     </div>
     <div class="section">
             <div class="display-label">Официант</div>
-            <div class="display-field"><%: Model.waiterID %></div>
+            <div class="display-field"><%: Model.Tables.Waiters.name %></div>
     </div>
     </div>
     <div class="orderDetails">

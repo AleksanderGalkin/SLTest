@@ -31,7 +31,7 @@
 <% foreach (var item in Model) { %>
     <tr class="rowDashBoard">
         <td>
-            <%: item.tableNum%>
+            <%: item.Tables.numTable%>
         </td>
         <td>
             <%: String.Format("{0:g}", item.OrderDateTime)%>
@@ -44,7 +44,7 @@
             <%: item.formOfP1.Descr.Trim()%>
         </td>
         <td>
-            <%: item.waiterID%>  
+            <%: item.Tables.Waiters.name%>  
         </td>
          <td>
             <%--<%: Html.ActionLink(item.getOState.Descr, "#", new { id = item.ID }, new { @class = "btSignal " + item.getOState.Style, onClick = "return false;" })%>--%>

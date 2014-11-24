@@ -10,6 +10,7 @@ using SLTest.Controllers.Abstract;
 
 namespace SLTest.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class OptionsController : BaseController1DL<Options, IBaseService<Options>, Recipe, IBaseService<Recipe>>
     {
         public OptionsController(IBaseService<Options> _service, IBaseService<Recipe> _serviceDL) : base(_service, _serviceDL) { }

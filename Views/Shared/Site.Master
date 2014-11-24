@@ -44,7 +44,7 @@
 
 
                     <li><%: Html.ActionLink("начало", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("администрирование", "Administration", "Home", new { modName = "Recipe",pageNum=1 },null)%></li>              
+                    <li><%: Html.ActionLink("администрирование", "Administration", "Home", new { modName = "Home",pageNum=1 },null)%></li>              
                     <li><%: Html.ActionLink("о нас", "About", "Home")%></li>
                     
                 </ul>
