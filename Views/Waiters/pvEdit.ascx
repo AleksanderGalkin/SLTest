@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Waiters>" %>
 
-     <% using (Ajax.BeginForm("Edit", "Waiters", new { id = Model.ID }, new AjaxOptions { UpdateTargetId = "aj" }))
+     <% using (Ajax.BeginForm("Edit", "Waiters", new { id = Model.ID, pageNum = ViewBag.pageNum }, new AjaxOptions { UpdateTargetId = "aj" }))
         {%>
         <%: Html.ValidationSummary(true) %>
         
@@ -31,7 +31,7 @@
    <ul class="buttons">
       <li>
          <%: Ajax.ActionLink("Назад к списку", "Administration", "Home",
-                                 new { metName = "PVIndex", modName = "Waiters", pageNum = 1 },
-                                 new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Waiters") })%>
+                                              new { metName = "PVIndex", modName = "Waiters", pageNum = ViewBag.pageNum },
+                                 new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Waiters", new { pageNum = ViewBag.pageNum }) })%>
     </li>
 </ul>

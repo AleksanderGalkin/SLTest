@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Tables>" %>
 
-  <% using (Ajax.BeginForm("Edit","Tables", new{id=Model.ID},new AjaxOptions { UpdateTargetId = "aj",HttpMethod="Post" })) {%>
+  <% using (Ajax.BeginForm("Edit","Tables", new{id=Model.ID, pageNum = ViewBag.pageNum},new AjaxOptions { UpdateTargetId = "aj",HttpMethod="Post" })) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
@@ -41,7 +41,7 @@
 <ul class="buttons">
       <li>
          <%: Ajax.ActionLink("Назад к списку", "Administration", "Home",
-                    new { metName = "PVIndex",modName = "Tables", pageNum = 1 },
-                    new AjaxOptions { UpdateTargetId="aj", Url=Url.Action("PVIndex","Tables")})%>
+                    new { metName = "PVIndex", modName = "Tables", pageNum = ViewBag.pageNum },
+                    new AjaxOptions { UpdateTargetId = "aj", Url = Url.Action("PVIndex", "Tables", new { pageNum = ViewBag.pageNum }) })%>
     </li>
 </ul>

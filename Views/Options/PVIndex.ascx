@@ -21,9 +21,9 @@
     
         <tr>
             <td class="btTd">
-                 <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Edit", modName = "Options", id = item.OptID },
+                 <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Edit", modName = "Options", id = item.OptID,pageNum=Model.paginginfo.CurrentPage },
                                               new AjaxOptions { UpdateTargetId = "aj",
-                                                                Url = Url.Action("Edit", "Options", new { id = item.OptID })
+                                                                Url = Url.Action("Edit", "Options", new { id = item.OptID, pageNum = Model.paginginfo.CurrentPage })
                                               }, new { @class = "btRecords icon-pencil" })%>
 
               

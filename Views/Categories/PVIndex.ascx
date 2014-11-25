@@ -19,9 +19,9 @@
     
         <tr>
             <td class="btTd">
-                <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Edit", modName = "Categories", id = item.ID },
+                <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Edit", modName = "Categories", id = item.ID, pageNum = Model.paginginfo.CurrentPage },
                                               new AjaxOptions { UpdateTargetId = "aj",
-                                                Url = Url.Action("Edit", "Categories", new { id = item.ID })},new {@class="btRecords icon-pencil"})%> 
+                                                Url = Url.Action("Edit", "Categories", new { id = item.ID,pageNum = Model.paginginfo.CurrentPage })},new {@class="btRecords icon-pencil"})%> 
                                                               
                  <%: Ajax.ActionLink(" ", "Administration", "Home", new { metName = "Delete", modName = "Categories", id = item.ID },
                             new AjaxOptions { UpdateTargetId = "aj",
