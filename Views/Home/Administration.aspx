@@ -9,10 +9,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
-<%--        <div id="loader">
+-        <div id="loader">
             <img alt="" src="/Content/ajax-loader.gif">
         </div>
- %>
+
  
 
 <%-- <script ="<%=Url.Content("~/Scripts/jquery-1.4.4.min.js")%>" type="text/javascript"></script>
@@ -52,14 +52,14 @@
             <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
         </li>
     </ul>
-<%--
+
     <script type="text/javascript">
         $(document).ajaxStart(function () {
             $('#loader').show();
         }).ajaxStop(function () {
             $('#loader').hide();
         });
-</script>--%>
+</script>
 
 </asp:Content>
 
