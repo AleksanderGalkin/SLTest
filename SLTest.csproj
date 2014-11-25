@@ -157,6 +157,9 @@
     <Content Include="Content\coficon.css" />
     <Content Include="Content\font\coficon.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.7-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.js" />
+    <Content Include="Scripts\jquery-1.7.min.js" />
     <Content Include="Views\Account\pvLogOn.ascx" />
     <Content Include="Views\Categories\pvCreate.ascx" />
     <Content Include="Views\Categories\DEL!!!pvDelete.ascx" />
