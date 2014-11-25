@@ -5,13 +5,17 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<h2>Монитор заказов</h2>
-<input type="radio" name="radioMode" value="OrderDashBoardController.mode.Active"/>
-<input type="radio" name="radioMode" value="OrderDashBoardController.mode.Archive"/>
-<input type="radio" name="radioMode" value="OrderDashBoardController.mode.All"/>
+<h3>Монитор заказов</h3>
+
+<div id="loader_dashboard">
+    <img alt="" src="/Content/ajax-loader.gif">
+</div>
+<input type="radio" class="radioMode" name="radioMode" value="Active" <%: ViewBag.mode==OrderDashBoardController.mode.Active?"checked='checked'":"" %>/>Активные &nbsp
+<input type="radio" class="radioMode" name="radioMode" value="Archive" <%: ViewBag.mode==OrderDashBoardController.mode.Archive?"checked='checked'":"" %> />Архивные &nbsp
+<input type="radio" class="radioMode" name="radioMode" value="All"/ <%: ViewBag.mode==OrderDashBoardController.mode.All?"checked='checked'":"" %>>Все &nbsp
 
 <div id="UpdateBlock">
-<%Html.RenderAction("pvIndex", "OrderDashBoard", new {m=OrderDashBoardController.mode.Active}); %>
+<%Html.RenderAction("pvIndex", "OrderDashBoard", new {m=ViewBag.mode}); %>
 </div>
 
 
@@ -24,13 +28,15 @@
 
     upd = function () {
 
+        var mode=$('input[name="radioMode"]:checked').val();
         flag_endOfTimer++;
-        $('#UpdateBlock').load(('<%=Url.Action("pvIndex","OrderDashBoard") %>'), {
+        $('#UpdateBlock').load(('<%=Url.Action("pvIndex","OrderDashBoard")%>' + '?m=' + mode), {
             asd: Math.random() // что б IE не кешировал
         }
         , function () {
-                        blink();
-                        setTimeout(upd, 5000); }
+            blink();
+            setTimeout(upd, 5000);
+        }
         );
     }
 
@@ -164,8 +170,10 @@
         });
     });
 
-    $('input[name="radioMode"]').click(function (event) {
-        alert($('input[name="radioMode"]:checked').val())
+    $(document).ajaxStart(function () {
+        $('#loader_dashboard').show();
+    }).ajaxStop(function () {
+        $('#loader_dashboard').hide();
     });
 
 

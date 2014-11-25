@@ -1,15 +1,15 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.UserAndRoles>" %>
 
-     <% using (Ajax.BeginForm("EditUsers", "Users", new { id = Model.ID }, new AjaxOptions { UpdateTargetId = "aj" }))
-        {%>
-        <%: Html.ValidationSummary(true) %>
-        <%: Html.HiddenFor(model=>model.roleName) %>
+  <% using (Ajax.BeginForm("EditUsers", "Users", new { id = Model.ID }, new AjaxOptions { UpdateTargetId = "aj",HttpMethod="Post" }, new { id = "fu",name="nu" }))
+     {%>
+        <%: Html.ValidationSummary(true)%>
+        <%: Html.HiddenFor(model => model.roleName)%>
         <fieldset>
             <legend>Пользователи данной группы</legend>
              <div>
                 <div style="display:inline-block;">
                     <p>Все</p>
-                    <%: Html.ListBox("null", new SelectList(ViewBag.Users), new { style = "width:110px",id="uList" })%>
+                    <%: Html.ListBox("null", new SelectList(ViewBag.Users), new { style = "width:110px", id = "uList" })%>
                 </div>  
                 <div class="moveButtonBlock">
                    <div class="moveButton">      
@@ -42,30 +42,35 @@
 </ul>
 
 <script type="text/javascript">
-    $('#moveButtonIn').click(function (event) {
-        var user = $('#uList option:selected').val();
-        if (user == undefined) {
-            alert('Выберите учётную запись');
-            return false;
-        }
-        var $o = $('<option/>').attr('value', user).text(user);
-        $('#rList').append($o);
-        $('#uList option:selected').remove();
+    $(document).ready(function () {
+        $('#fu').on('submit', function () {
+            $('#rList option').attr('selected', 'selected');
+        }); 
+
+        $('#moveButtonIn').click(function (event) {
+            var user = $('#uList option:selected').val();
+            if (user == undefined) {
+                alert('Выберите учётную запись');
+                return false;
+            }
+            var $o = $('<option/>').attr('value', user).text(user);
+            $('#rList').append($o);
+            $('#uList option:selected').remove();
+
+        });
+        $('#moveButtonOut').click(function (event) {
+            var user = $('#rList option:selected').val();
+            if (user == undefined) {
+                alert('Выберите учётную запись'); 
+                return false;
+            }
+            var $o = $('<option/>').attr('value', user).text(user);
+            $('#uList').append($o);
+            $('#rList option:selected').remove();
+        });
 
     });
-    $('#moveButtonOut').click(function (event) {
-        var user = $('#rList option:selected').val();
-        if (user == undefined) {
-            alert('Выберите учётную запись');
-            return false;
-        }
-        var $o = $('<option/>').attr('value', user).text(user);
-        $('#uList').append($o);
-        $('#rList option:selected').remove();
-    });
+
+
     
-    $('Form').submit(function(event){
-        
-        $('#rList option').attr('selected', 'selected');
-    });
 </script>

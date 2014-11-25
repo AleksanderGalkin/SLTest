@@ -1025,3 +1025,19 @@ div.moveButton a:active
     left:40%;
     
 } 
+
+#loader_dashboard
+{
+    display:none;
+    position:absolute;
+    top:30%;
+    left:40%;
+    
+} 
+
+/* DachBoard radio buttons 
+----------------------------------------------------------*/
+.radioMode
+{
+    outline:none;
+}

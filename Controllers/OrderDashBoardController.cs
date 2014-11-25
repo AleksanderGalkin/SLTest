@@ -12,12 +12,14 @@ namespace SLTest.Controllers
     {
         coffeeEntities db = new coffeeEntities();
         public enum mode { Active, Archive, All };
-        public ActionResult DachBoardView()
+        public ActionResult DachBoardView(mode m)
         {
+            ViewBag.mode = m;
             return View();
         }
         public ActionResult pvIndex(mode m )
         {
+            ViewBag.mode = m;
             string pattern;
             if(User.IsInRole("Administrators"))
                  pattern="";
@@ -53,6 +55,16 @@ namespace SLTest.Controllers
             if (typeOfStage == 2)
                 obj.setPState(nextStageID, User.Identity.Name);
             return RedirectToAction("pvIndex");
+        }
+
+        public ActionResult Detail(int id, mode m)
+        {
+            ViewBag.mode = m;
+            var v_order = (from i in db.shipTo
+                           where i.ID == id
+                           select i).FirstOrDefault();
+
+            return View(v_order);
         }
     }
 }

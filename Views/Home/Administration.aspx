@@ -9,10 +9,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
-        <div id="loader">
+<%--        <div id="loader">
             <img alt="" src="/Content/ajax-loader.gif">
         </div>
-
+ %>
  
 
 <%-- <script ="<%=Url.Content("~/Scripts/jquery-1.4.4.min.js")%>" type="text/javascript"></script>
@@ -40,7 +40,7 @@
                                   ,new { metName = "PVIndex", modName = "Waiters", pageNum = 1 },null) %></li>
         <li><%: Html.ActionLink("Столы","Administration", "Home"
                                   ,new { metName = "PVIndex", modName = "Tables", pageNum = 1 },null) %></li>
-         <li><%: Html.ActionLink("Монитор заказов","DachBoardView","OrderDashBoard") %></li>
+         <li><%: Html.ActionLink("Монитор заказов", "DachBoardView", "OrderDashBoard",new {m=OrderDashBoardController.mode.Active},null)%></li>
     </ul>
 
 
@@ -52,14 +52,14 @@
             <%: Html.ActionLink("Назад в магазин", "Index", "Home")%>
         </li>
     </ul>
-
+<%--
     <script type="text/javascript">
         $(document).ajaxStart(function () {
             $('#loader').show();
         }).ajaxStop(function () {
             $('#loader').hide();
         });
-</script>
+</script>--%>
 
 </asp:Content>
 

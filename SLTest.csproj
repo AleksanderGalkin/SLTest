@@ -163,6 +163,7 @@
     <Content Include="Views\Categories\pvEdit.ascx" />
     <Content Include="Views\Categories\PVIndex.ascx" />
     <Content Include="Views\Home\AdministrationStart.ascx" />
+    <Content Include="Views\OrderDashBoard\Detail.aspx" />
     <Content Include="Views\Tables\DEL!!Delete.aspx" />
     <Content Include="Views\Tables\pvCreate.ascx" />
     <Content Include="Views\Tables\pvDelete.ascx" />
