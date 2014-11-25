@@ -48,9 +48,10 @@ namespace SLTest.Controllers.Abstract
             return View("pvCreate");
         }
 
-        public override ActionResult Edit(int id)
+        public override ActionResult Edit(int id,int pageNum)
         {
             T obj = Serv.Get(id);
+            ViewBag.pageNum = pageNum;
             DropDownList1();
             DropDownList2();
             if (Request.IsAjaxRequest())

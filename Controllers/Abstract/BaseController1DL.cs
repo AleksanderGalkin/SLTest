@@ -65,9 +65,10 @@ namespace SLTest.Controllers.Abstract
         //    else
         //        return View(FC);
         //}
-        public override ActionResult Edit(int id)
+        public override ActionResult Edit(int id, int pageNum)
         {
             T obj = Serv.Get(id);
+            ViewBag.pageNum = pageNum;
             RecipeDropDownList();
             if (Request.IsAjaxRequest())
             {

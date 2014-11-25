@@ -12,7 +12,7 @@
 </div>
 <input type="radio" class="radioMode" name="radioMode" value="Active" <%: ViewBag.mode==OrderDashBoardController.mode.Active?"checked='checked'":"" %>/>Активные &nbsp
 <input type="radio" class="radioMode" name="radioMode" value="Archive" <%: ViewBag.mode==OrderDashBoardController.mode.Archive?"checked='checked'":"" %> />Архивные &nbsp
-<input type="radio" class="radioMode" name="radioMode" value="All"/ <%: ViewBag.mode==OrderDashBoardController.mode.All?"checked='checked'":"" %>>Все &nbsp
+<input type="radio" class="radioMode" name="radioMode" value="All" <%: ViewBag.mode==OrderDashBoardController.mode.All?"checked='checked'":"" %>>Все &nbsp
 
 <div id="UpdateBlock">
 <%Html.RenderAction("pvIndex", "OrderDashBoard", new {m=ViewBag.mode}); %>

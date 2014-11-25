@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Recipe>" %>
 
-     <% using (Ajax.BeginForm("Edit","Recipe", new{id=Model.RecID},new AjaxOptions { UpdateTargetId = "aj" })) {%>
+     <% using (Ajax.BeginForm("Edit","Recipe", new{id=Model.RecID,pageNum=ViewBag.pageNum},new AjaxOptions { UpdateTargetId = "aj" })) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>

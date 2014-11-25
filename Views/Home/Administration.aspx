@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
 
--        <div id="loader">
+        <div id="loader">
             <img alt="" src="/Content/ajax-loader.gif">
         </div>
 

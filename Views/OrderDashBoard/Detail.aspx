@@ -109,8 +109,7 @@
     </tr>
     <tr  class="trNoBorder" >
         <td colspan="5" align="right" class="trNoBorder">
-        <% if(!Model.flPaid) %>
-         <%: Html.ActionLink("Оплатить", "Payment", new { id = Model.ID }, new { @class = "btOrders btToPay" })%>
+        
         </td>
     </tr>
    </table>

@@ -75,10 +75,10 @@ namespace SLTest.Controllers.Abstract
                     return View(FC);
       
         }
-        public virtual ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id, int pageNum)
         {
             T obj = Service.Get(id);
-
+            ViewBag.pageNum = pageNum;
             if (Request.IsAjaxRequest())
             {
                 return View("pvEdit",obj);
@@ -87,16 +87,15 @@ namespace SLTest.Controllers.Abstract
         }
       
         [HttpPost]
-        public virtual ActionResult Edit(int id,FormCollection FC)
+        public virtual ActionResult Edit(int id,int pageNum,FormCollection FC)
         {
             T obj = Service.Get(id);
             UpdateModel(obj, FC);
             Service.Edit(obj);
-
             if (Request.IsAjaxRequest())
-                return RedirectToAction("PVIndex");
+                return RedirectToAction("PVIndex", new { pageNum = pageNum});
             else
-                return RedirectToAction("Administration", "Home", new { metName = "PVIndex", modName = obj.GetType().Name });
+                return RedirectToAction("Administration", "Home", new { metName = "PVIndex", modName = obj.GetType().Name, pageNum = pageNum });
 
             
         }
