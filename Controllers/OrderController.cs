@@ -19,10 +19,10 @@ namespace SLTest.Controllers
 
 
         [Authorize]
-        public ActionResult Index(string parUser)
+        public ActionResult Index()
         {
             var v_order = (from i in db.shipTo
-                           where i.userName == parUser
+                           where i.userName == User.Identity.Name
                            orderby i.OrderDateTime descending
                            select i).ToList();
             return View(v_order);

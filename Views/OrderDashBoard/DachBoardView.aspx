@@ -8,7 +8,7 @@
 <h3>Монитор заказов</h3>
 
 <div id="loader_dashboard">
-    <img alt="" src="/Content/ajax-loader.gif">
+    <img alt="" src="../../Content/ajax-loader.gif">
 </div>
 <input type="radio" class="radioMode" name="radioMode" value="Active" <%: ViewBag.mode==OrderDashBoardController.mode.Active?"checked='checked'":"" %>/>Активные &nbsp
 <input type="radio" class="radioMode" name="radioMode" value="Archive" <%: ViewBag.mode==OrderDashBoardController.mode.Archive?"checked='checked'":"" %> />Архивные &nbsp

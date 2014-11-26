@@ -120,7 +120,7 @@
 <ul class="buttons">
     <li>
 
-    <%: Html.ActionLink("назад к списку", "Index", new { parUser=Model.userName})%>
+    <%: Html.ActionLink("назад к списку", "Index")%>
     </li>
 </ul>
 
