@@ -13,12 +13,7 @@
             <img alt="" src="<%=Url.Content("~/Content/ajax-loader.gif")%>"> 
         </div>
 
- 
-
-<%-- <script ="<%=Url.Content("~/Scripts/jquery-1.4.4.min.js")%>" type="text/javascript"></script>
-    <script ="<%=Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")%>" type="text/javascript"></script>
---%>
-    <h2>Администрирование</h2>
+    <h3>Администрирование</h3>
 
     <ul id="popup">
         

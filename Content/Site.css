@@ -953,7 +953,7 @@ ul.navMenu li  a
         color: #442d25;
         text-decoration:none;
 }
-
+/*
  ul.navMenu li:hover ul  {
         display: block;
 		
@@ -962,7 +962,7 @@ ul.navMenu li:hover .navAnnot
 {
     min-height:1em;
 }
-
+*/
 ul.navMenu li .navAnnot
 {
         font-size: 0.9em;

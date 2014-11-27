@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Меню</h2>
+    <h2></h2>
 
         <% using (Html.BeginForm("Index","Home",FormMethod.Post, new { id = "MenuForm" }))
            {%>
@@ -52,7 +52,6 @@
             </td>
             <td>
                  <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>
-                 <%--<%: Html.DropDownListFor(p => item.OptID, (SelectList)ViewData["RecList"])%>--%>
             </td>
         </tr>
     

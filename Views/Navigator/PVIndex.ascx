@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<SLTest.Models.Navigator>" %>
-<h2>категории</h2>
+<h2></h2>
 
         <% using (Html.BeginForm("PVIndexPost", "Navigator",FormMethod.Post, new { id = "NavForm" }))
            {%>
@@ -45,7 +45,6 @@
                %>
 
 
-<%--<%= Html.Action("PVIndex", "Home", new { pageNum = ViewBag.pn })%>--%>
 
 <script>
 
@@ -81,7 +80,16 @@
             if (isChecked)
                 $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation + ' ' + $(this).attr('name'));
             else
-                $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation.replace(new RegExp($(this).attr('name'),"g"),""));
+                $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation.replace(new RegExp($(this).attr('name'), "g"), ""));
+        });
+
+        $('ul.navMenu li').mouseenter(function (event) {
+
+            $(this).parent().children('li').not(this).children('ul').hide(200).css('min-height', '0em');
+            $(this).parent().children('li').not(this).children('.navAnnot').css('min-height', '0em');
+            $(this).children('ul').show(400);
+            $(this).children('.navAnnot').css('min-height', '1em');
+
         });
     });
 
