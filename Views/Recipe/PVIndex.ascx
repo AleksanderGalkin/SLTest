@@ -43,7 +43,7 @@
                 <%: item.RecName %>
             </td>
             <td>
-                <%: String.Format("{0:F2}", item.Price) %>
+                <%: String.Format(@"{0:#0.00р\.}", item.Price)%>
             </td>
             <td>
                 <%: item.Describe %>
@@ -70,7 +70,7 @@
     </ul>
     <p>
         
-        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Recipe", pageNum = x }),
+        <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Recipe",metName="PVIndex", pageNum = x }),
                                             x => Url.Action("PVIndex", "Recipe", new { pageNum = x }),"aj")%>
     </p>
 

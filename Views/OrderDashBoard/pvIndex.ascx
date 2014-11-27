@@ -50,7 +50,7 @@
          <td data-url='<%:Url.Action("Detail","OrderDashBoard",new{ID=item.ID,m=ViewBag.mode}) %>'>
             <a href="#" id=<%=item.ID%> class="btSignal btOState <%=item.getOState.Style%>"><%=item.getOState.Descr%></a>
         </td>
-         <td>
+         <td data-url='<%:Url.Action("Detail","OrderDashBoard",new{ID=item.ID,m=ViewBag.mode}) %>'>
             <a href="#" id=<%=item.ID%> class="btSignal btPState <%=item.getPState.Style%>"><%=item.getPState.Descr%></a>
         </td> 
      </tr>  

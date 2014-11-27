@@ -24,14 +24,14 @@ namespace SLTest.Models
 
         public IEnumerable<Options> GetSprOpt()
         {
-            var sprOpt = from s in spr
+            Options[] empty_Opt = { new Options { OptID = 0, OptionName = "(значение отсутствует)" } };
+            var sprOpt = (from s in spr
                          orderby s.OptionName
                          where s.Recipe.RecID == ID
-                         select s;
+                          select s).Union(empty_Opt);
             if (sprOpt.Count() == 0)
             {
-                Options[] empty_Opt = { new Options{OptID=0, OptionName="--------------"}};
-                sprOpt = sprOpt.Union<Options>(empty_Opt);
+                 sprOpt = sprOpt.Union<Options>(empty_Opt);
             }            
              return sprOpt;
         }

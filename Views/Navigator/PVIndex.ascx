@@ -24,7 +24,7 @@
       <%foreach (var j in i.GetContent())
         {%>
             <li>
-                 <%=Html.CheckBox(j.nmItem, j.cbItem, new { @class = "cbNavigator" })%> <%:j.nmItem%>
+                 <%=Html.CheckBox(j.nmItem, j.cbItem, new {@class="cbNavigator", style = "outline:none;" })%> <%:j.nmItem%>
             </li>
         <% }%>
       </ul>
@@ -77,7 +77,11 @@
     $(document).ready(function () {
         $('.cbNavigator').click(function (event) {
             var currentAnnotation = $(this).parents('li.navCat').children('.navAnnot').text();
-            $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation + ' ' + $(this).attr('name'))
+            var isChecked = $(this).attr('checked');
+            if (isChecked)
+                $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation + ' ' + $(this).attr('name'));
+            else
+                $(this).parents('li.navCat').children('.navAnnot').text(currentAnnotation.replace(new RegExp($(this).attr('name'),"g"),""));
         });
     });
 

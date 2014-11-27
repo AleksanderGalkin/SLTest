@@ -16,16 +16,10 @@ namespace SLTest
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-//            routes.MapRoute(
-//                "", // Route name
-//                "{controller}/{action}/Page/{id}", // URL with parameters
-//                new { controller = "Home", action = "Index",  id = UrlParameter.Optional } // Parameter defaults
-//);
-
             routes.MapRoute(
               "", // Route name
-              "Home/Administration/spr{modName}/{pageNum}", // URL with parameters
-              new { controller = "Home", action = "Administration", modName = UrlParameter.Optional, pageNum = UrlParameter.Optional } // Parameter defaults
+              "Home/Administration/spr{modName}/{metName}/Page{pageNum}/{id}", // URL with parameters
+              new { controller = "Home", action = "Administration", modName = UrlParameter.Optional,metName=UrlParameter.Optional, pageNum = UrlParameter.Optional, id = UrlParameter.Optional } // Parameter defaults
           );
             routes.MapRoute(
               "", // Route name
@@ -33,11 +27,6 @@ namespace SLTest
               new { controller = "Home", action = "Index", pageNum = UrlParameter.Optional, id = UrlParameter.Optional } // Parameter defaults
           );
 
-            routes.MapRoute(
-                "", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

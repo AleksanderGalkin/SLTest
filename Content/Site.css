@@ -958,6 +958,10 @@ ul.navMenu li  a
         display: block;
 		
         }
+ul.navMenu li:hover .navAnnot  
+{
+    min-height:1em;
+}
 
 ul.navMenu li .navAnnot
 {
@@ -966,7 +970,9 @@ ul.navMenu li .navAnnot
         font-weight:lighter;
         font-style:italic;
         color: black;
-}       
+        
+}   
+
 
 /* moveButton
 ----------------------------------------------------------*/

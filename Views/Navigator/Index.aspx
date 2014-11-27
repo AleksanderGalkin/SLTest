@@ -17,7 +17,7 @@
       <%foreach (var j in i.GetContent())
         {%>
     <p>
-         <%=Html.CheckBox(j.nmItem,j.cbItem)%> <%:j.nmItem%>
+         <%=Html.CheckBox(j.nmItem, j.cbItem, new { @class = "cbNavigator", style = "outline:none;" })%> <%:j.nmItem%>
    </p>
         <% }
   }%>

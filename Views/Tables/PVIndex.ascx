@@ -61,7 +61,7 @@
     </ul>
      <p>
      
-       <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Tables", pageNum = x }),
+       <%: Html.PageLinks(Model.paginginfo, x => Url.Action("Administration", "Home", new { modName = "Tables", metName = "PVIndex", pageNum = x }),
                                             x => Url.Action("PVIndex", "Tables", new { pageNum = x }),
                                             "aj")%>
 

@@ -34,8 +34,12 @@ namespace SLTest.Models
                     blank1 = blank1 + blank;
                 for(int i=0;i<lenBlank2 ;i++)
                     blank2 = blank2 + blank;
- 
-                return OptionName + ", "+ String.Format("{0:N2}",Price); }
+
+                if (OptID > 0)
+                    return OptionName + ", " + string.Format(@"{0:#0.00р\.}", Price);
+                else
+                    return "";
+            }
         }
         [Bind(Exclude = "OptID")]
         public class OptionsValidation

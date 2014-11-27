@@ -10,7 +10,7 @@
 
 
         <div id="loader">
-            <img alt="" src="../../../Content/ajax-loader.gif">
+            <img alt="" src="<%=Url.Content("~/Content/ajax-loader.gif")%>"> 
         </div>
 
  

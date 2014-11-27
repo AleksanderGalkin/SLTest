@@ -39,7 +39,7 @@
             <td>
                 
                 <%--<%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%> --%>
-                <%=Html.CheckBox(""+item.ID)%> 
+                <%=Html.CheckBox("" + item.ID, new {style="outline:none;" })%> 
             
 
             </td>
@@ -48,7 +48,7 @@
                 <%: item.Name %>
             </td>
             <td>
-                <%: String.Format("{0:F}", item.Price) %>
+                <%: String.Format(@"{0:#0.00р\.}", item.Price)%>
             </td>
             <td>
                  <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>

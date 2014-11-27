@@ -105,26 +105,30 @@ namespace SLTest.Controllers
                 
 
                 Dictionary<itCart, int> itCarts = Session["sKorzina"] as Dictionary<itCart, int>;
-                foreach (var i in itCarts)
+                if (itCarts != null)
                 {
-                    if (i.Value > 0)
+                    foreach (var i in itCarts)
                     {
-                        i.Key.num = (short)i.Value;
-                        i.Key.shipToID = par.ID;
-                        db.AddToitCart(i.Key);
-   
+                        if (i.Value > 0)
+                        {
+                            i.Key.num = (short)i.Value;
+                            i.Key.shipToID = par.ID;
+                            db.AddToitCart(i.Key);
+
+                        }
+
                     }
-                    
+                    db.SaveChanges();
+                    ordDbServ.SetOrderState((int)par.ID, "Создан заказ", User.Identity.Name);
+                    if (par.flImmediateBill)
+                        ordDbServ.SetPayState((int)par.ID, "Счёт запрошен", User.Identity.Name);
+                    else
+                        ordDbServ.SetPayState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
+                    Session.Abandon();
+                    return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID = par.ID });
                 }
-                db.SaveChanges();
-                ordDbServ.SetOrderState((int)par.ID, "Создан заказ", User.Identity.Name);
-                if(par.flImmediateBill)
-                    ordDbServ.SetPayState((int)par.ID, "Счёт запрошен", User.Identity.Name);
                 else
-                    ordDbServ.SetPayState((int)par.ID, "Счёт не запрошен", User.Identity.Name);
-                Session.Abandon();
-                return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID=par.ID });
-                
+                    return RedirectToAction("pvCashOrCart", "Shipping", new { ShipToID = par.ID });
             }
             else
             {

@@ -85,14 +85,14 @@
                 <%: mo[i].drinkName() + (mo[i].opt != null ? " и " : "") + (mo[i].opt != 0 ? mo[i].optName() : "")%>
             </td>
             <td>
-               <%: string.Format("{0:F2}", mo[i].drinkPrice() + mo[i].optPrice())%>
+               <%: string.Format(@"{0:#0.00р\.}", mo[i].drinkPrice() + mo[i].optPrice())%>
             </td>
             <td align="right">
                <%:mo[i].num%>
       
             </td>
             <td align="right" >
-               <%: string.Format("{0:F2}", mo[i].num * (mo[i].drinkPrice() + mo[i].optPrice()))%>
+               <%: string.Format(@"{0:#0.00р\.}", mo[i].num * (mo[i].drinkPrice() + mo[i].optPrice()))%>
                <% amount=amount+mo[i].num * (mo[i].drinkPrice() + mo[i].optPrice()); %>
             </td>
          </tr>
@@ -104,7 +104,7 @@
             Стоимость счёта:
         </td>
         <td align="right" class="stImpInfo">
-            <%:string.Format("{0:F2}",amount) %>
+            <%:string.Format(@"{0:#0.00р\.}", amount)%>
         </td>
     </tr>
     <tr  class="trNoBorder" >
