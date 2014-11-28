@@ -35,15 +35,15 @@ namespace SLTest.Models
     public class LogOnModel
     {
         [Required]
-        [DisplayName("User name")]
+        [DisplayName("Имя / Логин")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Пароль")]
         public string Password { get; set; }
 
-        [DisplayName("Remember me?")]
+        [DisplayName("Запомнить Вас?")]
         public bool RememberMe { get; set; }
     }
 
@@ -51,23 +51,23 @@ namespace SLTest.Models
     public class RegisterModel
     {
         [Required]
-        [DisplayName("User name")]
+        [DisplayName("Имя / Логин")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [DisplayName("Email address")]
+        [DisplayName("Адрес электронной почты")]
         public string Email { get; set; }
 
         [Required]
         [ValidatePasswordLength]
         [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Пароль")]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Confirm password")]
+        [DisplayName("Подтверждение пароля")]
         public string ConfirmPassword { get; set; }
     }
     #endregion

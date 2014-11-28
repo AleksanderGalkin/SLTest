@@ -92,8 +92,8 @@ namespace SLTest.Controllers
             }
 
             Session["SFModel"] = nav;
-        
-            return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index", "Home", new { pageNum=1 });
         }
 
         private void OptionsDropDownList(object selectedoptions = null)

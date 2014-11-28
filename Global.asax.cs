@@ -18,8 +18,24 @@ namespace SLTest
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
               "", // Route name
-              "Home/Administration/spr{modName}/{metName}/Page{pageNum}/{id}", // URL with parameters
+                //"Home/Administration/spr{modName}/{metName}/Page{pageNum}/{id}", // URL with parameters
+              "administration", // URL with parameters
+              new { controller = "Home", action = "Administration", modName = "Home", metName = "AdministrationStart", pageNum = 1 } // Parameter defaults
+          );
+            routes.MapRoute(
+              "", // Route name
+              "administration/spr{modName}/{metName}/Page{pageNum}/{id}", // URL with parameters
               new { controller = "Home", action = "Administration", modName = UrlParameter.Optional,metName=UrlParameter.Optional, pageNum = UrlParameter.Optional, id = UrlParameter.Optional } // Parameter defaults
+          );
+            routes.MapRoute(
+              "", // Route name
+              "Monitoring/{m}", // URL with parameters
+              new { controller = "OrderDashBoard", action = "DachBoardView",m=UrlParameter.Optional } // Parameter defaults
+          );
+            routes.MapRoute(
+              "", // Route name
+              "Menu/Page{pageNum}", // URL with parameters
+              new { controller = "Home", action = "Index", pageNum = 1, id = UrlParameter.Optional } // Parameter defaults
           );
             routes.MapRoute(
               "", // Route name

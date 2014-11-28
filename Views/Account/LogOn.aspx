@@ -5,9 +5,9 @@
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Log On</h2>
+    <h2>Мы будем рады узнать Ваше имя</h2>
     <p>
-        Please enter your username and password. <%: Html.ActionLink("Register", "Register") %> if you don't have an account.
+        Пожалуйста введите Ваше имя и пароль. <%: Html.ActionLink("Зарегестрируйтесь", "Register") %> если Вы еще не имеете собственной учётной записи.
     </p>
 
     <% using (Html.BeginForm()) { %>
@@ -38,7 +38,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Log On" />
+                    <input type="submit" value="Войти" />
                 </p>
             </fieldset>
         </div>
