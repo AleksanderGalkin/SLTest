@@ -43,6 +43,22 @@
             <%
            }
                %>
+<div>
+    <script id="scriptG">
+        (function () {
+            var cx = '003969753695913680039:kxxj-cuz9s8';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementById('scriptG');
+            s.parentNode.insertBefore(gcse, s);
+
+        })();
+</script>
+<gcse:search></gcse:search>
+</div>
 
 
 
