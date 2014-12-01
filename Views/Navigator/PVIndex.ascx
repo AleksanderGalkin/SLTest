@@ -43,6 +43,15 @@
             <%
            }
                %>
+<div class="EditButton">
+<input type=search id="schEdit" >
+<ul class="schbuttons">
+    <li>
+        <a href="#">найти</a>
+        
+    </li>
+</ul>
+</div>
 <div>
     <script id="scriptG">
         (function () {
@@ -107,6 +116,19 @@
             $(this).children('.navAnnot').css('min-height', '1em');
 
         });
+
+        $('.schbuttons li a').click(function (event) {
+            $.post('\\Navigator\\getFilteredRecords', [
+                                                        { name: 'schStr', value: $('.EditButton input').val() }
+                                                      ]
+                                                      , function () {
+                                                      window.location.href="/home/index"
+                                                      }
+                                                      );
+
+
+        });
+
     });
 
 </script>

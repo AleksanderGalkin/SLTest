@@ -65,7 +65,6 @@ namespace SLTest.Controllers
                                     Skip(itemsPerPage * (pageNum - 1)).Take(itemsPerPage);
 
             }
-            
 
             VMMenuItem.spr = from sprOpt in db.Options
                               select sprOpt;

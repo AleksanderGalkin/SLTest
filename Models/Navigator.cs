@@ -22,6 +22,7 @@ namespace SLTest.Models
         public string stDescr;
         public string stField;
         public int stArrange;
+        
 
         public SearchTerm(IEnumerable<INavigator> m, string f, string d,int a)
         {
@@ -77,9 +78,11 @@ namespace SLTest.Models
     public class Navigator//<T>
     //where T :  INavigator, new()
     {
-        public string test{get;set;}
+       // public string test{get;set;}
         //public List<string> tl;
         public List<SearchTerm> list;
+        public string schStr;
+
         public Navigator()
         {
             list = new List<SearchTerm>();
@@ -102,6 +105,9 @@ namespace SLTest.Models
 
         public IEnumerable<INavigator> GetFiltered() // модель отфильтрованная по всем критериям
         {
+
+
+            
             var cntSel = (from i in list
                           select i.stList.Count(p=>p.cbItem==true)
                           ).Sum();
@@ -120,9 +126,12 @@ namespace SLTest.Models
                      r = r.Union(from a in i.model
                             join it in i.stList
                             on (a.GetType().GetProperty(i.stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
-                            where it.cbItem
+                            where it.cbItem 
                             select a);
                 }
+ 
+                if(schStr.Trim().Length>0)
+                    r=r.Where(m=>m.Name.Contains(schStr));
                 return r;
             }
             else
@@ -140,12 +149,10 @@ namespace SLTest.Models
                                 on (a.GetType().GetProperty(i.stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
                                 select a);
                 }
+                if (schStr.Trim().Length > 0)
+                    r = r.Where(m => m.Name.Contains(schStr));
                 return r;
-                //var r = from a in model
-                //        join it in stList
-                //        on (a.GetType().GetProperty(stField).GetValue(a, null) ?? "Пусто").ToString() equals it.nmItem.ToString()
-                //        select a;
-                //return r;
+
             }
 
         }

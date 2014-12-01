@@ -18,7 +18,7 @@ namespace SLTest.Controllers
         {
             nav = new Navigator();
 
-
+            nav.schStr = "";
 
             var t = from recipe in db.Recipe
                     join c in db.Categories
@@ -131,6 +131,16 @@ namespace SLTest.Controllers
                           Price = recipe.Price,
                           OptID = 0
                       };
+        }
+        [HttpPost]
+        public void getFilteredRecords(string schStr)
+        {
+            navSes = Session["SFModel"] as Navigator;
+            if (navSes != null)
+                nav = navSes;
+            nav.schStr = schStr;
+            Session["SFModel"] = nav;
+           // return RedirectToAction("Index", "Home", new { pageNum = 1});
         }
 
     }

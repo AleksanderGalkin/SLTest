@@ -8,5 +8,6 @@ namespace SLTest.Models.Interface
     public interface INavigator
     {
          string Sort { get; set; }
+         string Name { get; set; }
     }
 }
