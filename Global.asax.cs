@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using SLTest.Service;
+using SLTest.Service.Ninject;
 
 namespace SLTest
 {
@@ -57,6 +58,7 @@ namespace SLTest
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
     }
 }

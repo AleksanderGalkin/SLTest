@@ -13,7 +13,10 @@ namespace SLTest.Controllers
     [Authorize(Roles = "Administrators")]
     public class WaitersController : BaseController<Waiters, IBaseService<Waiters>>
     {
+       // public WaitersController(IBaseService<Waiters> _service) : base(_service) { }
+       // public WaitersController() : this(WaitersServiceFactory.Create()) { }
+
         public WaitersController(IBaseService<Waiters> _service) : base(_service) { }
-        public WaitersController() : this(WaitersServiceFactory.Create()) { }
+       // public WaitersController() : this() { }
     }
 }

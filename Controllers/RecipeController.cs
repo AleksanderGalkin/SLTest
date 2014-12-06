@@ -16,7 +16,7 @@ namespace SLTest.Controllers
     {
         IBaseService<Sorts> L = SortsServiceFactory.Create();
         public RecipeController(IBaseService<Recipe> service, IBaseService<Sorts> List1, IBaseService<Categories> List2) : base(service, List1,List2) { }
-        public RecipeController() : this(RecipeServiceFactory.Create(), SortsServiceFactory.Create(), CategoriesServiceFactory.Create()) { }
+      //  public RecipeController() : this(RecipeServiceFactory.Create(), SortsServiceFactory.Create(), CategoriesServiceFactory.Create()) { }
  
     }
 }

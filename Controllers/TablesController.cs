@@ -14,7 +14,7 @@ namespace SLTest.Controllers
     public class TablesController : BaseController1DL<Tables, IBaseService<Tables>, Waiters, IBaseService<Waiters>>
     {
         public TablesController(IBaseService<Tables> _service, IBaseService<Waiters> _serviceDL) : base(_service, _serviceDL) { }
-        public TablesController() : this(TablesServiceFactory.Create(), WaitersServiceFactory.Create()) { }
+      //  public TablesController() : this(TablesServiceFactory.Create(), WaitersServiceFactory.Create()) { }
 
     }
 }

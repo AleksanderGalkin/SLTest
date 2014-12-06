@@ -14,6 +14,6 @@ namespace SLTest.Controllers
     public class SortsController : BaseController<Sorts,IBaseService<Sorts>>
     {
         public SortsController(IBaseService<Sorts> _service) : base(_service) { }
-        public SortsController() : this(SortsServiceFactory.Create()) { }
+      //  public SortsController() : this(SortsServiceFactory.Create()) { }
     }
 }

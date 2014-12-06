@@ -14,6 +14,6 @@ namespace SLTest.Controllers
     public class CategoriesController : BaseController<Categories,IBaseService<Categories>>
     {
         public CategoriesController(IBaseService<Categories> service) : base(service) { }
-        public CategoriesController() : this(CategoriesServiceFactory.Create()) { }
+       // public CategoriesController() : this(CategoriesServiceFactory.Create()) { }
     }
 }

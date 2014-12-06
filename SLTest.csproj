@@ -35,6 +35,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\..\Install\programming\Ninject-3.0.0.15-release-net-4.0\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -101,6 +104,7 @@
     <Compile Include="Models\UserAndRoles.cs" />
     <Compile Include="Models\waiters.cs" />
     <Compile Include="Service\CategoriesEntityService.cs" />
+    <Compile Include="Service\Ninject\NinjectControllerFactory.cs" />
     <Compile Include="Service\TablesEntityService.cs" />
     <Compile Include="Service\Factory\TablesServiceFactory.cs" />
     <Compile Include="Service\Factory\WaitersServiceFactory.cs" />
