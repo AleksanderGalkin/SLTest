@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject">
-      <HintPath>..\..\Install\programming\Ninject-3.0.0.15-release-net-4.0\Ninject.dll</HintPath>
+      <HintPath>..\..\Ninject-3.0.0.15-release-net-4.0\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -159,6 +159,7 @@
     <Content Include="Content\btToShop.png" />
     <Content Include="Content\btToShopClicked.png" />
     <Content Include="Content\coficon.css" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\font\coficon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.7-vsdoc.js" />

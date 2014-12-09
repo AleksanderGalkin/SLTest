@@ -44,15 +44,19 @@
            }
                %>
 <div class="EditButton">
-<input type=search id="schEdit" >
-<ul class="schbuttons">
-    <li>
-        <a href="#">найти</a>
-        
-    </li>
-</ul>
-</div>
-<div>
+    <div class="b">
+        <ul class="schbuttons">
+            <li>
+                <a href="#"><i class="icon-search"></i></a>
+             </li>
+        </ul>
+    </div>
+    <div class="i">
+        <input type="search" id="schEdit" >
+    </div>
+
+</div >
+<div class="EditButton2">
     <script id="scriptG">
         (function () {
             var cx = '003969753695913680039:kxxj-cuz9s8';
@@ -118,16 +122,22 @@
         });
 
         $('.schbuttons li a').click(function (event) {
-            $.post('\\Navigator\\getFilteredRecords', [
+            $.post('<%=Url.Action("getFilteredRecords", "Navigator")%>', [
                                                         { name: 'schStr', value: $('.EditButton input').val() }
                                                       ]
                                                       , function () {
-                                                      window.location.href="/home/index"
+                                                          window.location.href = '<%=Url.Action("Index", "Home")%>'
                                                       }
-                                                      );
+         );
 
 
         });
+
+       $('.EditButton .i input').keypress(function (event) {
+                                                    
+                                                    if(event.keyCode==13)
+                                                    $('.schbuttons li a').click();
+       });
 
     });
 

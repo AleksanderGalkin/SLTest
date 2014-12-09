@@ -893,21 +893,38 @@ ul.buttons li.selected a
 ----------------------------------------------------------*/
 .EditButton
 {
-    height:15px;
+    height:1.5em;
     width:100%;
     padding: 30px 0 0 0;
-    margin: 0px;
+    margin: 0;
+ 
+    
+   
+}
+.EditButton .i
+{
+ 	height:100%;
+	overflow: hidden;
+	padding-right: 10px;
+
+}   
+.EditButton div input
+{
+   	width:100%;
+	height:100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     
 }
-.EditButton input
+
+.EditButton .b
 {
-    padding: 0;
-    margin:0;
-    float:left;
-    max-width:68%;
+    float:right;
+    width:20px;
     height:100%;
-    border-width:1px;  
-}   
+    
+}
 /* SchBUTTONS  
 ----------------------------------------------------------*/
 ul.schbuttons
@@ -931,7 +948,8 @@ ul.schbuttons li
 
 ul.schbuttons li a
 {
-    padding: 2% 6px 2% 6px;
+    padding: 2px 6px 2px 6px;
+    margin:0;
     font-weight: bold;
     text-decoration: none;
     line-height: 0;

@@ -35,6 +35,11 @@ namespace SLTest
           );
             routes.MapRoute(
               "", // Route name
+              "Order", // URL with parameters
+              new { controller = "Order", action = "Index" } // Parameter defaults
+          );
+            routes.MapRoute(
+              "", // Route name
               "Menu/Page{pageNum}", // URL with parameters
               new { controller = "Home", action = "Index", pageNum = 1, id = UrlParameter.Optional } // Parameter defaults
           );
