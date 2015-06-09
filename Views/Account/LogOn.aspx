@@ -40,6 +40,10 @@
                 <p>
                     <input type="submit" value="Войти" />
                 </p>
+
+                <p>
+                    Test login and password are 'alec' and '16416423'
+                </p>
             </fieldset>
         </div>
     <% } %>

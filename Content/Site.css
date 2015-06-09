@@ -925,6 +925,19 @@ ul.buttons li.selected a
     height:100%;
     
 }
+
+/*EditButton Google
+----------------------------------------------------------*/
+.EditButtonG
+{
+    height:1.5em;
+    width:100%;
+    padding: 0 0 0 0;
+    margin: 0;
+   
+}
+
+
 /* SchBUTTONS  
 ----------------------------------------------------------*/
 ul.schbuttons

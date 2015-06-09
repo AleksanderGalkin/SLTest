@@ -51,7 +51,7 @@
                 <%: String.Format(@"{0:#0.00р\.}", item.Price)%>
             </td>
             <td>
-                 <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>
+                 <%: Html.DropDownListFor(p => item.OptID, new SelectList(item.GetSprOpt().ToList(), "OptID", "StringForSelectList"),new{@class="sel_table"})%>
             </td>
         </tr>
     

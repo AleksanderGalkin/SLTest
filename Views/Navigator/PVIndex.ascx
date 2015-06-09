@@ -45,7 +45,7 @@
                %>
 <div class="EditButton">
     <div class="b">
-        <ul class="schbuttons">
+        <ul id = "siteSearch" class="schbuttons">
             <li>
                 <a href="#"><i class="icon-search"></i></a>
              </li>
@@ -56,7 +56,7 @@
     </div>
 
 </div >
-<div class="EditButton2">
+<%--<div class="EditButtonG">
     <script id="scriptG">
         (function () {
             var cx = '003969753695913680039:kxxj-cuz9s8';
@@ -69,10 +69,37 @@
             s.parentNode.insertBefore(gcse, s);
 
         })();
-</script>
+    </script>
 <gcse:search></gcse:search>
 </div>
-
+--%>
+<div class="EditButton">
+    <script id="scriptG">
+        (function () {
+            var cx = '003969753695913680039:kxxj-cuz9s8';
+            var gcse = document.createElement('script'); 
+            gcse.type = 'text/javascript'; gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementById('scriptG');
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+    <div style="width:0px;overflow:hidden;height:0px;"> <!-- if you use display:nonw here it doesn't work-->
+        <gcse:search></gcse:search>
+    </div>
+    <form id="searchbox_003969753695913680039:kxxj-cuz9s8" action="">
+        <input value="003969753695913680039:kxxj-cuz9s8" name="cx" type="hidden"/>
+        <input value="FORID:11" name="cof" type="hidden"/>
+        <input id="q" name="q" type="text"/>
+        <div class="b">
+           <ul id = "googleSearch" class="schbuttons">
+             <li>
+                 <a href="#">G</a>
+             </li>
+           </ul>
+        </div>
+    </form>
+</div>
 
 
 <script>
@@ -121,7 +148,7 @@
 
         });
 
-        $('.schbuttons li a').click(function (event) {
+        $('#siteSearch.schbuttons li a').click(function (event) {
             $.post('<%=Url.Action("getFilteredRecords", "Navigator")%>', [
                                                         { name: 'schStr', value: $('.EditButton input').val() }
                                                       ]
@@ -133,11 +160,15 @@
 
         });
 
-       $('.EditButton .i input').keypress(function (event) {
-                                                    
-                                                    if(event.keyCode==13)
-                                                    $('.schbuttons li a').click();
-       });
+        $('.EditButton .i input').keypress(function (event) {
+
+            if (event.keyCode == 13)
+                $('.schbuttons li a').click();
+        });
+
+        $('#googleSearch.schbuttons li a').click(function (event) {
+            document.forms["searchbox_003969753695913680039:kxxj-cuz9s8"].submit();
+        });
 
     });
 
